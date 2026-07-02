@@ -8,7 +8,7 @@ const LINKS = [
   { href: '#ecosystem', label: 'Ecosystem' },
 ]
 
-export default function Nav() {
+export default function Nav({ onRequestDemo }) {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
 
@@ -48,12 +48,13 @@ export default function Nav() {
           ))}
         </nav>
 
-        <a
-          href="mailto:blessy.babychan@onealphamed.com"
+        <button
+          type="button"
+          onClick={onRequestDemo}
           className="hidden md:inline-flex items-center rounded-full bg-gradient-to-r from-lime via-teal to-blue px-6 py-2.5 text-[13.5px] font-semibold text-void shadow-[0_0_18px_rgba(30,194,122,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(30,194,122,0.55)]"
         >
           Request a demo
-        </a>
+        </button>
 
         <button
           type="button"
@@ -74,9 +75,16 @@ export default function Nav() {
               {l.label}
             </a>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)} className="text-teal">
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false)
+              onRequestDemo()
+            }}
+            className="text-left uppercase text-teal"
+          >
             Request a demo →
-          </a>
+          </button>
         </div>
       )}
     </motion.header>

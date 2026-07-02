@@ -1,8 +1,6 @@
-import { lazy, Suspense } from 'react'
+import { lazy, Suspense, useState } from 'react'
 import AuroraBackground from './components/AuroraBackground'
 import CursorGlow from './components/CursorGlow'
-
-const Scene3D = lazy(() => import('./components/Scene3D'))
 import ScrollProgress from './components/ScrollProgress'
 import Nav from './components/Nav'
 import Hero from './components/Hero'
@@ -11,8 +9,14 @@ import OncoNourish from './components/OncoNourish'
 import Ecosystem from './components/Ecosystem'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
+import DemoModal from './components/DemoModal'
+
+const Scene3D = lazy(() => import('./components/Scene3D'))
 
 function App() {
+  const [demoOpen, setDemoOpen] = useState(false)
+  const openDemo = () => setDemoOpen(true)
+
   return (
     <>
       <AuroraBackground />
@@ -22,15 +26,16 @@ function App() {
       <CursorGlow />
       <ScrollProgress />
       <div className="grain" aria-hidden="true" />
-      <Nav />
+      <Nav onRequestDemo={openDemo} />
       <main className="relative z-10">
         <Hero />
         <Merlin />
         <OncoNourish />
         <Ecosystem />
-        <CTA />
+        <CTA onRequestDemo={openDemo} />
       </main>
       <Footer />
+      <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
     </>
   )
 }

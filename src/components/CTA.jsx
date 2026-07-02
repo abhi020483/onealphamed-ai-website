@@ -1,7 +1,7 @@
 import Reveal from './Reveal'
 import icon from '../assets/alphamed-icon.png'
 
-export default function CTA() {
+export default function CTA({ onRequestDemo }) {
   return (
     <section id="contact" className="relative overflow-hidden py-32 md:py-[140px]">
       <img
@@ -19,12 +19,13 @@ export default function CTA() {
             Let&rsquo;s put <span className="text-gradient">evidence-grade AI</span> to work
             for your brand.
           </h2>
-          <a
-            href="mailto:blessy.babychan@onealphamed.com"
+          <button
+            type="button"
+            onClick={onRequestDemo}
             className="rounded-full bg-gradient-to-r from-lime via-teal to-blue px-9 py-4 text-base font-semibold text-void shadow-[0_0_28px_rgba(30,194,122,0.4)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_12px_44px_rgba(30,194,122,0.6)]"
           >
             Request a demo →
-          </a>
+          </button>
           <span className="font-mono text-[11.5px] tracking-[0.15em] text-text-dim">
             blessy.babychan@onealphamed.com
           </span>
