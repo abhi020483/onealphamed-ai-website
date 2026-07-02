@@ -77,7 +77,7 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.85 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden items-center justify-center lg:flex"
+          className="hidden items-center justify-start lg:flex lg:-ml-4"
         >
           <Logo3D size={330} />
         </motion.div>

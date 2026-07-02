@@ -280,7 +280,7 @@ function SceneContents() {
 
   return (
     <group ref={world}>
-      <DNAHelix position={[6.4, 0, -3]} scale={0.92} />
+      <DNAHelix position={[10.2, 0, -5]} scale={0.92} />
       <DNAHelix position={[-9.5, 1, -8]} scale={0.55} />
       <Molecule position={[-5.4, 1.6, -2]} scale={1.05} speed={1} seed={3} />
       <Molecule position={[-2.4, -2.6, -4.5]} scale={0.8} speed={1.4} seed={7} />
