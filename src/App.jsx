@@ -1,4 +1,5 @@
 import { lazy, Suspense, useState } from 'react'
+import { ThemeProvider } from './ThemeContext'
 import AuroraBackground from './components/AuroraBackground'
 import CursorGlow from './components/CursorGlow'
 import ScrollProgress from './components/ScrollProgress'
@@ -21,7 +22,7 @@ function App() {
   const openDemo = () => setDemoOpen(true)
 
   return (
-    <>
+    <ThemeProvider>
       <AuroraBackground />
       <Suspense fallback={null}>
         <Scene3D />
@@ -42,7 +43,7 @@ function App() {
       </main>
       <Footer />
       <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </>
+    </ThemeProvider>
   )
 }
 

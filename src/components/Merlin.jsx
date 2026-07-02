@@ -135,15 +135,15 @@ export default function Merlin() {
               <div style={{ transform: 'rotateY(-10deg) rotateX(4deg)', transformStyle: 'preserve-3d' }}>
                 <TiltCard
                   max={7}
-                  className="w-[300px] overflow-hidden rounded-[42px] border border-[rgba(180,214,224,0.25)] bg-[#0a1014] shadow-[0_30px_80px_rgba(0,0,0,0.6),0_0_40px_rgba(30,194,122,0.12)]"
+                  className="w-[300px] overflow-hidden rounded-[42px] border border-line-strong bg-frame shadow-[0_30px_80px_rgba(0,0,0,0.6),0_0_40px_rgba(30,194,122,0.12)]"
                 >
                   {/* notch */}
                   <div className="flex justify-center pt-2.5 pb-1.5">
                     <div className="h-[22px] w-[110px] rounded-xl bg-void" />
                   </div>
                   {/* header */}
-                  <div className="flex items-center gap-3 border-b border-white/10 bg-void-3/90 px-4 py-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-green to-blue font-display text-[13px] font-semibold text-void">
+                  <div className="flex items-center gap-3 border-b border-line bg-void-3/90 px-4 py-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-green to-brand-blue font-display text-[13px] font-semibold text-ink">
                       K
                     </div>
                     <div className="flex flex-col gap-0.5">
@@ -158,7 +158,7 @@ export default function Merlin() {
                   <div
                     className="flex min-h-[340px] flex-col gap-2.5 px-3.5 pt-4 pb-6"
                     style={{
-                      backgroundImage: 'radial-gradient(rgba(180,214,224,.05) 1px, transparent 1px)',
+                      backgroundImage: 'radial-gradient(var(--color-dot-pattern) 1px, transparent 1px)',
                       backgroundSize: '18px 18px',
                     }}
                   >
@@ -167,8 +167,8 @@ export default function Merlin() {
                         key={i}
                         className={`max-w-[86%] px-[13px] py-2.5 text-[13px] leading-[1.5] text-text ${
                           c.from === 'patient'
-                            ? 'self-end rounded-[14px_14px_4px_14px] bg-[#0b4a3c]'
-                            : 'self-start rounded-[14px_14px_14px_4px] border border-white/10 bg-void-3/95'
+                            ? 'self-end rounded-[14px_14px_4px_14px] bg-bubble-out'
+                            : 'self-start rounded-[14px_14px_14px_4px] border border-line bg-void-3/95'
                         }`}
                       >
                         {c.text}
@@ -182,7 +182,7 @@ export default function Merlin() {
                       </div>
                     ))}
                     {/* typing indicator */}
-                    <div className="flex gap-1 self-start rounded-[14px] border border-white/10 bg-void-3/95 px-3.5 py-[11px]">
+                    <div className="flex gap-1 self-start rounded-[14px] border border-line bg-void-3/95 px-3.5 py-[11px]">
                       {[0, 0.2, 0.4].map((d) => (
                         <span
                           key={d}

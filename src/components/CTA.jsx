@@ -22,7 +22,7 @@ export default function CTA({ onRequestDemo }) {
           <button
             type="button"
             onClick={onRequestDemo}
-            className="rounded-full bg-gradient-to-r from-lime via-teal to-blue px-9 py-4 text-base font-semibold text-void shadow-[0_0_28px_rgba(30,194,122,0.4)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_12px_44px_rgba(30,194,122,0.6)]"
+            className="rounded-full bg-gradient-to-r from-brand-lime via-brand-teal to-brand-blue px-9 py-4 text-base font-semibold text-ink shadow-[0_0_28px_rgba(30,194,122,0.4)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_12px_44px_rgba(30,194,122,0.6)]"
           >
             Request a demo →
           </button>

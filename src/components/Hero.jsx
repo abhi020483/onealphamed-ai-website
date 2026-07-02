@@ -15,9 +15,9 @@ export default function Hero() {
         <div className="flex flex-col gap-7">
           <motion.p
             {...fade(0)}
-            className="inline-flex items-center gap-2.5 self-start rounded-full border border-green/40 bg-void-2/60 px-4 py-2 backdrop-blur-sm"
+            className="inline-flex items-center gap-2.5 self-start rounded-full border border-brand-green/40 bg-void-2/60 px-4 py-2 backdrop-blur-sm"
           >
-            <span className="h-[7px] w-[7px] animate-blink rounded-full bg-green shadow-[0_0_10px_#1ec27a]" />
+            <span className="h-[7px] w-[7px] animate-blink rounded-full bg-brand-green shadow-[0_0_10px_#1ec27a]" />
             <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-teal">
               Gen&nbsp;AI systems online — Pharma &amp; Healthcare
             </span>
@@ -43,7 +43,7 @@ export default function Hero() {
           <motion.div {...fade(0.34)} className="flex flex-wrap items-center gap-4">
             <a
               href="#merlin"
-              className="rounded-full bg-gradient-to-r from-lime via-teal to-blue px-[30px] py-3.5 text-[15px] font-semibold text-void shadow-[0_0_24px_rgba(30,194,122,0.35)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_10px_36px_rgba(30,194,122,0.55)]"
+              className="rounded-full bg-gradient-to-r from-brand-lime via-brand-teal to-brand-blue px-[30px] py-3.5 text-[15px] font-semibold text-ink shadow-[0_0_24px_rgba(30,194,122,0.35)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_10px_36px_rgba(30,194,122,0.55)]"
             >
               Meet Merlin AI →
             </a>

@@ -1,6 +1,7 @@
 import { useMemo, useRef, useEffect, useState } from 'react'
 import { Canvas, useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
+import { useTheme } from '../ThemeContext'
 
 const LIME = new THREE.Color('#86d13f')
 const GREEN = new THREE.Color('#1ec27a')
@@ -185,7 +186,7 @@ function MedCross({ position = [0, 0, 0], scale = 1, speed = 1 }) {
 }
 
 /* ---------- ambient data particles ---------- */
-function Particles({ count = 320 }) {
+function Particles({ count = 320, light = false }) {
   const ref = useRef()
   const { positions, colors } = useMemo(() => {
     const pos = new Float32Array(count * 3)
@@ -212,7 +213,15 @@ function Particles({ count = 320 }) {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
         <bufferAttribute attach="attributes-color" args={[colors, 3]} />
       </bufferGeometry>
-      <pointsMaterial size={0.06} vertexColors transparent opacity={0.7} sizeAttenuation depthWrite={false} blending={THREE.AdditiveBlending} />
+      <pointsMaterial
+        size={0.06}
+        vertexColors
+        transparent
+        opacity={light ? 0.85 : 0.7}
+        sizeAttenuation
+        depthWrite={false}
+        blending={light ? THREE.NormalBlending : THREE.AdditiveBlending}
+      />
     </points>
   )
 }
@@ -254,7 +263,7 @@ function CameraRig() {
   return null
 }
 
-function SceneContents() {
+function SceneContents({ light }) {
   const world = useRef()
   const scroll = useRef(0)
 
@@ -289,13 +298,15 @@ function SceneContents() {
       <Capsule position={[2.2, -3.6, -3]} rotation={[1.1, 0.4, 0.2]} scale={0.7} speed={0.8} color="#2d7fd4" />
       <MedCross position={[8.6, 3.2, -7]} scale={0.8} speed={0.7} />
       <MedCross position={[-3.5, 4.2, -9]} scale={0.55} speed={1.2} />
-      <Particles />
+      <Particles light={light} />
     </group>
   )
 }
 
 export default function Scene3D() {
   const [enabled, setEnabled] = useState(true)
+  const { theme } = useTheme()
+  const isLight = theme !== 'dark'
 
   useEffect(() => {
     // respect reduced motion & skip tiny screens for perf
@@ -306,17 +317,20 @@ export default function Scene3D() {
   if (!enabled) return null
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 opacity-55" aria-hidden="true">
+    <div
+      className={`pointer-events-none fixed inset-0 z-0 ${isLight ? 'opacity-25' : 'opacity-55'}`}
+      aria-hidden="true"
+    >
       <Canvas
         camera={{ position: [0, 0, 13.5], fov: 46 }}
         dpr={[1, 1.75]}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
       >
-        <fog attach="fog" args={['#05080c', 12, 30]} />
-        <ambientLight intensity={0.55} />
+        <fog attach="fog" args={[isLight ? '#f6f9fa' : '#05080c', 12, 30]} />
+        <ambientLight intensity={isLight ? 0.9 : 0.55} />
         <pointLight position={[8, 6, 8]} intensity={90} color="#1ec27a" />
         <pointLight position={[-8, -4, 6]} intensity={70} color="#2d7fd4" />
-        <SceneContents />
+        <SceneContents light={isLight} />
         <CameraRig />
       </Canvas>
     </div>

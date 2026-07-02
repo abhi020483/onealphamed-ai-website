@@ -37,7 +37,7 @@ export default function OncoNourish() {
       className="relative py-28 md:py-[120px]"
       style={{
         background:
-          'linear-gradient(180deg, transparent, rgba(10,26,36,.35) 20%, rgba(10,26,36,.35) 80%, transparent)',
+          'linear-gradient(180deg, transparent, rgba(var(--color-tint-rgb),.35) 20%, rgba(var(--color-tint-rgb),.35) 80%, transparent)',
       }}
     >
       <div className="mx-auto flex max-w-[1200px] flex-col gap-12 px-6 md:px-10">
@@ -49,8 +49,8 @@ export default function OncoNourish() {
             OncoNourish keeps patients{' '}
             <span className="text-gradient">nourished enough to finish treatment.</span>
           </h2>
-          <div className="inline-flex items-center gap-2.5 self-start rounded-lg border border-teal/50 bg-[rgba(10,26,36,0.7)] px-4 py-2">
-            <span className="h-[7px] w-[7px] bg-teal shadow-[0_0_8px_#0aa88f]" />
+          <div className="inline-flex items-center gap-2.5 self-start rounded-lg border border-brand-teal/50 px-4 py-2" style={{ backgroundColor: 'rgba(var(--color-tint-rgb), 0.7)' }}>
+            <span className="h-[7px] w-[7px] bg-brand-teal shadow-[0_0_8px_#0aa88f]" />
             <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-teal">
               Supportive care only — no treat / cure / arrest claims
             </span>
@@ -125,7 +125,7 @@ export default function OncoNourish() {
                   <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
                     Sample patient — Anita K.
                   </span>
-                  <span className="rounded-full border border-lime/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-lime">
+                  <span className="rounded-full border border-brand-lime/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-lime">
                     Clinician approved
                   </span>
                 </div>

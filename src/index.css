@@ -5,24 +5,80 @@
   --font-body: "Exo 2", -apple-system, sans-serif;
   --font-mono: "Share Tech Mono", ui-monospace, monospace;
 
-  /* deep space base */
+  /* theme-adaptive tokens — literal values here are placeholders only;
+     real values come from the unlayered :root / html[data-theme] block
+     below, which always wins over @theme's layered output. */
   --color-void: #05080c;
   --color-void-2: #0a1018;
   --color-void-3: #101a24;
+  --color-frame: #0a1014;
+  --color-bubble-out: #0b4a3c;
   --color-line: rgba(180, 214, 224, 0.14);
+  --color-line-strong: rgba(180, 214, 224, 0.25);
   --color-text: #eaf1f4;
   --color-text-dim: rgba(234, 241, 244, 0.62);
-
-  /* AlphaMed.Ai brand gradient — sampled from the logo mark */
   --color-lime: #86d13f;
   --color-green: #1ec27a;
   --color-teal: #0aa88f;
   --color-blue: #2d7fd4;
+
+  /* fixed brand hues — identical in both themes. Used for gradients,
+     waveforms, status dots, and anywhere the design keeps the original
+     bright brand color instead of darkening it for light-mode contrast. */
+  --color-brand-lime: #86d13f;
+  --color-brand-green: #1ec27a;
+  --color-brand-teal: #0aa88f;
+  --color-brand-blue: #2d7fd4;
   --color-blue-deep: #1c4a86;
+
+  /* near-black, for text placed on bright gradient surfaces — stays
+     dark regardless of theme so gradient buttons stay legible */
+  --color-ink: #07231a;
 }
 
+/* ---------- theme values: light is the default, dark is opt-in ---------- */
 :root {
+  color-scheme: light;
+
+  --color-void: #f6f9fa;
+  --color-void-2: #ffffff;
+  --color-void-3: #eef4f7;
+  --color-frame: #ffffff;
+  --color-bubble-out: #d9f4e6;
+  --color-line: rgba(20, 70, 90, 0.14);
+  --color-line-strong: rgba(20, 70, 90, 0.25);
+  --color-text: #0f2430;
+  --color-text-dim: rgba(15, 36, 48, 0.62);
+  --color-lime: #568f1e;
+  --color-green: #0e8f58;
+  --color-teal: #087f6c;
+  --color-blue: #1f66b0;
+
+  --color-tint-rgb: 224, 240, 244;
+  --color-ring-track: rgba(20, 70, 90, 0.15);
+  --color-dot-pattern: rgba(20, 70, 90, 0.05);
+}
+
+html[data-theme="dark"] {
   color-scheme: dark;
+
+  --color-void: #05080c;
+  --color-void-2: #0a1018;
+  --color-void-3: #101a24;
+  --color-frame: #0a1014;
+  --color-bubble-out: #0b4a3c;
+  --color-line: rgba(180, 214, 224, 0.14);
+  --color-line-strong: rgba(180, 214, 224, 0.25);
+  --color-text: #eaf1f4;
+  --color-text-dim: rgba(234, 241, 244, 0.62);
+  --color-lime: #86d13f;
+  --color-green: #1ec27a;
+  --color-teal: #0aa88f;
+  --color-blue: #2d7fd4;
+
+  --color-tint-rgb: 10, 26, 36;
+  --color-ring-track: rgba(180, 214, 224, 0.15);
+  --color-dot-pattern: rgba(180, 214, 224, 0.05);
 }
 
 * {
@@ -41,11 +97,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  transition: background-color 300ms ease, color 300ms ease;
 }
 
 ::selection {
-  background: var(--color-teal);
-  color: var(--color-void);
+  background: rgba(30, 194, 122, 0.35);
+  color: var(--color-ink);
 }
 
 .font-display {
@@ -60,14 +117,19 @@ body {
 }
 
 .text-gradient {
-  background: linear-gradient(100deg, var(--color-lime), var(--color-teal) 45%, var(--color-blue) 100%);
+  background: linear-gradient(
+    100deg,
+    var(--color-brand-lime),
+    var(--color-brand-teal) 45%,
+    var(--color-brand-blue) 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
-.border-gradient {
-  position: relative;
+.bg-tint {
+  background-color: rgba(var(--color-tint-rgb), var(--tint-alpha, 0.7));
 }
 
 /* grain texture overlay */
@@ -91,8 +153,8 @@ body {
     to bottom,
     transparent,
     transparent 3px,
-    rgba(255, 255, 255, 0.012) 3px,
-    rgba(255, 255, 255, 0.012) 4px
+    rgba(180, 214, 224, 0.012) 3px,
+    rgba(180, 214, 224, 0.012) 4px
   );
 }
 
@@ -248,20 +310,20 @@ body {
 .hud-corners::before {
   top: 10px;
   left: 10px;
-  border-top: 1.5px solid var(--color-teal);
-  border-left: 1.5px solid var(--color-teal);
+  border-top: 1.5px solid var(--color-brand-teal);
+  border-left: 1.5px solid var(--color-brand-teal);
 }
 .hud-corners::after {
   bottom: 10px;
   right: 10px;
-  border-bottom: 1.5px solid var(--color-teal);
-  border-right: 1.5px solid var(--color-teal);
+  border-bottom: 1.5px solid var(--color-brand-teal);
+  border-right: 1.5px solid var(--color-brand-teal);
 }
 .hud-corners:hover::before,
 .hud-corners:hover::after {
   width: 22px;
   height: 22px;
-  border-color: var(--color-lime);
+  border-color: var(--color-brand-lime);
 }
 
 @keyframes blink {

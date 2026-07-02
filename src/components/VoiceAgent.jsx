@@ -29,15 +29,15 @@ const CARDS = [
 ]
 
 const WAVE_BARS = [
-  'from-lime to-teal',
-  'from-lime to-teal',
-  'from-green to-teal',
-  'from-green to-blue',
-  'from-teal to-blue',
-  'from-teal to-blue',
-  'from-green to-blue',
-  'from-green to-teal',
-  'from-lime to-teal',
+  'from-brand-lime to-brand-teal',
+  'from-brand-lime to-brand-teal',
+  'from-brand-green to-brand-teal',
+  'from-brand-green to-brand-blue',
+  'from-brand-teal to-brand-blue',
+  'from-brand-teal to-brand-blue',
+  'from-brand-green to-brand-blue',
+  'from-brand-green to-brand-teal',
+  'from-brand-lime to-brand-teal',
 ]
 
 const COMPLIANCE = ['TRAI Consent', 'UCPMP', 'DPDP Act 2023', 'MLR Reviewed']
@@ -79,7 +79,7 @@ export default function VoiceAgent() {
             <TiltCard max={6} className="hud-corners flex h-full flex-col justify-between gap-5 rounded-2xl border border-line bg-void-2/70 px-7 py-6 backdrop-blur-md">
               <div className="flex items-center justify-between gap-3">
                 <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-green">
-                  <span className="h-[7px] w-[7px] animate-blink rounded-full bg-green shadow-[0_0_10px_#1ec27a]" />
+                  <span className="h-[7px] w-[7px] animate-blink rounded-full bg-brand-green shadow-[0_0_10px_#1ec27a]" />
                   Outbound call · Live
                 </span>
                 <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-text-dim/70">
@@ -98,7 +98,7 @@ export default function VoiceAgent() {
                 ))}
               </div>
 
-              <div className="rounded-xl border border-white/10 bg-void-3/70 px-4 py-3.5 text-[0.9rem] leading-[1.6] text-text/80">
+              <div className="rounded-xl border border-line bg-void-3/70 px-4 py-3.5 text-[0.9rem] leading-[1.6] text-text/80">
                 &ldquo;Doctor, following up on last week&rsquo;s detailing visit — a new study
                 on the extended indication was published. Would two minutes on the key
                 findings help?&rdquo;
@@ -116,15 +116,15 @@ export default function VoiceAgent() {
                 Real-time pipeline
               </span>
               <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-lg border border-lime/40 px-3.5 py-2 font-mono text-[11.5px] uppercase tracking-[0.12em] text-lime">
+                <span className="rounded-lg border border-brand-lime/40 px-3.5 py-2 font-mono text-[11.5px] uppercase tracking-[0.12em] text-lime">
                   Speech-to-text
                 </span>
                 <span className="text-teal">→</span>
-                <span className="rounded-lg border border-green/40 px-3.5 py-2 font-mono text-[11.5px] uppercase tracking-[0.12em] text-green">
+                <span className="rounded-lg border border-brand-green/40 px-3.5 py-2 font-mono text-[11.5px] uppercase tracking-[0.12em] text-green">
                   LLM + Retrieval
                 </span>
                 <span className="text-teal">→</span>
-                <span className="rounded-lg border border-blue/40 px-3.5 py-2 font-mono text-[11.5px] uppercase tracking-[0.12em] text-blue">
+                <span className="rounded-lg border border-brand-blue/40 px-3.5 py-2 font-mono text-[11.5px] uppercase tracking-[0.12em] text-blue">
                   Text-to-speech
                 </span>
               </div>
@@ -147,7 +147,7 @@ export default function VoiceAgent() {
               </p>
             </div>
 
-            <div className="flex flex-col gap-3 rounded-2xl border border-teal/40 bg-[rgba(10,26,36,0.7)] px-6 py-5">
+            <div className="flex flex-col gap-3 rounded-2xl border border-brand-teal/40 px-6 py-5" style={{ backgroundColor: 'rgba(var(--color-tint-rgb), 0.7)' }}>
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-teal">
                 Compliant from day one
               </span>
@@ -155,7 +155,7 @@ export default function VoiceAgent() {
                 {COMPLIANCE.map((c) => (
                   <span
                     key={c}
-                    className="rounded-full border border-teal/40 px-3 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.15em] text-teal"
+                    className="rounded-full border border-brand-teal/40 px-3 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.15em] text-teal"
                   >
                     {c}
                   </span>

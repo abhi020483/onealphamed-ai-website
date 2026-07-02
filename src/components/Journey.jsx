@@ -4,19 +4,22 @@ import TiltCard from './TiltCard'
 const PHASES = [
   {
     label: 'Phase One',
-    color: '#86d13f',
+    dot: '#86d13f',
+    textColor: 'text-lime',
     text: 'Building & optimising medical information query systems.',
     chip: 'MERLIN',
   },
   {
     label: 'Phase Two',
-    color: '#0aa88f',
+    dot: '#0aa88f',
+    textColor: 'text-teal',
     text: 'Building HCP-focussed intelligent prescription digitisation with LLMs.',
     chip: 'MEDSCAN',
   },
   {
     label: 'Phase Three',
-    color: '#2d7fd4',
+    dot: '#2d7fd4',
+    textColor: 'text-blue',
     text: 'Improving sales–doctor interactions & building efficient Gen AI patient programs.',
     chip: null,
   },
@@ -58,18 +61,18 @@ export default function Journey() {
               <Reveal key={p.label} delay={i * 0.12} className="flex flex-col items-center">
                 <div
                   className="h-4 w-4 animate-blink rounded-full border-[3px] border-void"
-                  style={{ background: p.color, boxShadow: `0 0 16px ${p.color}`, animationDelay: `${i * 0.5}s` }}
+                  style={{ background: p.dot, boxShadow: `0 0 16px ${p.dot}`, animationDelay: `${i * 0.5}s` }}
                 />
-                <div className="h-7 w-px border-l border-dashed" style={{ borderColor: `${p.color}80` }} />
+                <div className="h-7 w-px border-l border-dashed" style={{ borderColor: `${p.dot}80` }} />
                 <TiltCard max={7} className="hud-corners flex w-full flex-col gap-3.5 rounded-2xl border border-line bg-void-2/70 px-[26px] py-7 backdrop-blur-md">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.25em]" style={{ color: p.color }}>
+                  <span className={`font-mono text-[11px] uppercase tracking-[0.25em] ${p.textColor}`}>
                     {p.label}
                   </span>
                   <p className="text-[1rem] leading-[1.65] text-text">{p.text}</p>
                   {p.chip && (
                     <span
-                      className="self-start rounded-full border px-3 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.2em]"
-                      style={{ color: p.color, borderColor: `${p.color}66` }}
+                      className={`self-start rounded-full border px-3 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.2em] ${p.textColor}`}
+                      style={{ borderColor: `${p.dot}66` }}
                     >
                       {p.chip}
                     </span>

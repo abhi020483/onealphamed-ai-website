@@ -42,7 +42,7 @@ export default function Arogya() {
       className="relative py-28 md:py-[120px]"
       style={{
         background:
-          'linear-gradient(180deg, transparent, rgba(10,26,36,.3) 25%, rgba(10,26,36,.3) 75%, transparent)',
+          'linear-gradient(180deg, transparent, rgba(var(--color-tint-rgb),.3) 25%, rgba(var(--color-tint-rgb),.3) 75%, transparent)',
       }}
     >
       <div className="mx-auto flex max-w-[1200px] flex-col gap-12 px-6 md:px-10">
@@ -68,7 +68,7 @@ export default function Arogya() {
               <div style={{ transform: 'rotateY(9deg) rotateX(4deg)', transformStyle: 'preserve-3d' }}>
                 <TiltCard
                   max={7}
-                  className="w-[300px] overflow-hidden rounded-[42px] border border-[rgba(180,214,224,0.25)] bg-[#0a1014] shadow-[0_30px_80px_rgba(0,0,0,0.6),0_0_40px_rgba(134,209,63,0.12)]"
+                  className="w-[300px] overflow-hidden rounded-[42px] border border-line-strong bg-frame shadow-[0_30px_80px_rgba(0,0,0,0.6),0_0_40px_rgba(134,209,63,0.12)]"
                 >
                   <div className="flex justify-center pt-2.5 pb-1.5">
                     <div className="h-[22px] w-[110px] rounded-xl bg-void" />
@@ -83,7 +83,7 @@ export default function Arogya() {
                       <div
                         className="absolute inset-0 rounded-full"
                         style={{
-                          background: 'conic-gradient(#1ec27a 0 270deg, rgba(180,214,224,.15) 270deg 360deg)',
+                          background: 'conic-gradient(#1ec27a 0 270deg, var(--color-ring-track) 270deg 360deg)',
                           WebkitMask: 'radial-gradient(closest-side, transparent 66%, #000 68%)',
                           mask: 'radial-gradient(closest-side, transparent 66%, #000 68%)',
                         }}
@@ -94,21 +94,21 @@ export default function Arogya() {
                     </div>
                   </div>
                   <div className="flex flex-col gap-2.5 px-4 pt-3.5 pb-6">
-                    <div className="flex items-center gap-3 rounded-[14px] border border-green/35 bg-green/[0.08] px-3.5 py-3">
-                      <span className="flex h-[26px] w-[26px] items-center justify-center rounded-full bg-green/20 text-[13px] text-green">✓</span>
+                    <div className="flex items-center gap-3 rounded-[14px] border border-brand-green/35 bg-brand-green/[0.08] px-3.5 py-3">
+                      <span className="flex h-[26px] w-[26px] items-center justify-center rounded-full bg-brand-green/20 text-[13px] text-green">✓</span>
                       <div className="flex flex-col gap-0.5">
                         <span className="text-[13.5px] font-semibold text-text">Metformin 500 mg</span>
                         <span className="text-[11px] text-text-dim/80">8:00 AM · After meal · Taken</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 rounded-[14px] border border-line bg-void-3/90 px-3.5 py-3">
-                      <span className="flex h-[26px] w-[26px] animate-blink items-center justify-center rounded-full bg-lime/15 text-[12px] text-lime">●</span>
+                      <span className="flex h-[26px] w-[26px] animate-blink items-center justify-center rounded-full bg-brand-lime/15 text-[12px] text-lime">●</span>
                       <div className="flex flex-col gap-0.5">
                         <span className="text-[13.5px] font-semibold text-text">Amlodipine 5 mg</span>
                         <span className="text-[11px] text-text-dim/80">1:00 PM · Before meal · Due next</span>
                       </div>
                     </div>
-                    <div className="flex items-center justify-between rounded-[14px] border border-blue/30 bg-blue/[0.07] px-3.5 py-[11px]">
+                    <div className="flex items-center justify-between rounded-[14px] border border-brand-blue/30 bg-brand-blue/[0.07] px-3.5 py-[11px]">
                       <span className="text-xs text-text/70">Ramipril — 2 days of stock left</span>
                       <span className="font-mono text-[9.5px] uppercase tracking-[0.12em] text-blue">Refill</span>
                     </div>
