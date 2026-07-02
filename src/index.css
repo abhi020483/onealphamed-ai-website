@@ -141,32 +141,51 @@ body {
 
 @keyframes spin3d {
   0% {
-    transform: rotateX(10deg) rotateY(0deg);
-  }
-  50% {
-    transform: rotateX(-6deg) rotateY(180deg);
+    transform: rotateX(12deg) rotateY(0deg);
   }
   100% {
-    transform: rotateX(10deg) rotateY(360deg);
+    transform: rotateX(12deg) rotateY(360deg);
   }
 }
 .animate-spin3d {
-  animation: spin3d 16s ease-in-out infinite;
+  animation: spin3d 16s linear infinite;
 }
 
-@keyframes orbit-spin {
-  from {
-    transform: rotate(0deg);
+/* elliptical 3D orbits — rings tilted into the scene */
+@keyframes orbit3d {
+  0% {
+    transform: rotateX(72deg) rotateZ(0deg);
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: rotateX(72deg) rotateZ(360deg);
+  }
+}
+@keyframes orbit3d-rev {
+  0% {
+    transform: rotateX(64deg) rotateZ(360deg);
+  }
+  100% {
+    transform: rotateX(64deg) rotateZ(0deg);
   }
 }
 .animate-orbit {
-  animation: orbit-spin 20s linear infinite;
+  animation: orbit3d 14s linear infinite;
 }
 .animate-orbit-rev {
-  animation: orbit-spin 26s linear infinite reverse;
+  animation: orbit3d-rev 22s linear infinite;
+}
+
+@keyframes dots {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.animate-dots {
+  animation: dots 1.2s ease-in-out infinite;
 }
 
 @keyframes pulse-glow {

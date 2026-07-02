@@ -306,7 +306,7 @@ export default function Scene3D() {
   if (!enabled) return null
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-0 opacity-80" aria-hidden="true">
+    <div className="pointer-events-none fixed inset-0 z-0 opacity-85" aria-hidden="true">
       <Canvas
         camera={{ position: [0, 0, 13.5], fov: 46 }}
         dpr={[1, 1.75]}

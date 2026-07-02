@@ -35,7 +35,7 @@ export default function Nav() {
           <img
             src={lockup}
             alt="AlphaMed.Ai — Innovations in Healthcare"
-            className="h-10 w-auto drop-shadow-[0_0_12px_rgba(30,194,122,0.35)] transition-transform duration-300 group-hover:scale-[1.03]"
+            className="h-11 w-auto drop-shadow-[0_0_12px_rgba(30,194,122,0.35)] transition-transform duration-300 group-hover:scale-[1.04]"
           />
         </a>
 
@@ -49,8 +49,8 @@ export default function Nav() {
         </nav>
 
         <a
-          href="#contact"
-          className="hidden md:inline-flex items-center gap-2 font-mono text-[13px] uppercase tracking-wide border border-line rounded-full px-5 py-2.5 text-text-dim transition-colors duration-300 hover:border-teal hover:text-teal"
+          href="mailto:blessy.babychan@onealphamed.com"
+          className="hidden md:inline-flex items-center rounded-full bg-gradient-to-r from-lime via-teal to-blue px-6 py-2.5 text-[13.5px] font-semibold text-void shadow-[0_0_18px_rgba(30,194,122,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_28px_rgba(30,194,122,0.55)]"
         >
           Request a demo
         </a>

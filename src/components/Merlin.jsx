@@ -3,167 +3,197 @@ import TiltCard from './TiltCard'
 
 const POWER_OF_FOUR = [
   {
-    n: '01',
+    n: 'P4 / 01',
+    color: 'text-lime',
     title: 'Generative AI',
-    desc: 'Reasoning and summarisation tuned for medical language, not generic chat.',
+    desc: 'Drafts evidence-grounded medical content on demand.',
   },
   {
-    n: '02',
+    n: 'P4 / 02',
+    color: 'text-green',
     title: 'RAG',
-    desc: 'Retrieval-augmented generation pulling from credible journals and internal captive databases.',
+    desc: 'Retrieval-augmented answers, cited from your approved evidence library.',
   },
   {
-    n: '03',
+    n: 'P4 / 03',
+    color: 'text-teal',
     title: 'Label Info',
-    desc: 'Product-specific, regulator-approved label information available on demand.',
+    desc: 'Responses bounded by approved label information.',
   },
   {
-    n: '04',
+    n: 'P4 / 04',
+    color: 'text-blue',
     title: 'Air Gap',
-    desc: 'Confidential by design — HIPAA and EU GDPR aligned, nothing feeds back into the general model.',
+    desc: 'Deploys inside your perimeter. HIPAA / EU GDPR.',
   },
 ]
 
 const COMPARE = [
-  {
-    dim: 'Underlying tech',
-    standard: 'Rule-based, decision trees, keyword matching',
-    medlink: 'LLM-powered, deep learning & NLP',
-  },
-  {
-    dim: 'Context',
-    standard: 'Struggles across multi-turn conversation',
-    medlink: 'Holds context through complex, multi-turn chats',
-  },
-  {
-    dim: 'Adaptability',
-    standard: 'Rigid — user must match bot logic',
-    medlink: 'Adapts dynamically to varied, messy input',
-  },
-  {
-    dim: 'Scope',
-    standard: 'Built for one narrow task',
-    medlink: 'Versatile across topics and complex problems',
-  },
+  { dim: 'Flow', standard: 'Scripted decision trees', medlink: 'Free conversation, context retained' },
+  { dim: 'Grounding', standard: 'Generic answers', medlink: 'Approved medical evidence only' },
+  { dim: 'Tone', standard: 'Robotic templates', medlink: 'Emotionally intelligent, patient-aware' },
+  { dim: 'Escalation', standard: 'Dead ends', medlink: 'Hands off to the clinic when it matters' },
 ]
 
 const CHAT = [
-  { from: 'patient', text: 'Why am I feeling numbness at night?' },
-  { from: 'bot', text: "That can be linked to your nerve medication. Let's check your current dosage and timing together — Dr Khadilkar's guidance is attached below." },
-  { from: 'patient', text: 'What foods should I avoid with fatty liver?' },
+  {
+    from: 'patient',
+    time: '09:41',
+    text: "I've been feeling nauseous since yesterday's dose. Should I stop taking it?",
+  },
+  {
+    from: 'bot',
+    time: '09:41 · MedLink AI',
+    text: "Please don't stop on your own. Mild nausea is common in the first week — take the dose with food and plenty of water. I've noted this for Dr Khadilkar; if it continues past 48 hours, the clinic will call you.",
+  },
+  { from: 'patient', time: '09:42', text: 'Thank you, that helps.' },
 ]
 
 export default function Merlin() {
   return (
-    <section id="merlin" className="relative border-t border-line py-28 md:py-36">
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <Reveal className="max-w-3xl">
-          <p className="font-mono text-[13px] uppercase tracking-[0.25em] text-teal mb-6">
+    <section id="merlin" className="relative py-28 md:py-[120px]">
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-14 px-6 md:px-10">
+        <Reveal className="flex flex-col gap-4">
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-green">
             01 — Flagship Product
-          </p>
-          <h2 className="font-display text-3xl md:text-[2.6rem] leading-[1.12] text-balance text-text">
-            Merlin AI: one stop, customisable
-            <span className="text-gradient"> medical intelligence.</span>
+          </span>
+          <h2 className="max-w-[820px] font-display text-3xl font-medium leading-[1.18] text-balance text-text md:text-[2.6rem]">
+            Merlin AI: one stop, customisable{' '}
+            <span className="text-gradient">medical intelligence.</span>
           </h2>
-          <p className="mt-7 text-lg leading-relaxed text-text-dim text-balance">
-            A cutting-edge AI platform that transforms how pharmaceutical companies and
-            healthcare professionals access and leverage medical information — reliable,
-            evidence-based insights sourced from trusted journals, Google Scholar, and
-            internal captive databases.
-          </p>
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-text-dim">
+            The Power of 4
+          </span>
         </Reveal>
 
         {/* power of four */}
-        <div className="mt-16 grid gap-5 md:grid-cols-4" style={{ perspective: 1000 }}>
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4" style={{ perspective: 1400 }}>
           {POWER_OF_FOUR.map((p, i) => (
             <Reveal key={p.title} delay={i * 0.08}>
-              <TiltCard className="hud-corners h-full rounded-2xl border border-line bg-void-2/80 p-7 backdrop-blur-sm md:p-8">
-                <span className="font-mono text-xs text-green">{p.n}</span>
-                <h3 className="mt-5 font-display text-lg text-text">{p.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-text-dim">{p.desc}</p>
+              <TiltCard max={7} className="hud-corners h-full rounded-2xl border border-line bg-void-2/70 p-6 backdrop-blur-md transition-colors duration-200 hover:border-green/45">
+                <div className="flex flex-col gap-3.5">
+                  <span className={`font-mono text-[11px] tracking-[0.2em] ${p.color}`}>{p.n}</span>
+                  <h3 className="font-display text-[1.05rem] font-medium text-text">{p.title}</h3>
+                  <p className="text-[0.95rem] leading-[1.6] text-text-dim">{p.desc}</p>
+                </div>
               </TiltCard>
             </Reveal>
           ))}
         </div>
 
         {/* MedLink AI */}
-        <div className="mt-28 grid gap-14 md:grid-cols-2 md:items-start">
-          <Reveal>
-            <p className="font-mono text-[13px] uppercase tracking-[0.25em] text-green mb-5">
+        <div className="mt-10 grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <Reveal className="flex flex-col gap-6">
+            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-green">
               MedLink AI · WhatsApp Channel
-            </p>
-            <h3 className="font-display text-2xl md:text-[1.9rem] leading-[1.2] text-balance text-text">
-              Conversational.
-              <br />
-              Contextual.
-              <br />
+            </span>
+            <h3 className="font-display text-2xl font-medium leading-[1.25] text-balance text-text md:text-[1.7rem]">
+              Conversational. Contextual.{' '}
               <span className="text-gradient">Emotionally intelligent.</span>
             </h3>
-            <p className="mt-6 text-text-dim leading-relaxed">
-              An agentic AI deployed over WhatsApp — the bridge between a doctor and their
-              own patients, using the interface patients already trust. MedLink AI maintains
-              each doctor&rsquo;s unique communication style, handles typos and unclear
-              questions with ease, and answers clearly, accurately, and always with empathy.
-            </p>
 
-            {/* phone mockup */}
-            <TiltCard max={6} className="mt-10 max-w-sm rounded-[28px] border border-line bg-void-2/90 p-4 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6)]">
-              <div className="mb-3 flex items-center gap-2 border-b border-line pb-3 px-1">
-                <div className="h-8 w-8 rounded-full bg-gradient-to-br from-green to-blue flex items-center justify-center font-mono text-xs text-void">DK</div>
-                <div>
-                  <div className="text-sm font-medium text-text">Dr Khadilkar&rsquo;s Clinic</div>
-                  <div className="text-[11px] text-teal">Online · via MedLink AI</div>
+            {/* comparison table */}
+            <div className="overflow-hidden rounded-2xl border border-line bg-void-2/70 backdrop-blur-md">
+              <div className="grid grid-cols-[1.1fr_1fr_1fr] gap-3 border-b border-line px-5 py-3.5">
+                <span />
+                <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-text-dim">
+                  Standard Chatbots
+                </span>
+                <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-green">
+                  MedLink AI
+                </span>
+              </div>
+              {COMPARE.map((row, i) => (
+                <div
+                  key={row.dim}
+                  className={`grid grid-cols-[1.1fr_1fr_1fr] gap-3 px-5 py-3.5 text-[0.9rem] leading-[1.5] ${
+                    i < COMPARE.length - 1 ? 'border-b border-line' : ''
+                  }`}
+                >
+                  <span className="font-semibold text-text">{row.dim}</span>
+                  <span className="text-text-dim/70">{row.standard}</span>
+                  <span className="text-text">{row.medlink}</span>
                 </div>
-              </div>
-              <div className="flex flex-col gap-2.5 px-1">
-                {CHAT.map((c, i) => (
-                  <div
-                    key={i}
-                    className={`max-w-[85%] rounded-2xl px-3.5 py-2.5 text-[13px] leading-snug ${
-                      c.from === 'patient'
-                        ? 'self-start bg-white/[0.06] text-text/90 rounded-tl-sm'
-                        : 'self-end bg-gradient-to-br from-teal/80 to-blue/80 text-white rounded-tr-sm'
-                    }`}
-                  >
-                    {c.text}
-                  </div>
-                ))}
-              </div>
-            </TiltCard>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <div className="overflow-hidden rounded-2xl border border-line">
-              <table className="w-full border-collapse text-sm">
-                <thead>
-                  <tr className="bg-void-2 font-mono text-[11px] uppercase tracking-wide text-text-dim">
-                    <th className="px-5 py-4 text-left font-medium">Dimension</th>
-                    <th className="px-5 py-4 text-left font-medium">Standard Chatbots</th>
-                    <th className="px-5 py-4 text-left font-medium text-teal">MedLink AI</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COMPARE.map((row) => (
-                    <tr key={row.dim} className="border-t border-line align-top">
-                      <td className="px-5 py-5 font-display text-sm text-text">{row.dim}</td>
-                      <td className="px-5 py-5 text-text-dim/70 leading-snug">{row.standard}</td>
-                      <td className="px-5 py-5 text-text-dim leading-snug">{row.medlink}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+              ))}
             </div>
 
-            {/* MedScan AI callout */}
-            <div className="mt-8 rounded-2xl border border-line bg-gradient-to-br from-void-2 to-void p-7">
-              <p className="font-mono text-[11px] uppercase tracking-wide text-green mb-3">
-                Also in the Merlin family — MedScan AI
+            {/* MedScan callout */}
+            <div className="hud-corners relative flex flex-col gap-2 rounded-2xl border border-line bg-void-3/70 px-6 py-5 backdrop-blur-md">
+              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-teal">
+                MedScan AI
+              </span>
+              <p className="text-[0.95rem] leading-[1.6] text-text-dim">
+                Prescription scanning with an LLM layer — handwriting in, structured medical
+                data out.
               </p>
-              <p className="text-text-dim leading-relaxed">
-                Scans prescriptions, stores them in structured text, and layers LLM
-                capabilities over molecules and patient information — turning paperwork
-                into productivity for every HCP it touches.
-              </p>
+            </div>
+          </Reveal>
+
+          {/* WhatsApp phone mockup */}
+          <Reveal delay={0.15} className="flex justify-center" >
+            <div style={{ perspective: 1400 }}>
+              <div style={{ transform: 'rotateY(-10deg) rotateX(4deg)', transformStyle: 'preserve-3d' }}>
+                <TiltCard
+                  max={7}
+                  className="w-[300px] overflow-hidden rounded-[42px] border border-[rgba(180,214,224,0.25)] bg-[#0a1014] shadow-[0_30px_80px_rgba(0,0,0,0.6),0_0_40px_rgba(30,194,122,0.12)]"
+                >
+                  {/* notch */}
+                  <div className="flex justify-center pt-2.5 pb-1.5">
+                    <div className="h-[22px] w-[110px] rounded-xl bg-void" />
+                  </div>
+                  {/* header */}
+                  <div className="flex items-center gap-3 border-b border-white/10 bg-void-3/90 px-4 py-3">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-green to-blue font-display text-[13px] font-semibold text-void">
+                      K
+                    </div>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="text-sm font-semibold text-text">Dr Khadilkar&rsquo;s Clinic</span>
+                      <span className="flex items-center gap-1.5 text-[11px] text-green">
+                        <span className="h-1.5 w-1.5 animate-blink rounded-full bg-green" />
+                        MedLink AI · online
+                      </span>
+                    </div>
+                  </div>
+                  {/* chat */}
+                  <div
+                    className="flex min-h-[340px] flex-col gap-2.5 px-3.5 pt-4 pb-6"
+                    style={{
+                      backgroundImage: 'radial-gradient(rgba(180,214,224,.05) 1px, transparent 1px)',
+                      backgroundSize: '18px 18px',
+                    }}
+                  >
+                    {CHAT.map((c, i) => (
+                      <div
+                        key={i}
+                        className={`max-w-[86%] px-[13px] py-2.5 text-[13px] leading-[1.5] text-text ${
+                          c.from === 'patient'
+                            ? 'self-end rounded-[14px_14px_4px_14px] bg-[#0b4a3c]'
+                            : 'self-start rounded-[14px_14px_14px_4px] border border-white/10 bg-void-3/95'
+                        }`}
+                      >
+                        {c.text}
+                        <div
+                          className={`mt-1 text-[9.5px] text-text-dim/70 ${
+                            c.from === 'patient' ? 'text-right' : ''
+                          }`}
+                        >
+                          {c.time}
+                        </div>
+                      </div>
+                    ))}
+                    {/* typing indicator */}
+                    <div className="flex gap-1 self-start rounded-[14px] border border-white/10 bg-void-3/95 px-3.5 py-[11px]">
+                      {[0, 0.2, 0.4].map((d) => (
+                        <span
+                          key={d}
+                          className="animate-dots h-1.5 w-1.5 rounded-full bg-text/60"
+                          style={{ animationDelay: `${d}s` }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </TiltCard>
+              </div>
             </div>
           </Reveal>
         </div>

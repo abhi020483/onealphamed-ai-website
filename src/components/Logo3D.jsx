@@ -1,9 +1,18 @@
 import { useCallback, useRef, useState } from 'react'
 import icon from '../assets/alphamed-icon.png'
 
-const LAYER_COUNT = 10
+const LAYERS = [
+  { z: -49, filter: 'brightness(.35) saturate(.7)', opacity: 0.5 },
+  { z: -42, filter: 'brightness(.42) saturate(.75)', opacity: 0.6 },
+  { z: -35, filter: 'brightness(.5) saturate(.8)', opacity: 0.7 },
+  { z: -28, filter: 'brightness(.58) saturate(.85)', opacity: 0.8 },
+  { z: -21, filter: 'brightness(.68) saturate(.9)', opacity: 0.85 },
+  { z: -14, filter: 'brightness(.78)', opacity: 0.9 },
+  { z: -7, filter: 'brightness(.9)', opacity: 0.95 },
+  { z: 0, filter: 'drop-shadow(0 0 18px rgba(30,194,122,.45))', opacity: 1 },
+]
 
-export default function Logo3D({ size = 280, className = '' }) {
+export default function Logo3D({ size = 330, className = '' }) {
   const ref = useRef(null)
   const [tilt, setTilt] = useState({ x: 0, y: 0 })
   const [hovering, setHovering] = useState(false)
@@ -12,7 +21,7 @@ export default function Logo3D({ size = 280, className = '' }) {
     const rect = ref.current.getBoundingClientRect()
     const px = (e.clientX - rect.left) / rect.width - 0.5
     const py = (e.clientY - rect.top) / rect.height - 0.5
-    setTilt({ x: py * -26, y: px * 26 })
+    setTilt({ x: py * -24, y: px * 24 })
   }, [])
 
   const handleLeave = () => {
@@ -21,86 +30,68 @@ export default function Logo3D({ size = 280, className = '' }) {
   }
 
   return (
-    <div
-      ref={ref}
-      className={`relative select-none ${className}`}
-      style={{ width: size, height: size, perspective: 1400 }}
-      onPointerMove={handleMove}
-      onPointerEnter={() => setHovering(true)}
-      onPointerLeave={handleLeave}
-    >
-      {/* orbit rings */}
-      <svg
-        className="absolute animate-orbit opacity-80"
-        style={{ inset: '-14%' }}
-        viewBox="0 0 200 200"
-        aria-hidden="true"
-      >
-        <circle cx="100" cy="100" r="96" fill="none" stroke="url(#ring-a)" strokeWidth="0.6" strokeDasharray="1 9" strokeLinecap="round" />
-        <defs>
-          <linearGradient id="ring-a" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="var(--color-lime)" />
-            <stop offset="55%" stopColor="var(--color-teal)" />
-            <stop offset="100%" stopColor="var(--color-blue)" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <svg
-        className="absolute animate-orbit-rev opacity-40"
-        style={{ inset: '-22%' }}
-        viewBox="0 0 200 200"
-        aria-hidden="true"
-      >
-        <circle cx="100" cy="100" r="98" fill="none" stroke="var(--color-teal)" strokeWidth="0.4" strokeDasharray="0.5 14" strokeLinecap="round" />
-      </svg>
-
-      {/* ambient glow */}
+    <div className={`flex flex-col items-center ${className}`} style={{ perspective: 1100 }}>
       <div
-        className="absolute animate-pulse-glow rounded-full blur-3xl"
-        style={{
-          inset: '6%',
-          background:
-            'radial-gradient(circle, rgba(30,194,122,0.45), rgba(45,127,212,0.25) 55%, transparent 75%)',
-        }}
-      />
-
-      {/* ground shadow */}
-      <div
-        className="absolute left-1/2 top-[92%] h-6 w-[62%] -translate-x-1/2 rounded-full blur-xl"
-        style={{ background: 'radial-gradient(ellipse, rgba(0,0,0,0.55), transparent 70%)' }}
-      />
-
-      <div
-        className="relative h-full w-full"
-        style={{
-          transformStyle: 'preserve-3d',
-          transform: hovering
-            ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`
-            : undefined,
-          transition: hovering ? 'transform 120ms ease-out' : 'transform 600ms ease-out',
-          animation: hovering ? 'none' : 'spin3d 16s ease-in-out infinite',
-        }}
+        ref={ref}
+        className="animate-float-slow relative select-none"
+        style={{ width: size, height: size, transformStyle: 'preserve-3d' }}
+        onPointerMove={handleMove}
+        onPointerEnter={() => setHovering(true)}
+        onPointerLeave={handleLeave}
       >
-        {Array.from({ length: LAYER_COUNT }).map((_, i) => {
-          const isTop = i === LAYER_COUNT - 1
-          return (
+        {/* pulsing glow */}
+        <div
+          className="animate-pulse-glow absolute rounded-full"
+          style={{
+            inset: '-46px',
+            background:
+              'radial-gradient(circle, rgba(30,194,122,.24), rgba(45,127,212,.1) 55%, transparent 72%)',
+            filter: 'blur(22px)',
+          }}
+        />
+        {/* elliptical 3D orbit rings */}
+        <div
+          className="animate-orbit absolute rounded-full border-[1.5px] border-dashed"
+          style={{ inset: '-28px', borderColor: 'rgba(10,168,143,.55)' }}
+        />
+        <div
+          className="animate-orbit-rev absolute rounded-full border border-dashed"
+          style={{ inset: '-58px', borderColor: 'rgba(45,127,212,.4)' }}
+        />
+        {/* stacked-copy fake extrusion */}
+        <div
+          className="absolute"
+          style={{
+            inset: '30px',
+            transformStyle: 'preserve-3d',
+            transform: hovering ? `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)` : undefined,
+            transition: hovering ? 'transform 120ms ease-out' : 'transform 600ms ease-out',
+            animation: hovering ? 'none' : 'spin3d 16s linear infinite',
+          }}
+        >
+          {LAYERS.map((l, i) => (
             <img
               key={i}
               src={icon}
-              alt={isTop ? 'AlphaMed.Ai' : ''}
-              aria-hidden={!isTop}
+              alt={l.z === 0 ? 'AlphaMed.Ai mark' : ''}
+              aria-hidden={l.z !== 0}
               draggable={false}
               className="absolute inset-0 h-full w-full"
-              style={{
-                transform: `translateZ(${-(LAYER_COUNT - 1 - i) * 2.4}px)`,
-                filter: isTop
-                  ? 'drop-shadow(0 24px 46px rgba(10,168,143,0.5)) drop-shadow(0 0 30px rgba(134,209,63,0.25))'
-                  : `brightness(${0.3 + i * 0.055}) saturate(0.65)`,
-              }}
+              style={{ transform: `translateZ(${l.z}px)`, filter: l.filter, opacity: l.opacity }}
             />
-          )
-        })}
+          ))}
+        </div>
       </div>
+      {/* ground shadow */}
+      <div
+        className="mt-6 rounded-full"
+        style={{
+          width: size * 0.73,
+          height: 36,
+          background: 'radial-gradient(ellipse, rgba(0,0,0,.6), transparent 70%)',
+          filter: 'blur(10px)',
+        }}
+      />
     </div>
   )
 }

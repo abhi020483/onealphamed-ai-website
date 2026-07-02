@@ -2,186 +2,158 @@ import Reveal from './Reveal'
 import TiltCard from './TiltCard'
 
 const FLOW = [
-  { role: 'Clinician', step: 'Create & intake', desc: 'Structured intake — cancer type & stage, regimen, comorbidities, diet pattern, intolerances.' },
-  { role: 'Engine', step: 'Generate', desc: 'Rules engine sets targets & favour/avoid lists; the LLM turns them into regional meal plans.' },
-  { role: 'Clinician', step: 'Review & approve', desc: 'Inspect every recommendation with its source rule, edit if needed, then approve.' },
-  { role: 'Patient', step: 'Follow & print', desc: 'The patient opens their approved chart — or takes home a clean, printable PDF.' },
+  { step: 'Create & intake', desc: 'Clinician creates the patient and captures the intake profile.' },
+  { step: 'Generate', desc: 'The rules engine drafts a personalised nutrition plan.' },
+  { step: 'Review & approve', desc: 'Nothing reaches the patient until the clinician signs off.' },
+  { step: 'Follow & print', desc: 'Patient follows the plan — printable, trackable.' },
 ]
 
 const PROFILE = [
-  ['Disease & stage', 'Cancer type, stage and disease condition set the clinical baseline.'],
-  ['Treatment & meds', 'Regimen, line of therapy and concomitant medications drive drug-nutrient cautions.'],
-  ['Comorbidities', 'Diabetes, renal, cardiac or hepatic conditions adjust targets and constrain food lists.'],
-  ['Anthropometrics', 'Age, sex, height and weight compute BMI and personalise protein & calorie targets.'],
-  ['Diet pattern', 'Veg / non-veg and regional cuisine keep meals familiar and affordable.'],
-  ['Intolerances', 'Lactose, gluten and a standard checklist filter the food library automatically.'],
+  'Cancer type & stage',
+  'Treatment phase',
+  'Diet pattern',
+  'Allergies & intolerances',
+  'Anthropometrics',
+  'Symptom burden',
 ]
 
-const SAFETY = [
-  'Clinician approval gate — no plan reaches a patient unreviewed.',
-  'Supportive-care framing on every screen and export.',
-  'Minimal, consented data with clinician/patient access separation.',
-  'Drug-nutrient cautions traced to their source rule.',
+const GUARDRAILS = [
+  'Supportive-care framing enforced in every output',
+  'Allergen exclusions are hard blocks, not suggestions',
+  'Clinician approval gates every plan release',
+  'No treat / cure / arrest language — ever',
+]
+
+const STATS = [
+  ['1.4 g/kg', 'Protein target'],
+  ['1650 kcal', 'Daily energy'],
+  ['2.2 L', 'Fluids'],
 ]
 
 export default function OncoNourish() {
   return (
-    <section id="onconourish" className="relative border-t border-line py-28 md:py-36">
-      <div className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-blue-deep/10 via-transparent to-transparent" />
-      <div className="mx-auto max-w-7xl px-6 md:px-10">
-        <div className="grid gap-14 md:grid-cols-2 md:items-end">
-          <Reveal>
-            <p className="font-mono text-[13px] uppercase tracking-[0.25em] text-blue mb-6">
-              02 — Clinician-Prescribed · AI-Guided
-            </p>
-            <h2 className="font-display text-3xl md:text-[2.6rem] leading-[1.12] text-balance text-text">
-              OncoNourish keeps patients
-              <span className="text-gradient"> nourished enough to finish treatment.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <p className="text-lg leading-relaxed text-text-dim text-balance">
-              OncoNourish turns an oncology patient&rsquo;s clinical profile into a personalised
-              nutrition chart and day-by-day Indian meal plans — built on auditable clinical
-              rules, reviewed and approved by their care team.
-            </p>
-            <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-blue/30 bg-blue/10 px-4 py-2 font-mono text-[11px] uppercase tracking-wide text-blue">
+    <section
+      id="onconourish"
+      className="relative py-28 md:py-[120px]"
+      style={{
+        background:
+          'linear-gradient(180deg, transparent, rgba(10,26,36,.35) 20%, rgba(10,26,36,.35) 80%, transparent)',
+      }}
+    >
+      <div className="mx-auto flex max-w-[1200px] flex-col gap-12 px-6 md:px-10">
+        <Reveal className="flex flex-col gap-4">
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-teal">
+            02 — Clinician-Prescribed · AI-Guided
+          </span>
+          <h2 className="max-w-[900px] font-display text-3xl font-medium leading-[1.18] text-balance text-text md:text-[2.6rem]">
+            OncoNourish keeps patients{' '}
+            <span className="text-gradient">nourished enough to finish treatment.</span>
+          </h2>
+          <div className="inline-flex items-center gap-2.5 self-start rounded-lg border border-teal/50 bg-[rgba(10,26,36,0.7)] px-4 py-2">
+            <span className="h-[7px] w-[7px] bg-teal shadow-[0_0_8px_#0aa88f]" />
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-teal">
               Supportive care only — no treat / cure / arrest claims
-            </div>
-          </Reveal>
-        </div>
-
-        {/* the flow */}
-        <div className="mt-24">
-          <Reveal>
-            <p className="font-mono text-[12px] uppercase tracking-[0.25em] text-text-dim/60 mb-8">
-              The flow — from profile to an approved plan
-            </p>
-          </Reveal>
-          <div className="grid gap-6 md:grid-cols-4">
-            {FLOW.map((f, i) => (
-              <Reveal key={f.step} delay={i * 0.08} className="relative border-t-2 border-blue/25 pt-6">
-                <span className="font-mono text-xs text-blue">0{i + 1} · {f.role}</span>
-                <h3 className="mt-3 font-display text-base text-text">{f.step}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-text-dim">{f.desc}</p>
-              </Reveal>
-            ))}
+            </span>
           </div>
+        </Reveal>
+
+        {/* 4-step flow */}
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4" style={{ perspective: 1400 }}>
+          {FLOW.map((f, i) => (
+            <Reveal key={f.step} delay={i * 0.08} className="relative">
+              <TiltCard max={7} className="h-full rounded-2xl border border-line bg-void-2/70 p-6 backdrop-blur-md transition-colors duration-200 hover:border-teal/50">
+                <div className="flex flex-col gap-3">
+                  <span className="font-mono text-[22px] text-teal">0{i + 1}</span>
+                  <h3 className="font-display text-base font-medium text-text">{f.step}</h3>
+                  <p className="text-[0.9rem] leading-[1.6] text-text-dim">{f.desc}</p>
+                </div>
+              </TiltCard>
+              {i < FLOW.length - 1 && (
+                <span className="absolute -right-[17px] top-1/2 z-10 hidden -translate-y-1/2 text-lg text-teal lg:block">
+                  →
+                </span>
+              )}
+            </Reveal>
+          ))}
         </div>
 
         {/* profile inputs */}
-        <div className="mt-24 grid gap-14 md:grid-cols-[0.9fr_1.1fr]">
-          <Reveal>
-            <p className="font-mono text-[12px] uppercase tracking-[0.25em] text-text-dim/60 mb-6">
-              Personalisation profile
-            </p>
-            <h3 className="font-display text-2xl leading-[1.2] text-balance text-text">
-              Six inputs drive every recommendation.
-            </h3>
-            <p className="mt-5 text-text-dim leading-relaxed">
-              The intake form is the single source of truth. Each field maps to specific
-              rules — change a field, and the plan changes with it.
-            </p>
-          </Reveal>
-          <div className="grid gap-4 sm:grid-cols-2" style={{ perspective: 1000 }}>
-            {PROFILE.map(([title, desc], i) => (
-              <Reveal key={title} delay={i * 0.05}>
-                <TiltCard max={6} className="h-full rounded-xl border border-line bg-void-2/70 p-6 backdrop-blur-sm">
-                  <h4 className="font-display text-sm text-text">{title}</h4>
-                  <p className="mt-2 text-[13px] leading-relaxed text-text-dim">{desc}</p>
-                </TiltCard>
-              </Reveal>
+        <Reveal className="flex flex-col gap-4">
+          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-text-dim">
+            Profile inputs
+          </span>
+          <div className="grid grid-cols-2 gap-3.5 sm:grid-cols-3 lg:grid-cols-6">
+            {PROFILE.map((p) => (
+              <div
+                key={p}
+                className="rounded-xl border border-line bg-void-2/60 px-3.5 py-4 text-center text-[0.85rem] text-text transition-all duration-200 hover:-translate-y-[3px] hover:border-teal"
+              >
+                {p}
+              </div>
             ))}
           </div>
-        </div>
+        </Reveal>
 
-        {/* engine architecture */}
-        <div className="mt-24 grid gap-14 md:grid-cols-2">
-          <Reveal>
-            <p className="font-mono text-[12px] uppercase tracking-[0.25em] text-text-dim/60 mb-6">
-              Engine architecture
-            </p>
-            <h3 className="font-display text-2xl leading-[1.2] text-balance text-text">
-              Auditable rules first.
-              <br />
-              The LLM only <span className="text-gradient">localises.</span>
-            </h3>
-            <p className="mt-5 text-text-dim leading-relaxed">
-              Clinical decisions live in editable, evidence-based rules. The language model
-              presents and translates them into plain, regional meal plans — it never
-              invents clinical claims or overrides a rule.
-            </p>
-            <ul className="mt-6 space-y-2.5 text-sm text-text-dim">
-              <li className="flex gap-2.5"><span className="text-green">＋</span> Localises to region, cuisine and budget</li>
-              <li className="flex gap-2.5"><span className="text-green">＋</span> Respects every intolerance &amp; avoid rule</li>
-              <li className="flex gap-2.5"><span className="text-blue">－</span> Never adds a clinical claim of its own</li>
-            </ul>
+        {/* rules engine + patient chart + guardrails */}
+        <div className="grid gap-5 lg:grid-cols-2" style={{ perspective: 1400 }}>
+          <Reveal className="overflow-hidden rounded-2xl border border-line bg-void-3">
+            <div className="flex items-center justify-between border-b border-line px-[18px] py-3">
+              <span className="font-mono text-[11px] tracking-[0.15em] text-teal">
+                protein_target.rule.yaml
+              </span>
+              <span className="font-mono text-[10px] tracking-[0.15em] text-text-dim/60">
+                Rules engine
+              </span>
+            </div>
+            <div className="flex flex-col px-[22px] py-5 font-mono text-[13px] leading-[1.8] text-text">
+              <span className="text-text-dim/60"># evidence-locked nutrition rule</span>
+              <span><span className="text-lime">rule:</span> protein_target</span>
+              <span><span className="text-lime">source:</span> ESPEN 2021 §4.2</span>
+              <span><span className="text-lime">when:</span></span>
+              <span className="pl-[18px]"><span className="text-teal">phase:</span> active_treatment</span>
+              <span><span className="text-lime">then:</span></span>
+              <span className="pl-[18px]"><span className="text-teal">protein_g_per_kg:</span> 1.2–1.5</span>
+              <span className="pl-[18px]"><span className="text-teal">energy_check:</span> required</span>
+              <span className="pl-[18px]"><span className="text-teal">review:</span> clinician_approval</span>
+            </div>
           </Reveal>
 
-          <Reveal delay={0.15} className="rounded-2xl border border-line bg-void-3 p-6 md:p-7 text-text font-mono text-[13px] leading-relaxed shadow-2xl">
-            <div className="mb-4 flex gap-1.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-blue/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-teal/70" />
-              <span className="h-2.5 w-2.5 rounded-full bg-green/70" />
-            </div>
-            <p className="text-text-dim/50"># protein_target.rule.yaml</p>
-            <p className="mt-2"><span className="text-teal">when</span>: cancer_stage in [<span className="text-green">"II"</span>, <span className="text-green">"III"</span>]</p>
-            <p><span className="text-teal">and</span>: comorbidity != <span className="text-green">"renal"</span></p>
-            <p className="mt-2"><span className="text-teal">set</span>:</p>
-            <p className="pl-4">protein_g_per_kg: <span className="text-green">1.4</span></p>
-            <p className="pl-4">source: <span className="text-green">"ESPEN 2021 §4.2"</span></p>
-            <p className="pl-4">why: <span className="text-green">"preserve lean mass in therapy"</span></p>
-          </Reveal>
-        </div>
+          <div className="flex flex-col gap-5">
+            <Reveal delay={0.08}>
+              <TiltCard max={7} className="hud-corners rounded-2xl border border-line bg-void-2/70 px-6 py-[22px] backdrop-blur-md">
+                <div className="mb-[18px] flex flex-wrap items-center justify-between gap-2">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
+                    Sample patient — Anita K.
+                  </span>
+                  <span className="rounded-full border border-lime/40 px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.15em] text-lime">
+                    Clinician approved
+                  </span>
+                </div>
+                <div className="grid grid-cols-3 gap-3.5">
+                  {STATS.map(([v, l]) => (
+                    <div key={l} className="flex flex-col gap-1">
+                      <span className="text-gradient font-display text-[1.3rem]">{v}</span>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-teal">
+                        {l}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </TiltCard>
+            </Reveal>
 
-        {/* sample chart + safety */}
-        <div className="mt-24 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <Reveal className="rounded-2xl border border-line bg-void-2/60 p-7 backdrop-blur-sm md:p-9">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="font-mono text-[11px] uppercase tracking-wide text-text-dim/60">Sample patient</p>
-                <p className="mt-1 font-display text-base text-text">Anita K. — Breast · Stage II · AC-T</p>
-              </div>
-              <span className="rounded-full bg-gradient-to-r from-teal to-blue px-3 py-1.5 font-mono text-[11px] uppercase tracking-wide text-white">Approved</span>
-            </div>
-            <div className="mt-7 grid grid-cols-3 gap-4">
-              {[['1.4', 'g/kg protein'], ['1650', 'kcal energy'], ['2.2', 'L fluids']].map(([v, l]) => (
-                <div key={l} className="rounded-xl bg-white/[0.03] p-4 text-center border border-line">
-                  <div className="font-display text-xl text-gradient">{v}</div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-wide text-text-dim/60">{l}</div>
+            <Reveal delay={0.16} className="flex flex-col gap-3 rounded-2xl border border-line bg-void-2/70 px-6 py-[22px] backdrop-blur-md">
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
+                Safety guardrails
+              </span>
+              {GUARDRAILS.map((g) => (
+                <div key={g} className="flex items-baseline gap-2.5 text-[0.92rem] leading-[1.55] text-text/75">
+                  <span className="font-mono text-green">✓</span>
+                  {g}
                 </div>
               ))}
-            </div>
-            <div className="mt-7 grid gap-6 sm:grid-cols-2 text-sm">
-              <div>
-                <p className="font-mono text-[11px] uppercase tracking-wide text-green mb-2">Favour</p>
-                <p className="text-text-dim leading-relaxed">Moong dal, paneer, curd (lactose-low), ragi, banana</p>
-              </div>
-              <div>
-                <p className="font-mono text-[11px] uppercase tracking-wide text-blue mb-2">Limit</p>
-                <p className="text-text-dim leading-relaxed">Raw salads, street food, grapefruit</p>
-              </div>
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.1} className="rounded-2xl border border-line bg-void-3 p-7 md:p-9">
-            <p className="font-mono text-[11px] uppercase tracking-wide text-text-dim/60 mb-5">
-              Safety & compliance — guardrails that don&rsquo;t bend
-            </p>
-            <ul className="space-y-4">
-              {SAFETY.map((s) => (
-                <li key={s} className="flex gap-3 text-sm leading-relaxed text-text-dim">
-                  <span className="mt-1 h-1.5 w-1.5 shrink-0 rounded-full bg-teal" />
-                  {s}
-                </li>
-              ))}
-            </ul>
-            <p className="mt-7 border-t border-line pt-5 text-[12px] leading-relaxed text-text-dim/50">
-              OncoNourish provides supportive nutritional guidance only. It is not a
-              substitute for professional medical advice, diagnosis, or treatment. It does
-              not treat, cure, or arrest cancer.
-            </p>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>

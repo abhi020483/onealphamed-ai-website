@@ -26,3 +26,6 @@ dist-ssr
 # local-only: internal pitch decks & session config — never publish
 AlphaMed AI/
 .claude/
+
+# local working files
+*-handoff.zip
