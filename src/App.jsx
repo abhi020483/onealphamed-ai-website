@@ -6,7 +6,10 @@ import Nav from './components/Nav'
 import Hero from './components/Hero'
 import Merlin from './components/Merlin'
 import OncoNourish from './components/OncoNourish'
+import VoiceAgent from './components/VoiceAgent'
+import Arogya from './components/Arogya'
 import Ecosystem from './components/Ecosystem'
+import Journey from './components/Journey'
 import CTA from './components/CTA'
 import Footer from './components/Footer'
 import DemoModal from './components/DemoModal'
@@ -31,7 +34,10 @@ function App() {
         <Hero />
         <Merlin />
         <OncoNourish />
+        <VoiceAgent />
+        <Arogya />
         <Ecosystem />
+        <Journey />
         <CTA onRequestDemo={openDemo} />
       </main>
       <Footer />

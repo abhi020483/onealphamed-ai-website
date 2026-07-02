@@ -28,4 +28,4 @@ AlphaMed AI/
 .claude/
 
 # local working files
-*-handoff.zip
+*.zip

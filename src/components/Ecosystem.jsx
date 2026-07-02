@@ -9,7 +9,6 @@ const SERVICES = ['STRATEDIA', 'EDUVENT', 'CLINOPS', 'MEDEXPO', 'CONNECT', 'INNO
 const STATS = [
   ['15,000+', 'HCPs engaged'],
   ['17+', 'Countries'],
-  ['150+', 'Oncologists'],
 ]
 
 export default function Ecosystem() {
@@ -18,7 +17,7 @@ export default function Ecosystem() {
       <div className="mx-auto flex max-w-[1200px] flex-col gap-14 px-6 md:px-10">
         <Reveal className="flex flex-col gap-4">
           <span className="font-mono text-xs uppercase tracking-[0.25em] text-blue">
-            03 — Ecosystem
+            05 — Ecosystem
           </span>
           <h2 className="max-w-[860px] font-display text-3xl font-medium leading-[1.18] text-balance text-text md:text-[2.6rem]">
             One healthcare group, <span className="text-gradient">six ways</span> to move
@@ -45,7 +44,7 @@ export default function Ecosystem() {
           ))}
         </div>
 
-        <Reveal delay={0.1} className="grid gap-8 border-t border-line pt-12 sm:grid-cols-3">
+        <Reveal delay={0.1} className="grid gap-8 border-t border-line pt-12 sm:grid-cols-2">
           {STATS.map(([v, l]) => (
             <div key={l} className="flex flex-col items-center gap-2">
               <span className="text-gradient font-display text-[2.4rem] font-medium">

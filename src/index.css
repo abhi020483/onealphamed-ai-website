@@ -175,6 +175,19 @@ body {
   animation: orbit3d-rev 22s linear infinite;
 }
 
+@keyframes wave {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.animate-wave {
+  animation: wave 1.1s ease-in-out infinite;
+}
+
 @keyframes dots {
   0%,
   100% {
