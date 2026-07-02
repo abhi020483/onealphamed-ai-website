@@ -75,6 +75,9 @@ export default function DemoModal({ open, onClose }) {
       const data = await res.json().catch(() => ({}))
       if (res.ok && String(data.success) === 'true') {
         setStatus('sent')
+      } else if (/activat/i.test(String(data.message))) {
+        // relay not activated yet — deliver via the visitor's email app instead
+        setStatus('pending-activation')
       } else {
         setStatus('error')
       }
@@ -249,6 +252,15 @@ export default function DemoModal({ open, onClose }) {
                       Couldn&rsquo;t reach the form service.{' '}
                       <button type="button" onClick={mailtoFallback} className="font-semibold text-teal underline">
                         Send via your email app instead →
+                      </button>
+                    </p>
+                  )}
+                  {status === 'pending-activation' && (
+                    <p className="rounded-lg border border-teal/30 bg-teal/10 px-4 py-3 text-[13px] leading-relaxed text-text-dim">
+                      Our inbox connection is being finalised — send your request in one
+                      click via email instead:{' '}
+                      <button type="button" onClick={mailtoFallback} className="font-semibold text-teal underline">
+                        Open pre-filled email →
                       </button>
                     </p>
                   )}
