@@ -33,7 +33,7 @@ export default function Ecosystem() {
                 className="hud-corners flex h-full items-center justify-between gap-3 rounded-2xl border border-line bg-void-2/70 px-7 py-8 backdrop-blur-md transition-colors duration-200 hover:border-lime/50"
               >
                 <div className="flex flex-col gap-2">
-                  <span className={`font-mono text-[10.5px] tracking-[0.2em] ${COLORS[i % 4]}`}>
+                  <span className={`font-mono text-[11.5px] tracking-[0.2em] ${COLORS[i % 4]}`}>
                     ECO / 0{i + 1}
                   </span>
                   <span className="font-display text-[1.1rem] font-medium text-text">{name}</span>
@@ -50,7 +50,7 @@ export default function Ecosystem() {
               <span className="text-gradient font-display text-[2.4rem] font-medium">
                 <CountUp value={v} />
               </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-teal">
+              <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-teal">
                 {l}
               </span>
             </div>

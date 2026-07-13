@@ -18,7 +18,7 @@ export default function Hero() {
             className="inline-flex items-center gap-2.5 self-start rounded-full border border-brand-green/40 bg-void-2/60 px-4 py-2 backdrop-blur-sm"
           >
             <span className="h-[7px] w-[7px] animate-blink rounded-full bg-brand-green shadow-[0_0_10px_#1ec27a]" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-teal">
+            <span className="font-mono text-[12px] uppercase tracking-[0.22em] text-teal">
               Gen&nbsp;AI systems online — Pharma &amp; Healthcare
             </span>
           </motion.p>
@@ -43,13 +43,13 @@ export default function Hero() {
           <motion.div {...fade(0.34)} className="flex flex-wrap items-center gap-4">
             <a
               href="#merlin"
-              className="rounded-full bg-gradient-to-r from-brand-lime via-brand-teal to-brand-blue px-[30px] py-3.5 text-[15px] font-semibold text-ink shadow-[0_0_24px_rgba(30,194,122,0.35)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_10px_36px_rgba(30,194,122,0.55)]"
+              className="rounded-full bg-gradient-to-r from-brand-lime via-brand-teal to-brand-blue px-[30px] py-3.5 text-[16px] font-semibold text-ink shadow-[0_0_24px_rgba(30,194,122,0.35)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_10px_36px_rgba(30,194,122,0.55)]"
             >
               Meet Merlin AI →
             </a>
             <a
               href="#onconourish"
-              className="rounded-full border border-line bg-void-2/50 px-[30px] py-3.5 text-[15px] font-semibold text-text backdrop-blur-sm transition-all duration-200 hover:-translate-y-[3px] hover:border-green"
+              className="rounded-full border border-line bg-void-2/50 px-[30px] py-3.5 text-[16px] font-semibold text-text backdrop-blur-sm transition-all duration-200 hover:-translate-y-[3px] hover:border-green"
             >
               Explore OncoNourish
             </a>
@@ -60,13 +60,13 @@ export default function Hero() {
               <span className="font-display text-base text-text">
                 Mumbai · Gurgaon · Jakarta · Dubai · Amsterdam
               </span>
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.25em] text-teal">
+              <span className="font-mono text-[11.5px] uppercase tracking-[0.25em] text-teal">
                 Where we operate
               </span>
             </div>
             <div className="flex flex-col gap-1.5">
               <span className="text-gradient font-display text-base">15,000+</span>
-              <span className="font-mono text-[10.5px] uppercase tracking-[0.25em] text-teal">
+              <span className="font-mono text-[11.5px] uppercase tracking-[0.25em] text-teal">
                 HCPs engaged across programs
               </span>
             </div>

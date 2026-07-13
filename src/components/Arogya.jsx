@@ -75,8 +75,8 @@ export default function Arogya() {
                   </div>
                   <div className="flex items-center justify-between px-5 pt-3.5 pb-1.5">
                     <div className="flex flex-col gap-0.5">
-                      <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-lime">Arogya</span>
-                      <span className="text-[15px] font-semibold text-text">Today&rsquo;s schedule</span>
+                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-lime">Arogya</span>
+                      <span className="text-[16px] font-semibold text-text">Today&rsquo;s schedule</span>
                     </div>
                     {/* adherence ring */}
                     <div className="relative h-[52px] w-[52px]">
@@ -88,32 +88,32 @@ export default function Arogya() {
                           mask: 'radial-gradient(closest-side, transparent 66%, #000 68%)',
                         }}
                       />
-                      <span className="absolute inset-0 flex items-center justify-center font-mono text-[11px] text-green">
+                      <span className="absolute inset-0 flex items-center justify-center font-mono text-[12px] text-green">
                         3/4
                       </span>
                     </div>
                   </div>
                   <div className="flex flex-col gap-2.5 px-4 pt-3.5 pb-6">
                     <div className="flex items-center gap-3 rounded-[14px] border border-brand-green/35 bg-brand-green/[0.08] px-3.5 py-3">
-                      <span className="flex h-[26px] w-[26px] items-center justify-center rounded-full bg-brand-green/20 text-[13px] text-green">✓</span>
+                      <span className="flex h-[26px] w-[26px] items-center justify-center rounded-full bg-brand-green/20 text-[14px] text-green">✓</span>
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-[13.5px] font-semibold text-text">Metformin 500 mg</span>
-                        <span className="text-[11px] text-text-dim/80">8:00 AM · After meal · Taken</span>
+                        <span className="text-[14.5px] font-semibold text-text">Metformin 500 mg</span>
+                        <span className="text-[12px] text-text-dim/80">8:00 AM · After meal · Taken</span>
                       </div>
                     </div>
                     <div className="flex items-center gap-3 rounded-[14px] border border-line bg-void-3/90 px-3.5 py-3">
-                      <span className="flex h-[26px] w-[26px] animate-blink items-center justify-center rounded-full bg-brand-lime/15 text-[12px] text-lime">●</span>
+                      <span className="flex h-[26px] w-[26px] animate-blink items-center justify-center rounded-full bg-brand-lime/15 text-[13px] text-lime">●</span>
                       <div className="flex flex-col gap-0.5">
-                        <span className="text-[13.5px] font-semibold text-text">Amlodipine 5 mg</span>
-                        <span className="text-[11px] text-text-dim/80">1:00 PM · Before meal · Due next</span>
+                        <span className="text-[14.5px] font-semibold text-text">Amlodipine 5 mg</span>
+                        <span className="text-[12px] text-text-dim/80">1:00 PM · Before meal · Due next</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between rounded-[14px] border border-brand-blue/30 bg-brand-blue/[0.07] px-3.5 py-[11px]">
                       <span className="text-xs text-text/70">Ramipril — 2 days of stock left</span>
-                      <span className="font-mono text-[9.5px] uppercase tracking-[0.12em] text-blue">Refill</span>
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.12em] text-blue">Refill</span>
                     </div>
                     <div className="flex items-center justify-center pt-1.5">
-                      <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-text-dim/60">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-text-dim/60">
                         हिंदी · English · Voice read-aloud
                       </span>
                     </div>
@@ -128,9 +128,9 @@ export default function Arogya() {
             {FEATURES.map((f, i) => (
               <Reveal key={f.n} delay={i * 0.06}>
                 <TiltCard max={7} className="hud-corners flex h-full flex-col gap-3 rounded-2xl border border-line bg-void-2/70 px-[22px] py-6 backdrop-blur-md transition-colors duration-200 hover:border-lime/50">
-                  <span className={`font-mono text-[11px] tracking-[0.2em] ${f.color}`}>{f.n}</span>
+                  <span className={`font-mono text-[12px] tracking-[0.2em] ${f.color}`}>{f.n}</span>
                   <h3 className="font-display text-base font-medium text-text">{f.title}</h3>
-                  <p className="text-[0.9rem] leading-[1.6] text-text-dim">{f.desc}</p>
+                  <p className="text-[1rem] leading-[1.6] text-text-dim">{f.desc}</p>
                 </TiltCard>
               </Reveal>
             ))}
@@ -139,16 +139,16 @@ export default function Arogya() {
 
         {/* escalation ladder */}
         <Reveal className="flex flex-col gap-5 rounded-2xl border border-line bg-void-2/70 px-7 py-6 backdrop-blur-md">
-          <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
+          <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-dim">
             Missed-dose escalation — tuned to each medicine&rsquo;s criticality
           </span>
           <div className="grid items-start gap-4 sm:grid-cols-2 lg:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr]">
             {TIERS.map((tier, i) => (
               <div key={tier.t} className="contents">
                 <div className="flex flex-col gap-1.5">
-                  <span className={`font-mono text-[11px] uppercase tracking-[0.15em] ${tier.color}`}>{tier.t}</span>
-                  <span className="text-[0.95rem] font-semibold text-text">{tier.title}</span>
-                  <span className="text-[0.85rem] leading-[1.5] text-text-dim/80">{tier.desc}</span>
+                  <span className={`font-mono text-[12px] uppercase tracking-[0.15em] ${tier.color}`}>{tier.t}</span>
+                  <span className="text-[1.05rem] font-semibold text-text">{tier.title}</span>
+                  <span className="text-[0.95rem] leading-[1.5] text-text-dim/80">{tier.desc}</span>
                 </div>
                 {i < TIERS.length - 1 && (
                   <span className="hidden self-center text-teal lg:block">→</span>
@@ -156,7 +156,7 @@ export default function Arogya() {
               </div>
             ))}
           </div>
-          <span className="font-mono text-[10.5px] uppercase tracking-[0.15em] text-text-dim/60">
+          <span className="font-mono text-[11.5px] uppercase tracking-[0.15em] text-text-dim/60">
             Gentle → Tier 1 only · Standard → Tier 2 · Critical → all 4 tiers · Enforced server-side
           </span>
         </Reveal>

@@ -7,7 +7,7 @@ const ENDPOINT = `https://formsubmit.co/ajax/${RECIPIENT}`
 const INTERESTS = ['Merlin AI', 'MedLink AI', 'MedScan AI', 'OncoNourish', 'Multiple / not sure']
 
 const field =
-  'w-full rounded-lg border border-line bg-void-3/80 px-4 py-3 text-[0.95rem] text-text placeholder:text-text-dim/50 outline-none transition-colors duration-200 focus:border-teal'
+  'w-full rounded-lg border border-line bg-void-3/80 px-4 py-3 text-[1.05rem] text-text placeholder:text-text-dim/50 outline-none transition-colors duration-200 focus:border-teal'
 
 export default function DemoModal({ open, onClose }) {
   const [form, setForm] = useState({
@@ -131,13 +131,13 @@ export default function DemoModal({ open, onClose }) {
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-brand-lime to-brand-teal text-2xl text-ink">
                   ✓
                 </div>
-                <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-green">
+                <p className="font-mono text-[12px] uppercase tracking-[0.25em] text-green">
                   Transmission received
                 </p>
                 <h3 className="font-display text-xl font-medium text-text">
                   Thanks, {form.name.split(' ')[0] || 'there'} — request logged.
                 </h3>
-                <p className="max-w-sm text-[0.95rem] leading-relaxed text-text-dim">
+                <p className="max-w-sm text-[1.05rem] leading-relaxed text-text-dim">
                   Our team will reach out to schedule your demo shortly.
                 </p>
                 <button
@@ -150,7 +150,7 @@ export default function DemoModal({ open, onClose }) {
               </div>
             ) : (
               <>
-                <p className="font-mono text-[11px] uppercase tracking-[0.25em] text-teal">
+                <p className="font-mono text-[12px] uppercase tracking-[0.25em] text-teal">
                   Gen AI for Pharma &amp; Healthcare
                 </p>
                 <h3 className="mt-3 font-display text-2xl font-medium leading-snug text-text">
@@ -164,7 +164,7 @@ export default function DemoModal({ open, onClose }) {
                 <form onSubmit={submit} className="mt-6 flex flex-col gap-4">
                   <div className="grid gap-4 sm:grid-cols-2">
                     <label className="flex flex-col gap-1.5">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-dim">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
                         Full name *
                       </span>
                       <input
@@ -179,7 +179,7 @@ export default function DemoModal({ open, onClose }) {
                       />
                     </label>
                     <label className="flex flex-col gap-1.5">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-dim">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
                         Work email *
                       </span>
                       <input
@@ -193,7 +193,7 @@ export default function DemoModal({ open, onClose }) {
                       />
                     </label>
                     <label className="flex flex-col gap-1.5">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-dim">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
                         Company *
                       </span>
                       <input
@@ -207,7 +207,7 @@ export default function DemoModal({ open, onClose }) {
                       />
                     </label>
                     <label className="flex flex-col gap-1.5">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-dim">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
                         Phone
                       </span>
                       <input
@@ -222,7 +222,7 @@ export default function DemoModal({ open, onClose }) {
                   </div>
 
                   <label className="flex flex-col gap-1.5">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-dim">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
                       Interested in
                     </span>
                     <select className={field} value={form.interest} onChange={set('interest')}>
@@ -235,7 +235,7 @@ export default function DemoModal({ open, onClose }) {
                   </label>
 
                   <label className="flex flex-col gap-1.5">
-                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-dim">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
                       Anything specific you want to see?
                     </span>
                     <textarea
@@ -248,7 +248,7 @@ export default function DemoModal({ open, onClose }) {
                   </label>
 
                   {status === 'error' && (
-                    <p className="rounded-lg border border-blue/30 bg-blue/10 px-4 py-3 text-[13px] leading-relaxed text-text-dim">
+                    <p className="rounded-lg border border-blue/30 bg-blue/10 px-4 py-3 text-[14px] leading-relaxed text-text-dim">
                       Couldn&rsquo;t reach the form service.{' '}
                       <button type="button" onClick={mailtoFallback} className="font-semibold text-teal underline">
                         Send via your email app instead →
@@ -256,7 +256,7 @@ export default function DemoModal({ open, onClose }) {
                     </p>
                   )}
                   {status === 'pending-activation' && (
-                    <p className="rounded-lg border border-teal/30 bg-teal/10 px-4 py-3 text-[13px] leading-relaxed text-text-dim">
+                    <p className="rounded-lg border border-teal/30 bg-teal/10 px-4 py-3 text-[14px] leading-relaxed text-text-dim">
                       Our inbox connection is being finalised — send your request in one
                       click via email instead:{' '}
                       <button type="button" onClick={mailtoFallback} className="font-semibold text-teal underline">
@@ -268,11 +268,11 @@ export default function DemoModal({ open, onClose }) {
                   <button
                     type="submit"
                     disabled={status === 'sending'}
-                    className="mt-1 rounded-full bg-gradient-to-r from-brand-lime via-brand-teal to-brand-blue px-8 py-3.5 text-[15px] font-semibold text-ink shadow-[0_0_24px_rgba(30,194,122,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_36px_rgba(30,194,122,0.55)] disabled:cursor-wait disabled:opacity-70"
+                    className="mt-1 rounded-full bg-gradient-to-r from-brand-lime via-brand-teal to-brand-blue px-8 py-3.5 text-[16px] font-semibold text-ink shadow-[0_0_24px_rgba(30,194,122,0.35)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_10px_36px_rgba(30,194,122,0.55)] disabled:cursor-wait disabled:opacity-70"
                   >
                     {status === 'sending' ? 'Transmitting…' : 'Request my demo →'}
                   </button>
-                  <p className="text-center font-mono text-[10px] tracking-[0.15em] text-text-dim/60">
+                  <p className="text-center font-mono text-[11px] tracking-[0.15em] text-text-dim/60">
                     Goes straight to {RECIPIENT}
                   </p>
                 </form>

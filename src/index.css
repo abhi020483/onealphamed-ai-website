@@ -16,7 +16,7 @@
   --color-line: rgba(180, 214, 224, 0.14);
   --color-line-strong: rgba(180, 214, 224, 0.25);
   --color-text: #eaf1f4;
-  --color-text-dim: rgba(234, 241, 244, 0.62);
+  --color-text-dim: rgba(234, 241, 244, 0.8);
   --color-lime: #86d13f;
   --color-green: #1ec27a;
   --color-teal: #0aa88f;
@@ -48,7 +48,7 @@
   --color-line: rgba(20, 70, 90, 0.14);
   --color-line-strong: rgba(20, 70, 90, 0.25);
   --color-text: #0f2430;
-  --color-text-dim: rgba(15, 36, 48, 0.62);
+  --color-text-dim: rgba(15, 36, 48, 0.8);
   --color-lime: #568f1e;
   --color-green: #0e8f58;
   --color-teal: #087f6c;
@@ -70,7 +70,7 @@ html[data-theme="dark"] {
   --color-line: rgba(180, 214, 224, 0.14);
   --color-line-strong: rgba(180, 214, 224, 0.25);
   --color-text: #eaf1f4;
-  --color-text-dim: rgba(234, 241, 244, 0.62);
+  --color-text-dim: rgba(234, 241, 244, 0.8);
   --color-lime: #86d13f;
   --color-green: #1ec27a;
   --color-teal: #0aa88f;
@@ -87,6 +87,9 @@ html[data-theme="dark"] {
 
 html {
   scroll-behavior: smooth;
+  /* raised from the 16px default — lifts every rem-based size site-wide
+     for readability; px-fixed HUD labels are bumped individually */
+  font-size: 17px;
 }
 
 body {
@@ -94,6 +97,8 @@ body {
   background: var(--color-void);
   color: var(--color-text);
   font-family: var(--font-body);
+  /* Exo 2 variable axis — slightly heavier than regular for legibility */
+  font-weight: 450;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;

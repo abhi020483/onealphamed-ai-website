@@ -65,9 +65,9 @@ export default function VoiceAgent() {
           {CARDS.map((c, i) => (
             <Reveal key={c.n} delay={i * 0.08}>
               <TiltCard max={7} className="hud-corners flex h-full flex-col gap-3.5 rounded-2xl border border-line bg-void-2/70 p-6 backdrop-blur-md transition-colors duration-200 hover:border-green/45">
-                <span className={`font-mono text-[11px] tracking-[0.2em] ${c.color}`}>{c.n}</span>
+                <span className={`font-mono text-[12px] tracking-[0.2em] ${c.color}`}>{c.n}</span>
                 <h3 className="font-display text-[1.02rem] font-medium text-text">{c.title}</h3>
-                <p className="text-[0.92rem] leading-[1.6] text-text-dim">{c.desc}</p>
+                <p className="text-[1rem] leading-[1.6] text-text-dim">{c.desc}</p>
               </TiltCard>
             </Reveal>
           ))}
@@ -78,11 +78,11 @@ export default function VoiceAgent() {
           <Reveal>
             <TiltCard max={6} className="hud-corners flex h-full flex-col justify-between gap-5 rounded-2xl border border-line bg-void-2/70 px-7 py-6 backdrop-blur-md">
               <div className="flex items-center justify-between gap-3">
-                <span className="flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-green">
+                <span className="flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.2em] text-green">
                   <span className="h-[7px] w-[7px] animate-blink rounded-full bg-brand-green shadow-[0_0_10px_#1ec27a]" />
                   Outbound call · Live
                 </span>
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-text-dim/70">
+                <span className="font-mono text-[11.5px] uppercase tracking-[0.18em] text-text-dim/70">
                   Hindi · 02:47
                 </span>
               </div>
@@ -98,12 +98,12 @@ export default function VoiceAgent() {
                 ))}
               </div>
 
-              <div className="rounded-xl border border-line bg-void-3/70 px-4 py-3.5 text-[0.9rem] leading-[1.6] text-text/80">
+              <div className="rounded-xl border border-line bg-void-3/70 px-4 py-3.5 text-[1rem] leading-[1.6] text-text/80">
                 &ldquo;Doctor, following up on last week&rsquo;s detailing visit — a new study
                 on the extended indication was published. Would two minutes on the key
                 findings help?&rdquo;
               </div>
-              <span className="text-center font-mono text-[10px] uppercase tracking-[0.18em] text-text-dim/60">
+              <span className="text-center font-mono text-[11px] uppercase tracking-[0.18em] text-text-dim/60">
                 Sub-second turn-taking · Natural interruption handling
               </span>
             </TiltCard>
@@ -112,23 +112,23 @@ export default function VoiceAgent() {
           {/* pipeline + analytics + compliance */}
           <Reveal delay={0.12} className="flex flex-col gap-5">
             <div className="flex flex-col gap-4 rounded-2xl border border-line bg-void-2/70 px-6 py-[22px] backdrop-blur-md">
-              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
+              <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-dim">
                 Real-time pipeline
               </span>
               <div className="flex flex-wrap items-center gap-3">
-                <span className="rounded-lg border border-brand-lime/40 px-3.5 py-2 font-mono text-[11.5px] uppercase tracking-[0.12em] text-lime">
+                <span className="rounded-lg border border-brand-lime/40 px-3.5 py-2 font-mono text-[12.5px] uppercase tracking-[0.12em] text-lime">
                   Speech-to-text
                 </span>
                 <span className="text-teal">→</span>
-                <span className="rounded-lg border border-brand-green/40 px-3.5 py-2 font-mono text-[11.5px] uppercase tracking-[0.12em] text-green">
+                <span className="rounded-lg border border-brand-green/40 px-3.5 py-2 font-mono text-[12.5px] uppercase tracking-[0.12em] text-green">
                   LLM + Retrieval
                 </span>
                 <span className="text-teal">→</span>
-                <span className="rounded-lg border border-brand-blue/40 px-3.5 py-2 font-mono text-[11.5px] uppercase tracking-[0.12em] text-blue">
+                <span className="rounded-lg border border-brand-blue/40 px-3.5 py-2 font-mono text-[12.5px] uppercase tracking-[0.12em] text-blue">
                   Text-to-speech
                 </span>
               </div>
-              <p className="text-[0.92rem] leading-[1.6] text-text-dim">
+              <p className="text-[1rem] leading-[1.6] text-text-dim">
                 Speech recognition tuned for Indian languages and medical vocabulary; a
                 reasoning engine grounded in the approved knowledge base — so it cannot go
                 off-message; natural multilingual voice synthesis over a standard outbound
@@ -137,10 +137,10 @@ export default function VoiceAgent() {
             </div>
 
             <div className="flex flex-col gap-3.5 rounded-2xl border border-line bg-void-2/70 px-6 py-[22px] backdrop-blur-md">
-              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-text-dim">
+              <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-text-dim">
                 Analytics &amp; insight
               </span>
-              <p className="text-[0.92rem] leading-[1.6] text-text-dim">
+              <p className="text-[1rem] leading-[1.6] text-text-dim">
                 Reach and frequency, message consistency, doctor sentiment, the most common
                 questions and objections by specialty and geography — a near-real-time view
                 of how messaging lands across the entire doctor base.
@@ -148,20 +148,20 @@ export default function VoiceAgent() {
             </div>
 
             <div className="flex flex-col gap-3 rounded-2xl border border-brand-teal/40 px-6 py-5" style={{ backgroundColor: 'rgba(var(--color-tint-rgb), 0.7)' }}>
-              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-teal">
+              <span className="font-mono text-[12px] uppercase tracking-[0.2em] text-teal">
                 Compliant from day one
               </span>
               <div className="flex flex-wrap gap-2.5">
                 {COMPLIANCE.map((c) => (
                   <span
                     key={c}
-                    className="rounded-full border border-brand-teal/40 px-3 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.15em] text-teal"
+                    className="rounded-full border border-brand-teal/40 px-3 py-1.5 font-mono text-[11.5px] uppercase tracking-[0.15em] text-teal"
                   >
                     {c}
                   </span>
                 ))}
               </div>
-              <p className="text-[0.9rem] leading-[1.55] text-text-dim">
+              <p className="text-[1rem] leading-[1.55] text-text-dim">
                 Explicit opt-in and DND honoured · every message passes
                 medical-legal-regulatory review · all calls recorded and auditable.
               </p>

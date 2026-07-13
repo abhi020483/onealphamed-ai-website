@@ -26,7 +26,7 @@ export default function CTA({ onRequestDemo }) {
           >
             Request a demo →
           </button>
-          <span className="font-mono text-[11.5px] tracking-[0.15em] text-text-dim">
+          <span className="font-mono text-[12.5px] tracking-[0.15em] text-text-dim">
             blessy.babychan@onealphamed.com
           </span>
         </Reveal>

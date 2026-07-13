@@ -65,13 +65,13 @@ export default function Journey() {
                 />
                 <div className="h-7 w-px border-l border-dashed" style={{ borderColor: `${p.dot}80` }} />
                 <TiltCard max={7} className="hud-corners flex w-full flex-col gap-3.5 rounded-2xl border border-line bg-void-2/70 px-[26px] py-7 backdrop-blur-md">
-                  <span className={`font-mono text-[11px] uppercase tracking-[0.25em] ${p.textColor}`}>
+                  <span className={`font-mono text-[12px] uppercase tracking-[0.25em] ${p.textColor}`}>
                     {p.label}
                   </span>
                   <p className="text-[1rem] leading-[1.65] text-text">{p.text}</p>
                   {p.chip && (
                     <span
-                      className={`self-start rounded-full border px-3 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.2em] ${p.textColor}`}
+                      className={`self-start rounded-full border px-3 py-1.5 font-mono text-[11.5px] uppercase tracking-[0.2em] ${p.textColor}`}
                       style={{ borderColor: `${p.dot}66` }}
                     >
                       {p.chip}
@@ -85,7 +85,7 @@ export default function Journey() {
 
         <Reveal className="flex justify-center">
           <div className="flex max-w-[760px] flex-col items-baseline gap-3 rounded-2xl border border-line bg-void-2/70 px-8 py-[22px] backdrop-blur-md sm:flex-row sm:gap-4">
-            <span className="whitespace-nowrap font-mono text-[11px] uppercase tracking-[0.25em] text-green">
+            <span className="whitespace-nowrap font-mono text-[12px] uppercase tracking-[0.25em] text-green">
               Our vision
             </span>
             <p className="text-[1rem] leading-[1.65] text-text/75 text-balance">

@@ -61,7 +61,7 @@ export default function Merlin() {
             Merlin AI: one stop, customisable{' '}
             <span className="text-gradient">medical intelligence.</span>
           </h2>
-          <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-text-dim">
+          <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-text-dim">
             The Power of 4
           </span>
         </Reveal>
@@ -72,9 +72,9 @@ export default function Merlin() {
             <Reveal key={p.title} delay={i * 0.08}>
               <TiltCard max={7} className="hud-corners h-full rounded-2xl border border-line bg-void-2/70 p-6 backdrop-blur-md transition-colors duration-200 hover:border-green/45">
                 <div className="flex flex-col gap-3.5">
-                  <span className={`font-mono text-[11px] tracking-[0.2em] ${p.color}`}>{p.n}</span>
+                  <span className={`font-mono text-[12px] tracking-[0.2em] ${p.color}`}>{p.n}</span>
                   <h3 className="font-display text-[1.05rem] font-medium text-text">{p.title}</h3>
-                  <p className="text-[0.95rem] leading-[1.6] text-text-dim">{p.desc}</p>
+                  <p className="text-[1.05rem] leading-[1.6] text-text-dim">{p.desc}</p>
                 </div>
               </TiltCard>
             </Reveal>
@@ -84,7 +84,7 @@ export default function Merlin() {
         {/* MedLink AI */}
         <div className="mt-10 grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <Reveal className="flex flex-col gap-6">
-            <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-green">
+            <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-green">
               MedLink AI · WhatsApp Channel
             </span>
             <h3 className="font-display text-2xl font-medium leading-[1.25] text-balance text-text md:text-[1.7rem]">
@@ -96,17 +96,17 @@ export default function Merlin() {
             <div className="overflow-hidden rounded-2xl border border-line bg-void-2/70 backdrop-blur-md">
               <div className="grid grid-cols-[1.1fr_1fr_1fr] gap-3 border-b border-line px-5 py-3.5">
                 <span />
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-text-dim">
+                <span className="font-mono text-[11.5px] uppercase tracking-[0.18em] text-text-dim">
                   Standard Chatbots
                 </span>
-                <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-green">
+                <span className="font-mono text-[11.5px] uppercase tracking-[0.18em] text-green">
                   MedLink AI
                 </span>
               </div>
               {COMPARE.map((row, i) => (
                 <div
                   key={row.dim}
-                  className={`grid grid-cols-[1.1fr_1fr_1fr] gap-3 px-5 py-3.5 text-[0.9rem] leading-[1.5] ${
+                  className={`grid grid-cols-[1.1fr_1fr_1fr] gap-3 px-5 py-3.5 text-[1rem] leading-[1.5] ${
                     i < COMPARE.length - 1 ? 'border-b border-line' : ''
                   }`}
                 >
@@ -119,10 +119,10 @@ export default function Merlin() {
 
             {/* MedScan callout */}
             <div className="hud-corners relative flex flex-col gap-2 rounded-2xl border border-line bg-void-3/70 px-6 py-5 backdrop-blur-md">
-              <span className="font-mono text-[11px] uppercase tracking-[0.25em] text-teal">
+              <span className="font-mono text-[12px] uppercase tracking-[0.25em] text-teal">
                 MedScan AI
               </span>
-              <p className="text-[0.95rem] leading-[1.6] text-text-dim">
+              <p className="text-[1.05rem] leading-[1.6] text-text-dim">
                 Prescription scanning with an LLM layer — handwriting in, structured medical
                 data out.
               </p>
@@ -143,12 +143,12 @@ export default function Merlin() {
                   </div>
                   {/* header */}
                   <div className="flex items-center gap-3 border-b border-line bg-void-3/90 px-4 py-3">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-green to-brand-blue font-display text-[13px] font-semibold text-ink">
+                    <div className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-brand-green to-brand-blue font-display text-[14px] font-semibold text-ink">
                       K
                     </div>
                     <div className="flex flex-col gap-0.5">
                       <span className="text-sm font-semibold text-text">Dr Khadilkar&rsquo;s Clinic</span>
-                      <span className="flex items-center gap-1.5 text-[11px] text-green">
+                      <span className="flex items-center gap-1.5 text-[12px] text-green">
                         <span className="h-1.5 w-1.5 animate-blink rounded-full bg-green" />
                         MedLink AI · online
                       </span>
@@ -165,7 +165,7 @@ export default function Merlin() {
                     {CHAT.map((c, i) => (
                       <div
                         key={i}
-                        className={`max-w-[86%] px-[13px] py-2.5 text-[13px] leading-[1.5] text-text ${
+                        className={`max-w-[86%] px-[13px] py-2.5 text-[14px] leading-[1.5] text-text ${
                           c.from === 'patient'
                             ? 'self-end rounded-[14px_14px_4px_14px] bg-bubble-out'
                             : 'self-start rounded-[14px_14px_14px_4px] border border-line bg-void-3/95'
@@ -173,7 +173,7 @@ export default function Merlin() {
                       >
                         {c.text}
                         <div
-                          className={`mt-1 text-[9.5px] text-text-dim/70 ${
+                          className={`mt-1 text-[10.5px] text-text-dim/70 ${
                             c.from === 'patient' ? 'text-right' : ''
                           }`}
                         >
