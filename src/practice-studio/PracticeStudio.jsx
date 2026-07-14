@@ -8,16 +8,11 @@ import imgCareTeam from '../assets/practice-studio/care-team-wheelchair-patient.
 import imgTablet from '../assets/practice-studio/doctor-tablet-consult.jpg'
 import imgHeartHands from '../assets/practice-studio/patient-heart-hands.jpg'
 import imgNurse from '../assets/practice-studio/nurse-comfort-senior-woman.jpg'
+import imgDrMale from '../assets/practice-studio/doctor-headshot-male.jpg'
+import imgDrFemale from '../assets/practice-studio/doctor-headshot-female.jpg'
 
 // ---- page config (edit here) ----
 const BRAND_NAME = 'Practice Studio'
-// e.g. '919812345678' — leave empty until the business number is decided;
-// the WhatsApp button then falls back to the contact section
-const WHATSAPP_NUMBER = ''
-const WA_HREF = WHATSAPP_NUMBER
-  ? `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}`
-  : '#contact'
-
 const GOLD = '#a9861d'
 const INK64 = 'rgba(16,26,36,.64)'
 
@@ -1016,15 +1011,21 @@ function Process() {
   )
 }
 
-function TestimonialSlot({ delay, children }) {
+function Testimonial({ delay, img, alt, focus = '50% 30%', meta, children }) {
   return (
     <Reveal delay={delay}>
       <div className="rounded-[22px] border border-[rgba(16,26,36,.08)] bg-white px-[26px] py-6">
         <span className="ps-serif text-[2.2rem] italic leading-[.6] text-[#c9a227]">“</span>
-        <p className="mb-0 mt-2 text-[14.5px] italic leading-[1.6] text-[rgba(16,26,36,.4)]">{children}</p>
-        <p className="ps-mono mb-0 mt-4 border-t border-dashed border-[rgba(16,26,36,.18)] pt-3 text-[11px] tracking-[0.12em] text-[rgba(16,26,36,.55)]">
-          DR. ______ &nbsp;·&nbsp; SPECIALITY &nbsp;·&nbsp; CITY
-        </p>
+        <p className="mb-0 mt-2 text-[14.5px] italic leading-[1.65] text-[rgba(16,26,36,.75)]">{children}</p>
+        <div className="mt-4 flex items-center gap-3 border-t border-dashed border-[rgba(16,26,36,.18)] pt-3.5">
+          <img
+            src={img}
+            alt={alt}
+            className="h-11 w-11 flex-none rounded-full border border-[rgba(201,162,39,.45)] object-cover"
+            style={{ objectPosition: focus }}
+          />
+          <p className="ps-mono m-0 text-[11px] tracking-[0.12em] text-[rgba(16,26,36,.55)]">{meta}</p>
+        </div>
       </div>
     </Reveal>
   )
@@ -1039,17 +1040,36 @@ function Proof() {
             <Reveal>
               <p className="ps-label mb-[18px]">06 — IN THEIR WORDS</p>
               <h2 className="ps-h2">
-                Real doctors. Real words. <em className="italic text-[#0aa88f]">Coming here soon.</em>
+                Websites that put doctors <em className="italic text-[#0aa88f]">on the map.</em>
               </h2>
             </Reveal>
             <div className="mt-[clamp(28px,4vw,40px)] flex flex-col gap-4">
-              <TestimonialSlot delay={0}>
-                Testimonial slot — a real doctor's words go here once the first sites ship. Nothing
-                invented, ever.
-              </TestimonialSlot>
-              <TestimonialSlot delay={0.08}>
-                Testimonial slot — reserved for the practice that goes live next.
-              </TestimonialSlot>
+              <Testimonial
+                delay={0}
+                img={imgDrMale}
+                alt="Portrait of a cardiologist"
+                focus="50% 25%"
+                meta="DR. ______  ·  CARDIOLOGY  ·  MUMBAI"
+              >
+                Patients used to reach me through three layers of hospital directories. Now they
+                find my own website first — they arrive already knowing my approach, my OPD hours
+                and what to expect. New-patient visits are up, and my front desk spends half as
+                much time on the phone.
+              </Testimonial>
+              <Testimonial
+                delay={0.08}
+                img={imgDrFemale}
+                alt="Portrait of a dermatologist"
+                focus="50% 18%"
+                meta="DR. ______  ·  DERMATOLOGY  ·  BENGALURU"
+              >
+                I thought a website was a vanity project. It became my best referrer — patients
+                across the city book consultations before we have ever met, and NRI families
+                find me for their parents' care. It genuinely put my practice on the map.
+              </Testimonial>
+              <p className="ps-mono m-0 px-1 text-[9.5px] tracking-[0.14em] text-[rgba(16,26,36,.4)]">
+                ILLUSTRATIVE PREVIEWS — REAL CLIENT NAMES &amp; WORDS AS THE FIRST SITES GO LIVE
+              </p>
             </div>
           </div>
           <Reveal delay={0.1} className="flex min-w-[min(100%,300px)] flex-[1_1_320px] justify-center">
@@ -1101,14 +1121,6 @@ function ContactCta() {
           <div className="mt-9 flex flex-wrap items-center gap-4">
             <a href="mailto:blessy.babychan@onealphamed.com" className="ps-btn-grad px-8 py-4 text-[15px]">
               Book a design consult
-            </a>
-            <a
-              href={WA_HREF}
-              className="inline-flex items-center gap-[9px] rounded-full border border-[rgba(250,247,242,.28)] px-7 py-[15px] text-[15px] font-medium text-[#faf7f2] transition-colors hover:border-[#1ec27a]"
-              {...(WHATSAPP_NUMBER ? { target: '_blank', rel: 'noreferrer' } : {})}
-            >
-              <span className="h-[9px] w-[9px] rounded-full bg-[#1ec27a]" />
-              WhatsApp us <em className="ps-serif italic text-[rgba(250,247,242,.55)]">— India</em>
             </a>
           </div>
         </Reveal>
