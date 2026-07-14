@@ -114,3 +114,40 @@
     transition: none !important;
   }
 }
+
+/* FAQ accordion (native details/summary) */
+.ps-faq-item {
+  border-bottom: 1px solid rgba(16, 26, 36, 0.1);
+}
+.ps-faq-item summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 16px;
+  padding: 18px 4px;
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #101a24;
+}
+.ps-faq-item summary::-webkit-details-marker { display: none; }
+.ps-faq-item summary::after {
+  content: '+';
+  flex: none;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1;
+  color: #86690e;
+}
+.ps-faq-item[open] summary::after { content: '\2212'; }
+.ps-faq-item p {
+  margin: 0 0 18px;
+  padding: 0 4px;
+  max-width: 70ch;
+  font-size: 14.5px;
+  line-height: 1.65;
+  color: rgba(16, 26, 36, 0.64);
+}

@@ -387,6 +387,7 @@ function TheCase() {
             </Reveal>
           </div>
         </div>
+        <WhyNotJust />
       </div>
     </section>
   )
@@ -935,8 +936,8 @@ function TwoHomes() {
               <HomeList
                 check="#1ec27a"
                 items={[
-                  'UPI payments, built in',
-                  'WhatsApp-first patient journeys',
+                  'UPI & card checkout - Razorpay / Cashfree ready',
+                  'WhatsApp Business API booking journeys',
                   'Indian-language sites — Hindi, Tamil, Bengali & more',
                   'ABDM-readiness considered in every build',
                 ]}
@@ -987,13 +988,18 @@ function Process() {
           <h2 className="ps-h2">
             Four steps, then a <em className="italic text-[#0aa88f]">long partnership.</em>
           </h2>
+          <p className="mt-4 max-w-[52ch] text-[15px] font-light leading-[1.6]" style={{ color: INK64 }}>
+            A Resident site is typically live in 5-6 weeks, Consultant in 6-8, and a Signature
+            commission in 10-12.
+          </p>
         </Reveal>
         <div className="mt-[clamp(36px,5vw,56px)] grid grid-cols-[repeat(auto-fit,minmax(min(100%,230px),1fr))] gap-[22px]">
           {STEPS.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.07}>
               <div className="border-t border-[rgba(201,162,39,.5)] pt-5">
-                <p className="ps-mono m-0 text-[11px] tracking-[0.16em] text-[#a9861d]">
+                <p className="ps-mono m-0 flex items-baseline justify-between gap-3 text-[11px] tracking-[0.16em] text-[#a9861d]">
                   STEP {String(i + 1).padStart(2, '0')}
+                  <span className="tracking-[0.1em] text-[rgba(16,26,36,.45)]">{['~1 WEEK', '2-3 WEEKS', '~2 WEEKS', 'ONGOING'][i]}</span>
                 </p>
                 <h3 className="ps-serif mb-0 mt-2.5 text-[1.35rem] font-semibold">{s.title}</h3>
                 <p className="mb-0 mt-2.5 text-[14px] leading-[1.6] text-[rgba(16,26,36,.6)]">{s.desc}</p>
@@ -1103,7 +1109,7 @@ function ContactCta() {
       </div>
       <div className="relative z-[2] mx-auto max-w-[1200px]">
         <div className="mb-7 h-px w-16 bg-[#c9a227]" />
-        <p className="ps-mono mb-[18px] text-[15px] font-semibold tracking-[0.2em] text-[#1ec27a]">07 — BEGIN</p>
+        <p className="ps-mono mb-[18px] text-[15px] font-semibold tracking-[0.2em] text-[#1ec27a]">08 — BEGIN</p>
         <Reveal>
           <h2 className="ps-serif m-0 max-w-[16ch] text-[clamp(2.1rem,4.6vw,3.6rem)] font-semibold leading-[1.1] text-[#faf7f2]">
             Let's design the practice your patients <GradText>deserve.</GradText>
@@ -1160,6 +1166,156 @@ function StudioFooter() {
   )
 }
 
+
+function ScrollProgressBar() {
+  const ref = useRef(null)
+  useEffect(() => {
+    const on = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight
+      if (ref.current) ref.current.style.width = `${max > 0 ? (window.scrollY / max) * 100 : 0}%`
+    }
+    on()
+    window.addEventListener('scroll', on, { passive: true })
+    window.addEventListener('resize', on)
+    return () => {
+      window.removeEventListener('scroll', on)
+      window.removeEventListener('resize', on)
+    }
+  }, [])
+  return <div ref={ref} className="ps-grad fixed left-0 top-0 z-[950] h-[3px] w-0" />
+}
+
+const SECTIONS = [
+  ['top', '00'], ['case', '01'], ['collection', '02'], ['capabilities', '03'],
+  ['two-homes', '04'], ['process', '05'], ['proof', '06'], ['faq', '07'], ['contact', '08'],
+]
+
+function MiniNav() {
+  const [active, setActive] = useState('top')
+  useEffect(() => {
+    const on = () => {
+      let cur = 'top'
+      for (const [id] of SECTIONS) {
+        const el = document.getElementById(id)
+        if (el && el.getBoundingClientRect().top <= window.innerHeight * 0.4) cur = id
+      }
+      setActive(cur)
+    }
+    on()
+    window.addEventListener('scroll', on, { passive: true })
+    return () => window.removeEventListener('scroll', on)
+  }, [])
+  return (
+    <nav aria-label="Page sections" className="fixed right-5 top-1/2 z-[890] hidden -translate-y-1/2 flex-col items-end gap-2.5 xl:flex">
+      {SECTIONS.map(([id, n]) => (
+        <a
+          key={id}
+          href={`#${id}`}
+          className="ps-mono text-[10px] tracking-[0.18em] transition-colors"
+          style={active === id ? { color: '#86690e', fontWeight: 700 } : { color: 'rgba(16,26,36,.32)' }}
+        >
+          {n}
+        </a>
+      ))}
+    </nav>
+  )
+}
+
+function StickyCta() {
+  const [show, setShow] = useState(false)
+  useEffect(() => {
+    const on = () => setShow(window.scrollY > 700)
+    on()
+    window.addEventListener('scroll', on, { passive: true })
+    return () => window.removeEventListener('scroll', on)
+  }, [])
+  return (
+    <div
+      className="fixed inset-x-0 bottom-0 z-[940] border-t border-[rgba(16,26,36,.08)] bg-white/95 px-4 py-3 backdrop-blur transition-transform duration-300 md:hidden"
+      style={{ transform: show ? 'translateY(0)' : 'translateY(110%)' }}
+    >
+      <a href="#contact" className="ps-btn-grad block w-full py-3 text-center text-[15px]">
+        Book a design consult
+      </a>
+    </div>
+  )
+}
+
+const OBJECTIONS = [
+  {
+    q: 'Why not just a Practo or JustDial listing?',
+    a: "On a directory you are one of forty, ranked by someone else's algorithm. Your own website is the destination - and your listings work harder when they link somewhere worth landing.",
+  },
+  {
+    q: 'Why not DIY on Wix or Squarespace?',
+    a: 'Generic templates do not speak medicine - no patient-education layouts, no Indian-language builds, no UPI or WhatsApp journeys, and the medical copywriting is left to you.',
+  },
+  {
+    q: 'Why not any web agency?',
+    a: 'Most have never designed for healthcare. We come from it - pharma brand work, HCP engagement and patient communication are our day job.',
+  },
+]
+
+function WhyNotJust() {
+  return (
+    <div className="mt-[clamp(40px,6vw,64px)]">
+      <Reveal>
+        <h3 className="ps-serif m-0 text-[clamp(1.3rem,2.2vw,1.7rem)] font-semibold">
+          "Why not just..." <em className="italic text-[#0aa88f]">Fair question.</em>
+        </h3>
+      </Reveal>
+      <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(min(100%,280px),1fr))] gap-[18px]">
+        {OBJECTIONS.map((o, i) => (
+          <Reveal key={o.q} delay={i * 0.07}>
+            <div className="ps-card h-full px-6 py-5">
+              <p className="ps-serif m-0 text-[1.05rem] font-semibold leading-snug">{o.q}</p>
+              <p className="mb-0 mt-2.5 text-[14px] leading-[1.6] text-[rgba(16,26,36,.62)]">{o.a}</p>
+            </div>
+          </Reveal>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+const FAQS = [
+  ['How long does a project take?', 'A Resident site typically goes live in 5-6 weeks; Consultant in 6-8; a Signature commission in 10-12. The moodboard consult happens in week one.'],
+  ['Do I own my website and domain?', 'Fully. Domain, design and content are registered and owned by you - we hand over complete access at launch.'],
+  ['Can you migrate my existing website?', 'Yes. Content and domain migration is part of every tier, and we handle redirects so you keep your Google standing.'],
+  ['Do you build in Indian languages?', 'Yes - Hindi, Tamil, Bengali and more. Multilingual builds are available on every tier.'],
+  ['Can I add appointment booking or WhatsApp later?', 'That is the model. Capabilities are added on the same foundation as your practice grows - no rebuild, no re-platforming.'],
+  ['How do you handle patient privacy?', 'Your website stores no patient data by default. When you add capabilities that touch patient information, we design them with an understanding of DPDP (India), HIPAA (US) and GDPR (EU) obligations.'],
+  ['What is the revision policy?', 'Design is iterative - structured revision rounds are built into every tier, and we refine until sign-off before the build begins.'],
+  ['Do you provide ongoing maintenance?', 'Yes. Hosting, updates and content refreshes are available on retainer, and Signature includes a quarterly design refresh.'],
+  ['We are a clinic or hospital, not a solo doctor - can you help?', 'Multi-speciality clinics and departments are exactly what the Signature tier is for; group practices usually start at Consultant.'],
+  ['What does it cost?', 'Every practice is scoped individually. Book a consult and you will have a full quote within 24 hours.'],
+]
+
+function Faq() {
+  return (
+    <section id="faq" className="ps-section-pad">
+      <div className="mx-auto max-w-[1200px]">
+        <Reveal className="max-w-[720px]">
+          <p className="ps-label mb-[18px]">07 — QUESTIONS</p>
+          <h2 className="ps-h2">
+            Asked by almost <em className="italic text-[#0aa88f]">every doctor.</em>
+          </h2>
+        </Reveal>
+        <Reveal delay={0.08}>
+          <div className="mt-[clamp(28px,4vw,44px)] max-w-[820px]">
+            {FAQS.map(([q, a]) => (
+              <details key={q} className="ps-faq-item">
+                <summary>{q}</summary>
+                <p>{a}</p>
+              </details>
+            ))}
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 export default function PracticeStudio() {
   useEffect(() => {
     const prevTitle = document.title
@@ -1176,6 +1332,9 @@ export default function PracticeStudio() {
   return (
     <div className="ps">
       <div className="ps-grain" aria-hidden="true" />
+      <ScrollProgressBar />
+      <MiniNav />
+      <StickyCta />
       <StudioNav />
       <main>
         <Hero />
@@ -1185,6 +1344,7 @@ export default function PracticeStudio() {
         <TwoHomes />
         <Process />
         <Proof />
+        <Faq />
         <ContactCta />
       </main>
       <StudioFooter />
