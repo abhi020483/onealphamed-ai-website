@@ -613,13 +613,13 @@ const LIVE_TEMPLATES = [
     spec: 'derma',
     label: 'DERMA — 01',
     caption: 'Dr. Aruna Rao · ArunaSkin · Bengaluru',
-    src: '/practice-studio/promos/derma.html',
+    src: '/practice-studio/practice-studio-promo.mp4',
   },
   {
     spec: 'dental',
     label: 'DENTAL — 01',
     caption: 'Dr. Meera Shah · Shah Dental · Bandra',
-    src: '/practice-studio/promos/dental.html',
+    src: '/practice-studio/dental-promo.mp4',
   },
 ]
 const COMING = [
@@ -630,35 +630,54 @@ const COMING = [
 ]
 const FILTERS = ['all', 'derma', 'dental', 'onco', 'ortho', 'paeds', 'multi']
 
-/* A ready template — opens its animated promo film in a new tab. */
+/* A ready template — its 30s promo film autoplays (muted, looped) once the
+   card scrolls near the viewport; lazy so the video only loads then. */
 function PromoCard({ tpl }) {
+  const ref = useRef(null)
+  const vidRef = useRef(null)
+  const reduced = useReducedMotion()
+  useEffect(() => {
+    const el = ref.current
+    if (!el) return
+    const io = new IntersectionObserver(
+      (es) =>
+        es.forEach((e) => {
+          const v = vidRef.current
+          if (!v) return
+          if (e.isIntersecting) {
+            if (!v.src) v.src = tpl.src
+            if (!reduced) v.play().catch(() => {})
+          } else if (v.src) {
+            v.pause()
+          }
+        }),
+      { threshold: 0.25, rootMargin: '200px 0px' },
+    )
+    io.observe(el)
+    return () => io.disconnect()
+  }, [tpl.src, reduced])
   return (
-    <a
-      href={tpl.src}
-      target="_blank"
-      rel="noreferrer"
-      className="group block rounded-[20px] border border-[rgba(16,26,36,.1)] bg-white p-3.5 transition-transform duration-300 hover:-translate-y-1"
+    <div
+      ref={ref}
+      className="rounded-[20px] border border-[rgba(16,26,36,.1)] bg-white p-3.5"
       style={{ boxShadow: '0 26px 60px -40px rgba(16,26,36,.4)' }}
     >
-      <div
-        className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-[12px]"
-        style={{ background: 'radial-gradient(120% 120% at 80% 0%, rgba(0,194,160,.12), transparent 55%), radial-gradient(120% 120% at 0% 100%, rgba(142,224,0,.14), transparent 55%), #f5f1e6' }}
-      >
-        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-[0_10px_30px_-8px_rgba(16,26,36,.4)] transition-transform duration-300 group-hover:scale-110">
-          <span className="ml-1 border-y-[9px] border-l-[15px] border-y-transparent border-l-[#0aa88f]" />
-        </span>
-        <span className="ps-mono absolute bottom-2.5 left-3 text-[8.5px] tracking-[0.16em] text-[rgba(16,26,36,.42)]">
-          WATCH THE 30s FILM
-        </span>
+      <div className="relative aspect-video w-full overflow-hidden rounded-[12px] bg-[#f5f1e6]">
+        <video
+          ref={vidRef}
+          className="absolute inset-0 h-full w-full object-cover"
+          muted
+          loop
+          playsInline
+          preload="none"
+        />
       </div>
       <div className="mt-3 flex items-baseline justify-between gap-3">
         <span className="ps-mono text-[10px] tracking-[0.16em] text-[#0aa88f]">{tpl.label}</span>
-        <span className="ps-mono text-[9px] tracking-[0.14em] text-[rgba(16,26,36,.4)] transition-colors group-hover:text-[#0aa88f]">
-          PLAY →
-        </span>
+        <span className="ps-mono text-[9px] tracking-[0.14em] text-[rgba(16,26,36,.4)]">30s FILM · LOOPS</span>
       </div>
       <p className="mt-1 text-[12.5px] text-[rgba(16,26,36,.55)]">{tpl.caption}</p>
-    </a>
+    </div>
   )
 }
 
