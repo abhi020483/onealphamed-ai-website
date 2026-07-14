@@ -1109,7 +1109,7 @@ function LeadForm() {
   const [done, setDone] = useState(false)
   const [error, setError] = useState('')
   const [f, setF] = useState({
-    name: '', whatsapp: '', email: '',
+    name: '', email: '',
     speciality: '', city: '', practice_size: '',
     tier: '', timeline: '',
   })
@@ -1123,7 +1123,6 @@ function LeadForm() {
       fd.append('_wpcf7_unit_tag', 'wpcf7-f4790-o1')
       fd.append('your-name', f.name)
       fd.append('your-email', f.email)
-      fd.append('whatsapp', f.whatsapp)
       fd.append('speciality', f.speciality)
       fd.append('city', f.city)
       fd.append('practice-size', f.practice_size)
@@ -1169,7 +1168,7 @@ function LeadForm() {
     )
   }
 
-  const canNext1 = f.name.trim() && (f.email.trim() || f.whatsapp.trim())
+  const canNext1 = f.name.trim() && f.email.trim()
   const canSubmit = !busy
 
   return (
@@ -1187,9 +1186,6 @@ function LeadForm() {
         <div className="mt-5 flex flex-col gap-4">
           <Field label="Your name *">
             <input className="ps-input" value={f.name} onChange={set('name')} placeholder="Dr. ..." autoComplete="name" />
-          </Field>
-          <Field label="WhatsApp number">
-            <input className="ps-input" value={f.whatsapp} onChange={set('whatsapp')} placeholder="+91 ..." inputMode="tel" autoComplete="tel" />
           </Field>
           <Field label="Email *">
             <input className="ps-input" type="email" value={f.email} onChange={set('email')} placeholder="you@clinic.in" autoComplete="email" />
