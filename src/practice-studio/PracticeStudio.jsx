@@ -1535,10 +1535,14 @@ function FilmSection() {
   return (
     <section ref={ref} id="film" className="ps-section-pad bg-[#faf7f2]">
       <div className="mx-auto max-w-[1040px]">
-        <Reveal className="mb-6 flex items-baseline justify-between gap-4">
-          <p className="ps-label m-0">THE FILM</p>
-          <p className="ps-mono m-0 text-[10.5px] tracking-[0.18em] text-[rgba(16,26,36,.4)]">
-            30 SECONDS · SILENT
+        <Reveal className="mb-[clamp(24px,4vw,40px)] max-w-[760px]">
+          <p className="ps-label mb-[16px]">WHAT WE OFFER</p>
+          <h2 className="ps-h2">
+            The studio, <em className="italic text-[#0aa88f]">in motion.</em>
+          </h2>
+          <p className="mt-4 max-w-[54ch] text-[15.5px] font-light leading-[1.65]" style={{ color: INK64 }}>
+            Thirty silent seconds — the websites, the booking journeys and the details we design
+            for doctors and clinics.
           </p>
         </Reveal>
         <Reveal delay={0.06}>
