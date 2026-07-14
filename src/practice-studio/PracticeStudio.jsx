@@ -1494,26 +1494,42 @@ function FilmSection() {
   useEffect(() => {
     const sec = ref.current
     if (!sec) return
+    const ensureSrc = () => {
+      const v = vidRef.current
+      if (v && !v.src) {
+        v.src = '/practice-studio/practice-studio-promo.mp4'
+        setLoaded(true)
+      }
+    }
     const io = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {
           const v = vidRef.current
           if (!v) continue
           if (e.isIntersecting) {
-            if (!v.src) {
-              v.src = '/practice-studio/practice-studio-promo.mp4'
-              setLoaded(true)
-            }
+            ensureSrc()
             if (!reduced) v.play().catch(() => {})
-          } else {
+          } else if (v.src) {
             v.pause()
           }
         }
       },
-      { threshold: 0.4 },
+      { threshold: 0.12, rootMargin: '0px 0px 200px 0px' },
     )
     io.observe(sec)
-    return () => io.disconnect()
+    // fallback: if the observer never fires (some engines/embeds), load on first scroll
+    const onScroll = () => {
+      const r = sec.getBoundingClientRect()
+      if (r.top < window.innerHeight && r.bottom > 0) {
+        ensureSrc()
+        window.removeEventListener('scroll', onScroll)
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => {
+      io.disconnect()
+      window.removeEventListener('scroll', onScroll)
+    }
   }, [reduced])
 
   return (
