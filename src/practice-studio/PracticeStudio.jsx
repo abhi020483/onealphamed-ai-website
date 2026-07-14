@@ -324,19 +324,24 @@ function Hero() {
   )
 }
 
-function StatCard({ delay, stat, statSuffix, children }) {
+function StatCard({ delay, stat, statSuffix, source, children }) {
   return (
     <Reveal delay={delay}>
-      <div className="ps-card flex flex-wrap items-baseline gap-[22px] px-7 py-[26px]">
-        <span className="ps-serif text-[clamp(2.4rem,4vw,3.2rem)] font-light leading-none">
-          <span className="ps-grad-text" style={{ backgroundImage: 'linear-gradient(100deg,#00b48f,#3a86ff)' }}>
-            {stat}
+      <div className="ps-card px-7 py-[26px]">
+        <div className="flex flex-wrap items-baseline gap-[22px]">
+          <span className="ps-serif whitespace-nowrap text-[clamp(2.2rem,3.6vw,3rem)] font-light leading-none">
+            <span className="ps-grad-text" style={{ backgroundImage: 'linear-gradient(100deg,#00b48f,#3a86ff)' }}>
+              {stat}
+            </span>
+            {statSuffix}
           </span>
-          {statSuffix}
-        </span>
-        <span className="min-w-[200px] flex-1 text-[14.5px] leading-[1.6]" style={{ color: INK64 }}>
-          {children}
-        </span>
+          <span className="min-w-[190px] flex-1 text-[14.5px] leading-[1.6]" style={{ color: INK64 }}>
+            {children}
+          </span>
+        </div>
+        <p className="ps-mono mb-0 mt-3.5 border-t border-[rgba(16,26,36,.07)] pt-3 text-[9.5px] leading-[1.5] tracking-[0.12em] text-[rgba(16,26,36,.42)]">
+          {source}
+        </p>
       </div>
     </Reveal>
   )
@@ -364,15 +369,34 @@ function TheCase() {
             />
           </Reveal>
           <div className="flex min-w-[min(100%,300px)] flex-[1.3_1_420px] flex-col justify-center gap-4">
-            <StatCard delay={0} stat="7" statSuffix={<span><span className="text-[#0aa88f]">/</span>10</span>}>
-              patients research a doctor online before their first visit — your website is the
-              first consultation.
+            <StatCard
+              delay={0}
+              stat="77"
+              statSuffix={<span className="text-[.55em]">%</span>}
+              source="ROJAS REPORT / APPEARIO · 2026"
+            >
+              of patients start their doctor search on Google — your website is the first
+              consultation.
             </StatCard>
-            <StatCard delay={0.08} stat="0.05" statSuffix={<span className="text-[.4em] text-[#0aa88f]">s</span>}>
-              is all it takes to form a first impression of a website — before a single word is
-              read.
+            <StatCard
+              delay={0.08}
+              stat="30–40"
+              statSuffix={<span className="text-[.5em]">%</span>}
+              source="DIGITALHEALTHNEWS · 2025"
+            >
+              of online-consult patients now come from outside the doctor's city — geography no
+              longer protects you.
             </StatCard>
-            <Reveal delay={0.16}>
+            <StatCard
+              delay={0.16}
+              stat="0.05"
+              statSuffix={<span className="text-[.4em] text-[#0aa88f]">s</span>}
+              source="LINDGAARD ET AL. 2006 · STANFORD WEB CREDIBILITY 2002"
+            >
+              to form a first impression — before a single word is read. And 46.1% of that
+              impression is your design alone.
+            </StatCard>
+            <Reveal delay={0.24}>
               <div className="ps-card px-7 py-[26px]">
                 <p className="ps-mono mb-3.5 text-[10.5px] tracking-[0.18em] text-[#c9a227]">
                   LISTING VS. OWNED
