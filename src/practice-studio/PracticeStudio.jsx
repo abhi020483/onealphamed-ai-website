@@ -14,12 +14,6 @@ const BRAND_NAME = 'Practice Studio'
 // e.g. '919812345678' — leave empty until the business number is decided;
 // the WhatsApp button then falls back to the contact section
 const WHATSAPP_NUMBER = ''
-const FEES = {
-  resident: { inr: '__', usd: '__' },
-  consultant: { inr: '__', usd: '__' },
-  signature: { inr: '__', usd: '__' },
-}
-
 const WA_HREF = WHATSAPP_NUMBER
   ? `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}`
   : '#contact'
@@ -136,7 +130,7 @@ function StudioNav() {
         <div className="flex flex-1 flex-wrap items-center justify-end gap-[clamp(12px,1.6vw,22px)]">
           <a href="#collection" className={link}>Templates</a>
           <a href="#capabilities" className={link}>Capabilities</a>
-          <a href="#pricing" className={link}>Pricing</a>
+          <a href="#pricing" className={link}>Packages</a>
           <a href="#two-homes" className={link}>India / Global</a>
           <a href="#contact" className="ps-btn-grad px-6 py-3 text-[15px]">
             Book a design consult
@@ -541,7 +535,7 @@ function DeviceTrio() {
   )
 }
 
-function TierCard({ delay, tierLabel, name, nameSuffix, gold = false, features, fee, cta, preview }) {
+function TierCard({ delay, tierLabel, name, nameSuffix, gold = false, features, cta, preview }) {
   const border = gold ? 'rgba(201,162,39,.18)' : 'rgba(16,26,36,.06)'
   return (
     <Reveal delay={delay} className="min-w-0">
@@ -584,13 +578,9 @@ function TierCard({ delay, tierLabel, name, nameSuffix, gold = false, features, 
             </li>
           ))}
         </ul>
-        <p className="ps-mono mt-[22px] text-[15px] tracking-[0.06em] text-[#101a24]">
-          ₹ {fee.inr} <span className="text-[rgba(16,26,36,.35)]">/</span> $ {fee.usd}{' '}
-          <span className="text-[10px] tracking-[0.14em] text-[rgba(16,26,36,.4)]">&nbsp;FEE SLOT — TBC</span>
-        </p>
         <a
           href="#contact"
-          className="mt-4 inline-block text-[14px] font-semibold"
+          className="mt-[22px] inline-block text-[14px] font-semibold"
           style={{ color: gold ? GOLD : '#0aa88f' }}
         >
           {cta} →
@@ -688,7 +678,6 @@ function Collection() {
             delay={0}
             tierLabel="TIER 01 — BASE"
             name="Resident"
-            fee={FEES.resident}
             cta="Start with Resident"
             features={[
               'Single-page bespoke design, mobile-first',
@@ -713,7 +702,6 @@ function Collection() {
             delay={0.09}
             tierLabel="TIER 02 — MID"
             name="Consultant"
-            fee={FEES.consultant}
             cta="Start with Consultant"
             features={[
               'Multi-page (5–7), custom photography direction',
@@ -745,7 +733,6 @@ function Collection() {
             tierLabel="TIER 03 — TOP"
             name="Signature"
             nameSuffix={<em className="text-[.62em] italic text-[#a9861d]"> — the gold tier</em>}
-            fee={FEES.signature}
             cta="Commission Signature"
             features={[
               'Fully bespoke art direction',
