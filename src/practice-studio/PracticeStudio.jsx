@@ -274,7 +274,7 @@ function Hero() {
     >
       <div className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-[clamp(32px,5vw,64px)]">
         <div className="min-w-[min(100%,320px)] flex-[1_1_460px]">
-          <p className="ps-label mb-[22px]">00 — THE IMPRESSION</p>
+          <p className="ps-label mb-[22px]">00 — THE IMPRESSION*</p>
           <h1 className="ps-serif m-0 text-[clamp(2.6rem,5.8vw,4.2rem)] font-semibold leading-[1.06] tracking-[-0.01em]">
             Websites your patients <GradText>remember.</GradText>
           </h1>
@@ -293,6 +293,9 @@ function Hero() {
               See the templates
             </a>
           </div>
+          <p className="ps-mono mt-8 text-[11.5px] tracking-[0.18em] text-[#86690e]">
+            * GOLD TIER MEMBERS ONLY
+          </p>
         </div>
         <div className="relative flex min-w-[min(100%,320px)] flex-[1_1_420px] justify-center pb-10 pt-5">
           <div className="relative w-[min(400px,86vw)]">
