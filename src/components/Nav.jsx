@@ -10,6 +10,7 @@ const LINKS = [
   { href: '#voice', label: 'Voice Agent' },
   { href: '#arogya', label: 'Arogya' },
   { href: '#ecosystem', label: 'Ecosystem' },
+  { href: '/practice-studio', label: 'Practice Studio' },
 ]
 
 export default function Nav({ onRequestDemo }) {

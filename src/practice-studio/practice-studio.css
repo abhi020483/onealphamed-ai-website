@@ -1,0 +1,116 @@
+/* Practice Studio — "Clinical Couture" scoped styles.
+   Light ivory sub-brand page; deliberately NOT wired to the site's
+   dark/light theme tokens — it has one fixed editorial look. */
+
+.ps {
+  --ps-ivory: #ffffff;
+  --ps-ivory-2: #faf7f2;
+  --ps-ink: #101a24;
+  --ps-gold: #a9861d;
+  min-height: 100vh;
+  background: var(--ps-ivory);
+  color: var(--ps-ink);
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+.ps a { text-decoration: none; }
+.ps ::selection { background: rgba(30, 194, 122, 0.22); }
+
+/* paper grain, above everything on this page */
+.ps-grain {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 90;
+  opacity: 0.026;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.ps-serif { font-family: 'Archivo', sans-serif; }
+.ps-mono { font-family: 'Poppins', sans-serif; font-weight: 500; }
+
+/* mono section label, e.g. "01 — THE CASE" */
+.ps-label {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.26em;
+  color: var(--ps-gold);
+}
+
+.ps-h2 {
+  font-family: 'Archivo', sans-serif;
+  font-weight: 600;
+  font-size: clamp(1.9rem, 3.8vw, 3rem);
+  line-height: 1.12;
+  margin: 0;
+}
+
+.ps-grad { background: linear-gradient(100deg, #8ee000, #00c2a0 45%, #3a86ff 100%); }
+.ps-grad-text {
+  background: linear-gradient(100deg, #8ee000, #00c2a0 45%, #3a86ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.ps-btn-grad {
+  display: inline-block;
+  background: linear-gradient(100deg, #8ee000, #00c2a0 45%, #3a86ff 100%);
+  color: #fff;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 26px -10px rgba(10, 168, 143, 0.6);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ps-btn-grad:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px -10px rgba(10, 168, 143, 0.7);
+}
+
+.ps-section-pad { padding: clamp(88px, 11vw, 140px) clamp(20px, 4vw, 48px); }
+
+.ps-card {
+  background: #fff;
+  border: 1px solid rgba(16, 26, 36, 0.08);
+  border-radius: 24px;
+}
+
+/* appointment demo card loop */
+@keyframes ps-demo-pick {
+  0%, 15% { background: #faf7f2; color: #101a24; box-shadow: 0 0 0 0 rgba(30, 194, 122, 0); }
+  20% { box-shadow: 0 0 0 9px rgba(30, 194, 122, 0.16); }
+  25%, 86% { background: linear-gradient(120deg, #00b48f, #54d66e); color: #fff; box-shadow: 0 0 0 0 rgba(30, 194, 122, 0); }
+  94%, 100% { background: #faf7f2; color: #101a24; }
+}
+@keyframes ps-demo-time {
+  0%, 26% { background: #faf7f2; color: rgba(16, 26, 36, 0.64); border-color: rgba(16, 26, 36, 0.14); }
+  31%, 86% { background: #00b48f; color: #fff; border-color: #00b48f; }
+  94%, 100% { background: #faf7f2; color: rgba(16, 26, 36, 0.64); border-color: rgba(16, 26, 36, 0.14); }
+}
+@keyframes ps-demo-chip {
+  0%, 34% { transform: translateY(130%); opacity: 0; }
+  42%, 84% { transform: translateY(0); opacity: 1; }
+  92%, 100% { transform: translateY(130%); opacity: 0; }
+}
+@keyframes ps-demo-dot {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(30, 194, 122, 0.45); }
+  55% { box-shadow: 0 0 0 7px rgba(30, 194, 122, 0); }
+}
+
+.ps-demo-pick { animation: ps-demo-pick 6s infinite; }
+.ps-demo-time { animation: ps-demo-time 6s infinite; }
+.ps-demo-chip { animation: ps-demo-chip 6s infinite; }
+.ps-demo-dot { animation: ps-demo-dot 2.2s infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ps *, .ps *::before, .ps *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
