@@ -293,10 +293,6 @@ function Hero() {
               See the templates
             </a>
           </div>
-          <p className="ps-mono mt-[52px] border-t border-[rgba(201,162,39,.35)] pt-5 text-[11px] leading-loose tracking-[0.16em] text-[rgba(16,26,36,.5)]">
-            BUILT BY THE TEAM BEHIND ALPHAMED.AI &nbsp;·&nbsp; 15,000+ HCPS ENGAGED &nbsp;·&nbsp;
-            INDIA · SEA · MIDDLE EAST · EU
-          </p>
         </div>
         <div className="relative flex min-w-[min(100%,320px)] flex-[1_1_420px] justify-center pb-10 pt-5">
           <div className="relative w-[min(400px,86vw)]">
@@ -331,7 +327,6 @@ function StatCard({ delay, stat, statSuffix, children }) {
             {stat}
           </span>
           {statSuffix}
-          <sup className="text-[.35em]" style={{ color: '#c9a227' }}>†</sup>
         </span>
         <span className="min-w-[200px] flex-1 text-[14.5px] leading-[1.6]" style={{ color: INK64 }}>
           {children}
@@ -387,9 +382,6 @@ function TheCase() {
                 </div>
               </div>
             </Reveal>
-            <p className="ps-mono mx-1.5 mt-1 text-[10px] tracking-[0.12em] text-[rgba(16,26,36,.4)]">
-              † PLACEHOLDER FIGURES — SOURCE &amp; VERIFY BEFORE PRODUCTION
-            </p>
           </div>
         </div>
       </div>
@@ -1108,7 +1100,7 @@ function ContactCta() {
       </div>
       <div className="relative z-[2] mx-auto max-w-[1200px]">
         <div className="mb-7 h-px w-16 bg-[#c9a227]" />
-        <p className="ps-mono mb-[18px] text-[12px] tracking-[0.2em] text-[#1ec27a]">07 — BEGIN</p>
+        <p className="ps-mono mb-[18px] text-[15px] font-semibold tracking-[0.2em] text-[#1ec27a]">07 — BEGIN</p>
         <Reveal>
           <h2 className="ps-serif m-0 max-w-[16ch] text-[clamp(2.1rem,4.6vw,3.6rem)] font-semibold leading-[1.1] text-[#faf7f2]">
             Let's design the practice your patients <GradText>deserve.</GradText>

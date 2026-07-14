@@ -35,10 +35,10 @@
 /* mono section label, e.g. "01 — THE CASE" */
 .ps-label {
   font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  font-size: 11px;
-  letter-spacing: 0.26em;
-  color: var(--ps-gold);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: 0.22em;
+  color: #86690e; /* deep gold — readable on white */
 }
 
 .ps-h2 {
