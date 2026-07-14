@@ -1119,16 +1119,23 @@ function LeadForm() {
     setBusy(true)
     setError('')
     try {
-      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+      const fd = new FormData()
+      fd.append('_wpcf7_unit_tag', 'wpcf7-f4790-o1')
+      fd.append('your-name', f.name)
+      fd.append('your-email', f.email)
+      fd.append('whatsapp', f.whatsapp)
+      fd.append('speciality', f.speciality)
+      fd.append('city', f.city)
+      fd.append('practice-size', f.practice_size)
+      fd.append('tier', f.tier)
+      fd.append('timeline', f.timeline)
+      // Contact Form 7 on the same domain (form id 4790) mails the lead to the studio
+      const res = await fetch('https://onealphamed.com/wp-json/contact-form-7/v1/contact-forms/4790/feedback', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-        body: JSON.stringify({
-          ...f,
-          _subject: `Practice Studio lead — ${f.name}`,
-          _template: 'table',
-        }),
+        body: fd,
       })
-      if (!res.ok) throw new Error(`status ${res.status}`)
+      const out = await res.json()
+      if (out.status !== 'mail_sent') throw new Error(out.message || 'failed')
       setDone(true)
     } catch {
       setError('Something went wrong — please email us directly below.')
