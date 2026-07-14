@@ -3,7 +3,7 @@
 # then auto-deploys it to onealphamed.com/practice-studio/ (~30s).
 set -euo pipefail
 cd "$(dirname "$0")"
-DEPLOY_REPO="/Users/abhishek/Desktop/AI Projects/HCP Websites/practice-studio-deploy"
+DEPLOY_REPO="/Users/abhishek/Desktop/AI Projects/Practice Studios/practice-studio-deploy"
 MSG="${1:-Deploy $(date '+%Y-%m-%d %H:%M')}"
 
 npm run build:studio

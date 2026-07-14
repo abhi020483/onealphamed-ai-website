@@ -1355,7 +1355,7 @@ function ScrollProgressBar() {
 }
 
 const SECTIONS = [
-  ['top', '00'], ['case', '01'], ['collection', '02'], ['capabilities', '03'],
+  ['top', '00'], ['film', 'F'], ['case', '01'], ['collection', '02'], ['capabilities', '03'],
   ['two-homes', '04'], ['process', '05'], ['proof', '06'], ['faq', '07'], ['contact', '08'],
 ]
 
@@ -1485,6 +1485,68 @@ function Faq() {
   )
 }
 
+function FilmSection() {
+  const ref = useRef(null)
+  const vidRef = useRef(null)
+  const [loaded, setLoaded] = useState(false)
+  const reduced = useReducedMotion()
+
+  useEffect(() => {
+    const sec = ref.current
+    if (!sec) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          const v = vidRef.current
+          if (!v) continue
+          if (e.isIntersecting) {
+            if (!v.src) {
+              v.src = '/practice-studio/practice-studio-promo.mp4'
+              setLoaded(true)
+            }
+            if (!reduced) v.play().catch(() => {})
+          } else {
+            v.pause()
+          }
+        }
+      },
+      { threshold: 0.4 },
+    )
+    io.observe(sec)
+    return () => io.disconnect()
+  }, [reduced])
+
+  return (
+    <section ref={ref} id="film" className="ps-section-pad bg-[#faf7f2]">
+      <div className="mx-auto max-w-[1040px]">
+        <Reveal className="mb-6 flex items-baseline justify-between gap-4">
+          <p className="ps-label m-0">THE FILM</p>
+          <p className="ps-mono m-0 text-[10.5px] tracking-[0.18em] text-[rgba(16,26,36,.4)]">
+            30 SECONDS · SILENT
+          </p>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div
+            className="relative overflow-hidden rounded-[22px] border border-[rgba(16,26,36,.08)] bg-[#f6f2ea]"
+            style={{ boxShadow: '0 40px 90px -50px rgba(16,26,36,.5)' }}
+          >
+            <video
+              ref={vidRef}
+              className="block aspect-video w-full"
+              poster="/practice-studio/promo-poster.jpg"
+              muted
+              loop
+              playsInline
+              preload="none"
+              controls={loaded}
+            />
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
 export default function PracticeStudio() {
   useEffect(() => {
     const prevTitle = document.title
@@ -1507,6 +1569,7 @@ export default function PracticeStudio() {
       <StudioNav />
       <main>
         <Hero />
+        <FilmSection />
         <TheCase />
         <Collection />
         <Capabilities />
