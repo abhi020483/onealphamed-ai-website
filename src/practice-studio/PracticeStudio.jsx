@@ -1049,7 +1049,7 @@ function Proof() {
                 img={imgDrMale}
                 alt="Portrait of Dr. Arun Mattoo"
                 focus="50% 25%"
-                meta="DR. ______  ·  CARDIOLOGY  ·  MUMBAI"
+                meta="DR. ARUN MATTOO  ·  MD PHYSICIAN  ·  JAMMU"
               >
                 Patients used to reach me through three layers of hospital directories. Now they
                 find my own website first — they arrive already knowing my approach, my OPD hours
@@ -1061,7 +1061,7 @@ function Proof() {
                 img={imgDrFemale}
                 alt="Portrait of Dr. Sreelekha"
                 focus="50% 18%"
-                meta="DR. ______  ·  DERMATOLOGY  ·  BENGALURU"
+                meta="DR. SREELEKHA  ·  GYNECOLOGIST  ·  BANGALORE"
               >
                 I thought a website was a vanity project. It became my best referrer — patients
                 across the city book consultations before we have ever met, and NRI families
