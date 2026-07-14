@@ -151,3 +151,22 @@
   line-height: 1.65;
   color: rgba(16, 26, 36, 0.64);
 }
+
+/* lead form inputs */
+.ps-input {
+  width: 100%;
+  border: 1px solid rgba(16, 26, 36, 0.16);
+  border-radius: 12px;
+  background: #fff;
+  padding: 11px 14px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14.5px;
+  color: #101a24;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.ps-input:focus {
+  border-color: #0aa88f;
+  box-shadow: 0 0 0 3px rgba(10, 168, 143, 0.15);
+}
+select.ps-input { appearance: auto; }

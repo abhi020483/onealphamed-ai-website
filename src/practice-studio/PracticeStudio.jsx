@@ -13,6 +13,9 @@ import imgDrFemale from '../assets/practice-studio/doctor-headshot-female.jpg'
 
 // ---- page config (edit here) ----
 const BRAND_NAME = 'Practice Studio'
+const CONTACT_EMAIL = 'blessy.babychan@onealphamed.com'
+// paste the calendly.com/... scheduling link to show the booking embed after form submit
+const CALENDLY_URL = ''
 const GOLD = '#a9861d'
 const INK64 = 'rgba(16,26,36,.64)'
 
@@ -1085,6 +1088,163 @@ function Proof() {
   )
 }
 
+
+const SPECIALITIES = ['Cardiology', 'Dermatology', 'Dental', 'Orthopaedics', 'Oncology', 'Paediatrics', 'Gynaecology', 'General Physician', 'Other']
+const PRACTICE_SIZES = ['Solo practice', 'Group practice', 'Hospital-affiliated']
+const TIERS = ['Resident', 'Consultant', 'Signature', 'Not sure yet']
+const TIMELINES = ['As soon as possible', '1-3 months', '3-6 months', 'Just exploring']
+
+function Field({ label, children }) {
+  return (
+    <label className="block">
+      <span className="ps-mono mb-1.5 block text-[10px] uppercase tracking-[0.16em] text-[rgba(16,26,36,.5)]">{label}</span>
+      {children}
+    </label>
+  )
+}
+
+function LeadForm() {
+  const [step, setStep] = useState(1)
+  const [busy, setBusy] = useState(false)
+  const [done, setDone] = useState(false)
+  const [error, setError] = useState('')
+  const [f, setF] = useState({
+    name: '', whatsapp: '', email: '',
+    speciality: '', city: '', practice_size: '',
+    tier: '', timeline: '',
+  })
+  const set = (k) => (e) => setF({ ...f, [k]: e.target.value })
+
+  const submit = async () => {
+    setBusy(true)
+    setError('')
+    try {
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          ...f,
+          _subject: `Practice Studio lead — ${f.name}`,
+          _template: 'table',
+        }),
+      })
+      if (!res.ok) throw new Error(`status ${res.status}`)
+      setDone(true)
+    } catch {
+      setError('Something went wrong — please email us directly below.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  if (done) {
+    return (
+      <div className="rounded-3xl bg-white p-7 shadow-[0_30px_70px_-30px_rgba(0,0,0,.5)]">
+        <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(30,194,122,.15)] text-[18px] text-[#0e8f58]">✓</span>
+        <h3 className="ps-serif mb-0 mt-4 text-[1.4rem] font-semibold text-[#101a24]">Thank you — the studio has your details.</h3>
+        <p className="mb-0 mt-2 text-[14.5px] leading-[1.6] text-[rgba(16,26,36,.62)]">
+          You will hear from us within 24 hours with a full quote and next steps.
+        </p>
+        {CALENDLY_URL ? (
+          <div className="mt-5 overflow-hidden rounded-2xl border border-[rgba(16,26,36,.1)]">
+            <iframe
+              src={`${CALENDLY_URL}?hide_gdpr_banner=1&embed_type=Inline`}
+              title="Book a 15-minute consult"
+              className="h-[520px] w-full border-0"
+            />
+          </div>
+        ) : (
+          <p className="mb-0 mt-4 text-[13.5px] text-[rgba(16,26,36,.5)]">
+            Want to talk sooner? Write to <a href={`mailto:${CONTACT_EMAIL}`} className="font-semibold text-[#0aa88f]">{CONTACT_EMAIL}</a>
+          </p>
+        )}
+      </div>
+    )
+  }
+
+  const canNext1 = f.name.trim() && (f.email.trim() || f.whatsapp.trim())
+  const canSubmit = !busy
+
+  return (
+    <div className="rounded-3xl bg-white p-7 shadow-[0_30px_70px_-30px_rgba(0,0,0,.5)]">
+      <div className="flex items-baseline justify-between">
+        <p className="ps-mono m-0 text-[10.5px] tracking-[0.2em] text-[#86690e]">STEP {step} OF 3</p>
+        <div className="flex gap-1.5">
+          {[1, 2, 3].map((n) => (
+            <span key={n} className={`h-1 w-8 rounded-full ${n <= step ? 'ps-grad' : 'bg-[rgba(16,26,36,.1)]'}`} />
+          ))}
+        </div>
+      </div>
+
+      {step === 1 && (
+        <div className="mt-5 flex flex-col gap-4">
+          <Field label="Your name *">
+            <input className="ps-input" value={f.name} onChange={set('name')} placeholder="Dr. ..." autoComplete="name" />
+          </Field>
+          <Field label="WhatsApp number">
+            <input className="ps-input" value={f.whatsapp} onChange={set('whatsapp')} placeholder="+91 ..." inputMode="tel" autoComplete="tel" />
+          </Field>
+          <Field label="Email *">
+            <input className="ps-input" type="email" value={f.email} onChange={set('email')} placeholder="you@clinic.in" autoComplete="email" />
+          </Field>
+          <button type="button" disabled={!canNext1} onClick={() => setStep(2)} className="ps-btn-grad mt-1 w-full py-3.5 text-[15px] disabled:opacity-40">
+            Continue
+          </button>
+        </div>
+      )}
+
+      {step === 2 && (
+        <div className="mt-5 flex flex-col gap-4">
+          <Field label="Speciality">
+            <select className="ps-input" value={f.speciality} onChange={set('speciality')}>
+              <option value="">Select...</option>
+              {SPECIALITIES.map((o) => <option key={o}>{o}</option>)}
+            </select>
+          </Field>
+          <Field label="City">
+            <input className="ps-input" value={f.city} onChange={set('city')} placeholder="Mumbai, Dubai, London..." />
+          </Field>
+          <Field label="Practice size">
+            <select className="ps-input" value={f.practice_size} onChange={set('practice_size')}>
+              <option value="">Select...</option>
+              {PRACTICE_SIZES.map((o) => <option key={o}>{o}</option>)}
+            </select>
+          </Field>
+          <div className="mt-1 flex items-center gap-3">
+            <button type="button" onClick={() => setStep(1)} className="px-2 py-3 text-[14px] font-medium text-[rgba(16,26,36,.55)]">Back</button>
+            <button type="button" onClick={() => setStep(3)} className="ps-btn-grad flex-1 py-3.5 text-[15px]">Continue</button>
+          </div>
+        </div>
+      )}
+
+      {step === 3 && (
+        <div className="mt-5 flex flex-col gap-4">
+          <Field label="Which package interests you?">
+            <select className="ps-input" value={f.tier} onChange={set('tier')}>
+              <option value="">Select...</option>
+              {TIERS.map((o) => <option key={o}>{o}</option>)}
+            </select>
+          </Field>
+          <Field label="Timeline">
+            <select className="ps-input" value={f.timeline} onChange={set('timeline')}>
+              <option value="">Select...</option>
+              {TIMELINES.map((o) => <option key={o}>{o}</option>)}
+            </select>
+          </Field>
+          {error && <p className="m-0 text-[13px] text-[#b3261e]">{error}</p>}
+          <div className="mt-1 flex items-center gap-3">
+            <button type="button" onClick={() => setStep(2)} className="px-2 py-3 text-[14px] font-medium text-[rgba(16,26,36,.55)]">Back</button>
+            <button type="button" disabled={!canSubmit} onClick={submit} className="ps-btn-grad flex-1 py-3.5 text-[15px] disabled:opacity-60">
+              {busy ? 'Sending...' : 'Request my quote'}
+            </button>
+          </div>
+          <p className="m-0 text-center text-[11.5px] text-[rgba(16,26,36,.4)]">Full quote within 24 hours. No spam, ever.</p>
+        </div>
+      )}
+    </div>
+  )
+}
+
 function ContactCta() {
   return (
     <section
@@ -1095,7 +1255,7 @@ function ContactCta() {
           'radial-gradient(760px 460px at 10% -6%,rgba(142,224,0,.14),transparent 58%),radial-gradient(900px 520px at 108% 112%,rgba(58,134,255,.18),transparent 60%),#101a24',
       }}
     >
-      <div className="pointer-events-none absolute bottom-0 right-0 top-0 w-[min(46%,560px)] opacity-30">
+      <div className="pointer-events-none absolute bottom-0 right-0 top-0 w-[min(46%,560px)] opacity-20">
         <div
           className="absolute inset-0 z-[1]"
           style={{ background: 'linear-gradient(90deg,#101a24 2%,rgba(16,26,36,.25) 55%,rgba(16,26,36,.45))' }}
@@ -1110,29 +1270,35 @@ function ContactCta() {
       <div className="relative z-[2] mx-auto max-w-[1200px]">
         <div className="mb-7 h-px w-16 bg-[#c9a227]" />
         <p className="ps-mono mb-[18px] text-[15px] font-semibold tracking-[0.2em] text-[#1ec27a]">08 — BEGIN</p>
-        <Reveal>
-          <h2 className="ps-serif m-0 max-w-[16ch] text-[clamp(2.1rem,4.6vw,3.6rem)] font-semibold leading-[1.1] text-[#faf7f2]">
-            Let's design the practice your patients <GradText>deserve.</GradText>
-          </h2>
-        </Reveal>
-        <Reveal delay={0.08}>
-          <div className="mt-9 flex flex-wrap items-center gap-4">
-            <a href="mailto:blessy.babychan@onealphamed.com" className="ps-btn-grad px-8 py-4 text-[15px]">
-              Book a design consult
-            </a>
+        <div className="flex flex-wrap items-start gap-[clamp(32px,5vw,64px)]">
+          <div className="min-w-[min(100%,320px)] flex-[1_1_380px]">
+            <Reveal>
+              <h2 className="ps-serif m-0 max-w-[16ch] text-[clamp(2.1rem,4.6vw,3.6rem)] font-semibold leading-[1.1] text-[#faf7f2]">
+                Let's design the practice your patients <GradText>deserve.</GradText>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <p className="mb-0 mt-6 max-w-[44ch] text-[15.5px] font-light leading-[1.65] text-[rgba(250,247,242,.65)]">
+                Tell us about your practice — three quick steps, and a full quote lands in your
+                inbox within 24 hours.
+              </p>
+            </Reveal>
+            <Reveal delay={0.14}>
+              <p className="mb-0 mt-7 text-[14px] text-[rgba(250,247,242,.55)]">
+                Prefer email?{' '}
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  className="border-b border-[rgba(30,194,122,.4)] text-[#1ec27a] hover:text-[#86d13f]"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              </p>
+            </Reveal>
           </div>
-        </Reveal>
-        <Reveal delay={0.14}>
-          <p className="mb-0 mt-7 text-[14px] text-[rgba(250,247,242,.55)]">
-            Or write to{' '}
-            <a
-              href="mailto:blessy.babychan@onealphamed.com"
-              className="border-b border-[rgba(30,194,122,.4)] text-[#1ec27a] hover:text-[#86d13f]"
-            >
-              blessy.babychan@onealphamed.com
-            </a>
-          </p>
-        </Reveal>
+          <Reveal delay={0.1} className="min-w-[min(100%,320px)] max-w-[520px] flex-[1_1_400px]">
+            <LeadForm />
+          </Reveal>
+        </div>
       </div>
     </section>
   )
