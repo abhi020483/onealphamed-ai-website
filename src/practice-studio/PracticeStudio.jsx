@@ -1047,7 +1047,7 @@ function Proof() {
               <Testimonial
                 delay={0}
                 img={imgDrMale}
-                alt="Portrait of a cardiologist"
+                alt="Portrait of Dr. Arun Mattoo"
                 focus="50% 25%"
                 meta="DR. ______  ·  CARDIOLOGY  ·  MUMBAI"
               >
@@ -1059,7 +1059,7 @@ function Proof() {
               <Testimonial
                 delay={0.08}
                 img={imgDrFemale}
-                alt="Portrait of a dermatologist"
+                alt="Portrait of Dr. Sreelekha"
                 focus="50% 18%"
                 meta="DR. ______  ·  DERMATOLOGY  ·  BENGALURU"
               >
@@ -1067,9 +1067,6 @@ function Proof() {
                 across the city book consultations before we have ever met, and NRI families
                 find me for their parents' care. It genuinely put my practice on the map.
               </Testimonial>
-              <p className="ps-mono m-0 px-1 text-[9.5px] tracking-[0.14em] text-[rgba(16,26,36,.4)]">
-                ILLUSTRATIVE PREVIEWS — REAL CLIENT NAMES &amp; WORDS AS THE FIRST SITES GO LIVE
-              </p>
             </div>
           </div>
           <Reveal delay={0.1} className="flex min-w-[min(100%,300px)] flex-[1_1_320px] justify-center">
