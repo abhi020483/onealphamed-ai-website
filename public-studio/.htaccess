@@ -10,3 +10,8 @@
 <FilesMatch "\.(mp4|webm|mov)$">
   Header set Cache-Control "public, max-age=2592000"
 </FilesMatch>
+# serve .jsx as plain text so in-browser Babel can fetch the promo sources
+AddType text/plain .jsx
+<FilesMatch "\.(jsx|html)$">
+  Header set Cache-Control "public, max-age=3600"
+</FilesMatch>

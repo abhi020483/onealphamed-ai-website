@@ -608,15 +608,59 @@ function TierCard({ delay, tierLabel, name, nameSuffix, gold = false, features, 
   )
 }
 
-const GALLERY = [
-  { spec: 'derma', label: 'DERMA — 01' },
-  { spec: 'dental', label: 'DENTAL — 01' },
+const LIVE_TEMPLATES = [
+  {
+    spec: 'derma',
+    label: 'DERMA — 01',
+    caption: 'Dr. Aruna Rao · ArunaSkin · Bengaluru',
+    src: '/practice-studio/promos/derma.html',
+  },
+  {
+    spec: 'dental',
+    label: 'DENTAL — 01',
+    caption: 'Dr. Meera Shah · Shah Dental · Bandra',
+    src: '/practice-studio/promos/dental.html',
+  },
+]
+const COMING = [
   { spec: 'onco', label: 'ONCO — 01' },
   { spec: 'ortho', label: 'ORTHO — 01' },
   { spec: 'paeds', label: 'PAEDS — 01' },
   { spec: 'multi', label: 'MULTI-SPECIALITY — 01' },
 ]
 const FILTERS = ['all', 'derma', 'dental', 'onco', 'ortho', 'paeds', 'multi']
+
+/* A ready template — opens its animated promo film in a new tab. */
+function PromoCard({ tpl }) {
+  return (
+    <a
+      href={tpl.src}
+      target="_blank"
+      rel="noreferrer"
+      className="group block rounded-[20px] border border-[rgba(16,26,36,.1)] bg-white p-3.5 transition-transform duration-300 hover:-translate-y-1"
+      style={{ boxShadow: '0 26px 60px -40px rgba(16,26,36,.4)' }}
+    >
+      <div
+        className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-[12px]"
+        style={{ background: 'radial-gradient(120% 120% at 80% 0%, rgba(0,194,160,.12), transparent 55%), radial-gradient(120% 120% at 0% 100%, rgba(142,224,0,.14), transparent 55%), #f5f1e6' }}
+      >
+        <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white shadow-[0_10px_30px_-8px_rgba(16,26,36,.4)] transition-transform duration-300 group-hover:scale-110">
+          <span className="ml-1 border-y-[9px] border-l-[15px] border-y-transparent border-l-[#0aa88f]" />
+        </span>
+        <span className="ps-mono absolute bottom-2.5 left-3 text-[8.5px] tracking-[0.16em] text-[rgba(16,26,36,.42)]">
+          WATCH THE 30s FILM
+        </span>
+      </div>
+      <div className="mt-3 flex items-baseline justify-between gap-3">
+        <span className="ps-mono text-[10px] tracking-[0.16em] text-[#0aa88f]">{tpl.label}</span>
+        <span className="ps-mono text-[9px] tracking-[0.14em] text-[rgba(16,26,36,.4)] transition-colors group-hover:text-[#0aa88f]">
+          PLAY →
+        </span>
+      </div>
+      <p className="mt-1 text-[12.5px] text-[rgba(16,26,36,.55)]">{tpl.caption}</p>
+    </a>
+  )
+}
 
 function Gallery() {
   const [filter, setFilter] = useState('all')
@@ -651,23 +695,42 @@ function Gallery() {
           )
         })}
       </Reveal>
-      <div className="mt-6 grid grid-cols-[repeat(auto-fill,minmax(min(100%,260px),1fr))] gap-[18px]">
-        {GALLERY.filter((g) => filter === 'all' || g.spec === filter).map((g) => (
-          <div key={g.spec} className="rounded-[18px] border border-dashed border-[rgba(16,26,36,.22)] bg-[rgba(255,255,255,.5)] p-3.5">
-            <div className="flex items-center gap-2">
-              <span className="ps-mono text-[9.5px] tracking-[0.16em] text-[#0aa88f]">{g.label}</span>
-            </div>
-            <div className="mt-3 flex aspect-[4/3] flex-col items-center justify-center gap-2 rounded-[10px] bg-[#f1ece3]">
-              <span className="flex h-[34px] w-[34px] items-center justify-center rounded-full border border-dashed border-[rgba(16,26,36,.3)] text-[16px] font-light text-[rgba(16,26,36,.35)]">
-                +
-              </span>
-              <span className="ps-mono text-[9px] tracking-[0.16em] text-[rgba(16,26,36,.4)]">
-                TEMPLATE SLOT — AWAITING IMPORT
-              </span>
-            </div>
-          </div>
-        ))}
-      </div>
+      {(() => {
+        const liveShown = LIVE_TEMPLATES.filter((t) => filter === 'all' || t.spec === filter)
+        const comingShown = COMING.filter((c) => filter === 'all' || c.spec === filter)
+        return (
+          <>
+            {liveShown.length > 0 && (
+              <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] gap-[22px]">
+                {liveShown.map((t) => (
+                  <Reveal key={t.spec}>
+                    <PromoCard tpl={t} />
+                  </Reveal>
+                ))}
+              </div>
+            )}
+            {comingShown.length > 0 && (
+              <div className="mt-[22px] grid grid-cols-[repeat(auto-fill,minmax(min(100%,220px),1fr))] gap-[18px]">
+                {comingShown.map((g) => (
+                  <div key={g.spec} className="rounded-[18px] border border-dashed border-[rgba(16,26,36,.22)] bg-[rgba(255,255,255,.5)] p-3.5">
+                    <div className="flex items-center gap-2">
+                      <span className="ps-mono text-[9.5px] tracking-[0.16em] text-[#0aa88f]">{g.label}</span>
+                    </div>
+                    <div className="mt-3 flex aspect-video flex-col items-center justify-center gap-2 rounded-[10px] bg-[#f1ece3]">
+                      <span className="flex h-[30px] w-[30px] items-center justify-center rounded-full border border-dashed border-[rgba(16,26,36,.3)] text-[15px] font-light text-[rgba(16,26,36,.35)]">
+                        +
+                      </span>
+                      <span className="ps-mono text-[9px] tracking-[0.16em] text-[rgba(16,26,36,.4)]">
+                        IN THE STUDIO — SOON
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
+        )
+      })()}
     </div>
   )
 }
