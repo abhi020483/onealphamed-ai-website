@@ -756,7 +756,6 @@ function PromoCard({ tpl }) {
         <span className="ps-mono text-[10px] tracking-[0.16em] text-[#0aa88f]">{tpl.label}</span>
         <span className="ps-mono text-[9px] tracking-[0.14em] text-[rgba(16,26,36,.4)]">30s FILM · LOOPS</span>
       </div>
-      <p className="mt-1 text-[12.5px] text-[rgba(16,26,36,.55)]">{tpl.caption}</p>
     </div>
   )
 }
