@@ -93,6 +93,66 @@ function ArchPhoto({ src, alt, maxWidth, ratio, radius }) {
   )
 }
 
+// 10 languages — English + the nine most-spoken Indian languages.
+// Google Translate (loaded in the page shell) does the actual translation;
+// we drive it via the googtrans cookie so React never fights its DOM edits.
+const LANGS = [
+  ['en', 'English'],
+  ['hi', 'हिन्दी'],
+  ['bn', 'বাংলা'],
+  ['te', 'తెలుగు'],
+  ['mr', 'मराठी'],
+  ['ta', 'தமிழ்'],
+  ['gu', 'ગુજરાતી'],
+  ['kn', 'ಕನ್ನಡ'],
+  ['ml', 'മലയാളം'],
+  ['pa', 'ਪੰਜਾਬੀ'],
+]
+
+function currentLang() {
+  const m = (typeof document !== 'undefined' ? document.cookie : '').match(/googtrans=\/en\/(\w+)/)
+  return m ? m[1] : 'en'
+}
+
+function LangSwitcher() {
+  const [lang, setLang] = useState('en')
+  useEffect(() => setLang(currentLang()), [])
+  const change = (code) => {
+    const host = window.location.hostname
+    const expire = 'expires=Thu, 01 Jan 1970 00:00:00 UTC'
+    // clear any existing googtrans on every scope first
+    ;[`path=/`, `path=/;domain=${host}`, `path=/;domain=.${host}`].forEach((sc) => {
+      document.cookie = `googtrans=;${sc};${expire}`
+    })
+    if (code !== 'en') {
+      const val = `/en/${code}`
+      document.cookie = `googtrans=${val};path=/`
+      document.cookie = `googtrans=${val};path=/;domain=${host}`
+      document.cookie = `googtrans=${val};path=/;domain=.${host}`
+    }
+    window.location.reload()
+  }
+  return (
+    <div translate="no" className="notranslate flex items-center gap-1.5">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="9" stroke="#0aa88f" strokeWidth="1.6" />
+        <path d="M3 12h18M12 3c2.5 2.5 2.5 15.5 0 18M12 3c-2.5 2.5-2.5 15.5 0 18" stroke="#0aa88f" strokeWidth="1.4" />
+      </svg>
+      <select
+        value={lang}
+        onChange={(e) => change(e.target.value)}
+        aria-label="Choose language"
+        className="cursor-pointer rounded-md border border-[rgba(16,26,36,.18)] bg-white/70 px-2 py-1 text-[13px] font-medium text-[#101a24] outline-none focus:border-[#0aa88f]"
+        style={{ WebkitAppearance: 'menulist' }}
+      >
+        {LANGS.map(([c, n]) => (
+          <option key={c} value={c}>{n}</option>
+        ))}
+      </select>
+    </div>
+  )
+}
+
 function StudioNav() {
   const [scrolled, setScrolled] = useState(false)
   useEffect(() => {
@@ -130,6 +190,7 @@ function StudioNav() {
           <a href="#capabilities" className={link}>Capabilities</a>
           <a href="#pricing" className={link}>Packages</a>
           <a href="#two-homes" className={link}>India / Global</a>
+          <LangSwitcher />
           <a href="#contact" className="ps-btn-grad px-6 py-3 text-[15px]">
             Book a design consult
           </a>
@@ -723,7 +784,7 @@ function Gallery() {
         const liveShown = LIVE_TEMPLATES.filter((t) => filter === 'all' || t.spec === filter)
         const comingShown = COMING.filter((c) => filter === 'all' || c.spec === filter)
         return (
-          <>
+          <div translate="no" className="notranslate">
             {liveShown.length > 0 && (
               <div className="mt-6 grid grid-cols-[repeat(auto-fit,minmax(min(100%,420px),1fr))] gap-[22px]">
                 {liveShown.map((t) => (
@@ -752,7 +813,7 @@ function Gallery() {
                 ))}
               </div>
             )}
-          </>
+          </div>
         )
       })()}
     </div>
@@ -1410,7 +1471,9 @@ function ContactCta() {
             </Reveal>
           </div>
           <Reveal delay={0.1} className="min-w-[min(100%,320px)] max-w-[520px] flex-[1_1_400px]">
-            <LeadForm />
+            <div translate="no" className="notranslate">
+              <LeadForm />
+            </div>
           </Reveal>
         </div>
       </div>

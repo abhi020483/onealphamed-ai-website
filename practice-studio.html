@@ -53,9 +53,28 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+    <style>
+      /* Hide Google Translate's own banner/branding; keep only our custom dropdown */
+      .goog-te-banner-frame.skiptranslate, .goog-te-gadget-icon, .goog-te-gadget { display: none !important; }
+      .goog-te-banner-frame { display: none !important; }
+      body { top: 0 !important; position: static !important; }
+      .goog-tooltip, #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+      .goog-text-highlight { background: none !important; box-shadow: none !important; }
+      font { background: transparent !important; box-shadow: none !important; }
+    </style>
   </head>
   <body>
     <div id="root"></div>
+    <div id="google_translate_element" style="display:none"></div>
+    <script>
+      function googleTranslateElementInit() {
+        new google.translate.TranslateElement(
+          { pageLanguage: 'en', includedLanguages: 'en,hi,bn,te,mr,ta,gu,kn,ml,pa', autoDisplay: false },
+          'google_translate_element'
+        );
+      }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script type="module" src="/src/practice-studio-main.jsx"></script>
   </body>
 </html>
