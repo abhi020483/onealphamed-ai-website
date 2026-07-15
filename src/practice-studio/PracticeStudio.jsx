@@ -700,10 +700,14 @@ const LIVE_TEMPLATES = [
     caption: 'Well-child, vaccines & first visits · IAP-schedule care',
     src: '/practice-studio/paeds-promo.mp4',
   },
+  {
+    spec: 'multi',
+    label: 'MULTI-SPECIALITY TEMPLATE',
+    caption: 'Fifteen specialties · one hospital, one record',
+    src: '/practice-studio/multi-promo.mp4',
+  },
 ]
-const COMING = [
-  { spec: 'multi', label: 'MULTI-SPECIALITY TEMPLATE' },
-]
+const COMING = []
 const FILTERS = ['all', 'derma', 'dental', 'onco', 'ortho', 'paeds', 'multi']
 
 /* A ready template — its 30s promo film autoplays (muted, looped) once the
