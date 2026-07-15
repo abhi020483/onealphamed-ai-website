@@ -611,27 +611,27 @@ function TierCard({ delay, tierLabel, name, nameSuffix, gold = false, features, 
 const LIVE_TEMPLATES = [
   {
     spec: 'derma',
-    label: 'DERMA — 01',
+    label: 'DERMATOLOGY TEMPLATE',
     caption: 'Dr. Aruna Rao · ArunaSkin · Bengaluru',
     src: '/practice-studio/practice-studio-promo.mp4',
   },
   {
     spec: 'dental',
-    label: 'DENTAL — 01',
+    label: 'DENTAL TEMPLATE',
     caption: 'Dr. Meera Shah · Shah Dental · Bandra',
     src: '/practice-studio/dental-promo.mp4',
   },
   {
     spec: 'onco',
-    label: 'ONCO — 01',
+    label: 'ONCOLOGY TEMPLATE',
     caption: 'Aashray Cancer Centre · Tumour board · Hyderabad',
     src: '/practice-studio/onco-promo.mp4',
   },
 ]
 const COMING = [
-  { spec: 'ortho', label: 'ORTHO — 01' },
-  { spec: 'paeds', label: 'PAEDS — 01' },
-  { spec: 'multi', label: 'MULTI-SPECIALITY — 01' },
+  { spec: 'ortho', label: 'ORTHOPAEDICS TEMPLATE' },
+  { spec: 'paeds', label: 'PAEDIATRICS TEMPLATE' },
+  { spec: 'multi', label: 'MULTI-SPECIALITY TEMPLATE' },
 ]
 const FILTERS = ['all', 'derma', 'dental', 'onco', 'ortho', 'paeds', 'multi']
 
