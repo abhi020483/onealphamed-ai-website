@@ -694,9 +694,14 @@ const LIVE_TEMPLATES = [
     caption: 'Dr. Ashwin Gupta · Advanced Orthopaedics · Gurugram',
     src: '/practice-studio/ortho-promo.mp4',
   },
+  {
+    spec: 'paeds',
+    label: 'PAEDIATRICS TEMPLATE',
+    caption: 'Well-child, vaccines & first visits · IAP-schedule care',
+    src: '/practice-studio/paeds-promo.mp4',
+  },
 ]
 const COMING = [
-  { spec: 'paeds', label: 'PAEDIATRICS TEMPLATE' },
   { spec: 'multi', label: 'MULTI-SPECIALITY TEMPLATE' },
 ]
 const FILTERS = ['all', 'derma', 'dental', 'onco', 'ortho', 'paeds', 'multi']
