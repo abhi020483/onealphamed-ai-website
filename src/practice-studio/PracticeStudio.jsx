@@ -688,9 +688,14 @@ const LIVE_TEMPLATES = [
     caption: 'Aashray Cancer Centre · Tumour board · Hyderabad',
     src: '/practice-studio/onco-promo.mp4',
   },
+  {
+    spec: 'ortho',
+    label: 'ORTHOPAEDICS TEMPLATE',
+    caption: 'Dr. Ashwin Gupta · Advanced Orthopaedics · Gurugram',
+    src: '/practice-studio/ortho-promo.mp4',
+  },
 ]
 const COMING = [
-  { spec: 'ortho', label: 'ORTHOPAEDICS TEMPLATE' },
   { spec: 'paeds', label: 'PAEDIATRICS TEMPLATE' },
   { spec: 'multi', label: 'MULTI-SPECIALITY TEMPLATE' },
 ]
