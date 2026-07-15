@@ -10,7 +10,7 @@
   min-height: 100vh;
   background: var(--ps-ivory);
   color: var(--ps-ink);
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Gujarati', 'Noto Sans Kannada', 'Noto Sans Malayalam', 'Noto Sans Gurmukhi', sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -29,12 +29,12 @@
   background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
-.ps-serif { font-family: 'Archivo', sans-serif; }
-.ps-mono { font-family: 'Poppins', sans-serif; font-weight: 500; }
+.ps-serif { font-family: 'Archivo', 'Noto Serif Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Gujarati', 'Noto Sans Kannada', 'Noto Sans Malayalam', 'Noto Sans Gurmukhi', sans-serif; }
+.ps-mono { font-family: 'Poppins', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Gujarati', 'Noto Sans Kannada', 'Noto Sans Malayalam', 'Noto Sans Gurmukhi', sans-serif; font-weight: 500; }
 
 /* mono section label, e.g. "01 — THE CASE" */
 .ps-label {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Gujarati', 'Noto Sans Kannada', 'Noto Sans Malayalam', 'Noto Sans Gurmukhi', sans-serif;
   font-weight: 600;
   font-size: 15px;
   letter-spacing: 0.22em;
@@ -42,7 +42,7 @@
 }
 
 .ps-h2 {
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Archivo', 'Noto Serif Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Gujarati', 'Noto Sans Kannada', 'Noto Sans Malayalam', 'Noto Sans Gurmukhi', sans-serif;
   font-weight: 600;
   font-size: clamp(1.9rem, 3.8vw, 3rem);
   line-height: 1.12;
@@ -127,7 +127,7 @@
   align-items: baseline;
   gap: 16px;
   padding: 18px 4px;
-  font-family: 'Archivo', sans-serif;
+  font-family: 'Archivo', 'Noto Serif Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Gujarati', 'Noto Sans Kannada', 'Noto Sans Malayalam', 'Noto Sans Gurmukhi', sans-serif;
   font-weight: 600;
   font-size: 1.05rem;
   color: #101a24;
@@ -136,7 +136,7 @@
 .ps-faq-item summary::after {
   content: '+';
   flex: none;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Gujarati', 'Noto Sans Kannada', 'Noto Sans Malayalam', 'Noto Sans Gurmukhi', sans-serif;
   font-weight: 400;
   font-size: 22px;
   line-height: 1;
@@ -159,7 +159,7 @@
   border-radius: 12px;
   background: #fff;
   padding: 11px 14px;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Poppins', 'Noto Sans Devanagari', 'Noto Sans Bengali', 'Noto Sans Tamil', 'Noto Sans Telugu', 'Noto Sans Gujarati', 'Noto Sans Kannada', 'Noto Sans Malayalam', 'Noto Sans Gurmukhi', sans-serif;
   font-size: 14.5px;
   color: #101a24;
   outline: none;
