@@ -904,7 +904,7 @@ function BookingDemoCard() {
         <div className="mt-4 flex items-center gap-[11px]">
           <span className="h-[38px] w-[38px] rounded-full border border-[rgba(16,26,36,.1)]" style={{ background: 'linear-gradient(140deg,#f1ece3,#e0d8c8)' }} />
           <span className="flex flex-col gap-[3px]">
-            <span className="text-[14px] font-semibold text-[#101a24]">Dr. ______</span>
+            <span className="text-[14px] font-semibold text-[#101a24]">Dr. Suman</span>
             <span className="text-[11.5px] text-[rgba(16,26,36,.5)]">General practice · In-clinic visit</span>
           </span>
         </div>
