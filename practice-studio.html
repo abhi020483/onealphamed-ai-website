@@ -54,11 +54,16 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
     <style>
-      /* Hide Google Translate's own banner/branding; keep only our custom dropdown */
-      .goog-te-banner-frame.skiptranslate, .goog-te-gadget-icon, .goog-te-gadget { display: none !important; }
-      .goog-te-banner-frame { display: none !important; }
-      body { top: 0 !important; position: static !important; }
+      /* Hide every bit of Google Translate's own UI; keep only our custom dropdown.
+         The top "Translated into…" bar is an iframe.skiptranslate — targeting that
+         is robust even when Google rotates its obfuscated class names. */
+      iframe.skiptranslate,
+      .goog-te-banner-frame,
+      .VIpgJd-ZVi9od-ORHb-OEVmcd,
+      .goog-te-gadget,
+      .goog-te-gadget-icon,
       .goog-tooltip, #goog-gt-tt, .goog-te-balloon-frame { display: none !important; }
+      body { top: 0 !important; position: static !important; }
       .goog-text-highlight { background: none !important; box-shadow: none !important; }
       font { background: transparent !important; box-shadow: none !important; }
     </style>
