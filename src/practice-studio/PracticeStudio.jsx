@@ -621,9 +621,14 @@ const LIVE_TEMPLATES = [
     caption: 'Dr. Meera Shah · Shah Dental · Bandra',
     src: '/practice-studio/dental-promo.mp4',
   },
+  {
+    spec: 'onco',
+    label: 'ONCO — 01',
+    caption: 'Aashray Cancer Centre · Tumour board · Hyderabad',
+    src: '/practice-studio/onco-promo.mp4',
+  },
 ]
 const COMING = [
-  { spec: 'onco', label: 'ONCO — 01' },
   { spec: 'ortho', label: 'ORTHO — 01' },
   { spec: 'paeds', label: 'PAEDS — 01' },
   { spec: 'multi', label: 'MULTI-SPECIALITY — 01' },
