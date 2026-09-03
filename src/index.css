@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Unbounded", "Exo 2", sans-serif;
-  --font-body: "Exo 2", -apple-system, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", -apple-system, sans-serif;
   --font-mono: "Share Tech Mono", ui-monospace, monospace;
 
   /* theme-adaptive tokens — literal values here are placeholders only;
@@ -97,7 +97,7 @@ body {
   background: var(--color-void);
   color: var(--color-text);
   font-family: var(--font-body);
-  /* Exo 2 variable axis — slightly heavier than regular for legibility */
+  /* Inter variable axis — slightly heavier than regular for legibility */
   font-weight: 450;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
