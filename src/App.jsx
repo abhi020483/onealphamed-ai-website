@@ -1,4 +1,4 @@
-import { lazy, Suspense, useState } from 'react'
+import { useState } from 'react'
 import { ThemeProvider } from './ThemeContext'
 import AuroraBackground from './components/AuroraBackground'
 import CursorGlow from './components/CursorGlow'
@@ -15,8 +15,6 @@ import CTA from './components/CTA'
 import Footer from './components/Footer'
 import DemoModal from './components/DemoModal'
 
-const Scene3D = lazy(() => import('./components/Scene3D'))
-
 function App() {
   const [demoOpen, setDemoOpen] = useState(false)
   const openDemo = () => setDemoOpen(true)
@@ -24,9 +22,6 @@ function App() {
   return (
     <ThemeProvider>
       <AuroraBackground />
-      <Suspense fallback={null}>
-        <Scene3D />
-      </Suspense>
       <CursorGlow />
       <ScrollProgress />
       <div className="grain" aria-hidden="true" />
