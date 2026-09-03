@@ -28,6 +28,14 @@ const POWER_OF_FOUR = [
   },
 ]
 
+const MERLIN_APP_URL = 'https://merlin-indol.vercel.app/login'
+
+const MERLIN_APP_POINTS = [
+  'Grounded only in the documents your medical team has approved.',
+  'Every claim cites its source document and page.',
+  "If it isn't in the corpus, Merlin says so — it never guesses.",
+]
+
 const COMPARE = [
   { dim: 'Flow', standard: 'Scripted decision trees', medlink: 'Free conversation, context retained' },
   { dim: 'Grounding', standard: 'Generic answers', medlink: 'Approved medical evidence only' },
@@ -80,6 +88,104 @@ export default function Merlin() {
             </Reveal>
           ))}
         </div>
+
+        {/* Merlin app — live product writeup */}
+        <Reveal>
+          <div className="hud-corners relative rounded-3xl border border-line bg-void-2/70 backdrop-blur-md">
+            <div className="grid gap-10 p-7 md:p-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+              <div className="flex flex-col gap-5">
+                <span className="flex items-center gap-2.5 font-mono text-[12px] uppercase tracking-[0.25em] text-green">
+                  <span className="h-1.5 w-1.5 animate-blink rounded-full bg-green" />
+                  The Merlin app · live now
+                </span>
+                <h3 className="font-display text-2xl font-medium leading-[1.25] text-balance text-text md:text-[1.7rem]">
+                  Answers you can cite, drawn only from{' '}
+                  <span className="text-gradient">approved sources.</span>
+                </h3>
+                <p className="max-w-[560px] text-[1.05rem] leading-[1.65] text-text-dim">
+                  The Power of 4, productised. Merlin&rsquo;s medical information assistant is
+                  live today: medical teams ask in plain language, and Merlin answers strictly
+                  from the evidence library their organisation has approved — never the open
+                  internet — with the source behind every claim.
+                </p>
+                <ul className="flex flex-col gap-2.5">
+                  {MERLIN_APP_POINTS.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-3 text-[1.02rem] leading-[1.55] text-text"
+                    >
+                      <span className="mt-[2px] font-mono text-[13px] text-green">✓</span>
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-1 flex flex-wrap items-center gap-x-5 gap-y-3">
+                  <a
+                    href={MERLIN_APP_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-gradient-to-r from-brand-lime via-brand-teal to-brand-blue px-7 py-3 text-[15px] font-semibold text-ink shadow-[0_0_24px_rgba(30,194,122,0.35)] transition-all duration-200 hover:-translate-y-[3px] hover:shadow-[0_10px_36px_rgba(30,194,122,0.55)]"
+                  >
+                    Open the Merlin app →
+                  </a>
+                  <span className="max-w-[320px] font-mono text-[11px] uppercase leading-[1.8] tracking-[0.14em] text-text-dim">
+                    Access granted by your organisation — sign in with your registered work
+                    email
+                  </span>
+                </div>
+                <p className="text-[0.85rem] leading-[1.6] text-text-dim/70">
+                  A proprietary product of OneAlphaMed Pvt Ltd. Not a substitute for
+                  professional medical judgement.
+                </p>
+              </div>
+
+              {/* cited-answer mock */}
+              <Reveal delay={0.12}>
+                <TiltCard
+                  max={6}
+                  className="rounded-2xl border border-line bg-void-3/80 p-6 backdrop-blur-md"
+                >
+                  <div className="flex items-center justify-between border-b border-line pb-4">
+                    <div className="flex items-center gap-2.5">
+                      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-brand-green to-brand-blue font-display text-[13px] font-semibold text-ink">
+                        M
+                      </div>
+                      <div className="flex flex-col gap-0.5">
+                        <span className="text-sm font-semibold text-text">Merlin-AI</span>
+                        <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-text-dim">
+                          Medical information assistant
+                        </span>
+                      </div>
+                    </div>
+                    <span className="flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.15em] text-green">
+                      <span className="h-1.5 w-1.5 animate-blink rounded-full bg-green" />
+                      online
+                    </span>
+                  </div>
+                  <div className="mt-5 flex flex-col gap-4">
+                    <div className="w-[68%] self-end rounded-[14px_14px_4px_14px] bg-bubble-out px-4 py-3.5">
+                      <div className="h-2 w-full rounded-full bg-text/20" />
+                      <div className="mt-2 h-2 w-2/3 rounded-full bg-text/20" />
+                    </div>
+                    <div className="w-[88%] self-start rounded-[14px_14px_14px_4px] border border-line bg-void-2/90 px-4 py-4">
+                      <div className="h-2 w-full rounded-full bg-text/15" />
+                      <div className="mt-2 h-2 w-full rounded-full bg-text/15" />
+                      <div className="mt-2 h-2 w-1/2 rounded-full bg-text/15" />
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        <span className="rounded-full border border-green/40 bg-green/10 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.12em] text-green">
+                          ✓ Cited — source doc · page
+                        </span>
+                        <span className="rounded-full border border-teal/40 bg-teal/10 px-2.5 py-1 font-mono text-[10.5px] uppercase tracking-[0.12em] text-teal">
+                          Approved corpus only
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </TiltCard>
+              </Reveal>
+            </div>
+          </div>
+        </Reveal>
 
         {/* MedLink AI */}
         <div className="mt-10 grid gap-14 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
