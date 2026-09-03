@@ -163,7 +163,7 @@ function StudioNav() {
   }, [])
 
   const link =
-    'hidden sm:inline uppercase text-[13.5px] font-medium tracking-[0.11em] text-[rgba(16,26,36,.72)] hover:text-[#101a24] transition-colors'
+    'hidden xl:inline whitespace-nowrap uppercase text-[13px] font-medium tracking-[0.06em] text-[rgba(16,26,36,.72)] hover:text-[#101a24] transition-colors'
 
   return (
     <nav
@@ -175,26 +175,25 @@ function StudioNav() {
         borderBottom: `1px solid ${scrolled ? 'rgba(16,26,36,0.08)' : 'transparent'}`,
       }}
     >
-      <div className="mx-auto flex max-w-[1200px] flex-wrap items-center gap-x-[clamp(12px,2.5vw,32px)] gap-y-2 px-[clamp(20px,4vw,48px)] py-3.5">
-        <a href="#top" className="flex items-center gap-3.5 text-[#101a24]">
+      <div className="px-[clamp(20px,4vw,48px)]">
+      <div className="mx-auto flex max-w-[1200px] items-center gap-x-[clamp(10px,2vw,22px)] py-3.5">
+        <a href="#top" className="flex flex-none items-center gap-3 text-[#101a24]">
           <img
             src={logoAlphaMed}
             alt="AlphaMed"
-            className="h-11 w-auto mix-blend-multiply lg:h-[52px]"
+            className="h-11! w-auto mix-blend-multiply lg:h-[50px]!"
           />
           <span className="hidden h-8 w-px bg-[rgba(16,26,36,.15)] md:block" />
-          <span className="ps-serif hidden text-[22px] tracking-[0.01em] md:inline">{BRAND_NAME}</span>
+          <span className="ps-serif hidden whitespace-nowrap text-[20px] tracking-[0.01em] md:inline lg:text-[22px]">{BRAND_NAME}</span>
         </a>
-        <div className="flex flex-1 flex-wrap items-center justify-end gap-[clamp(12px,1.6vw,22px)]">
+        <div className="flex flex-1 flex-nowrap items-center justify-end gap-[clamp(10px,1.3vw,18px)]">
           <a href="#collection" className={link}>Templates</a>
           <a href="#capabilities" className={link}>Capabilities</a>
           <a href="#pricing" className={link}>Packages</a>
           <a href="#two-homes" className={link}>India / Global</a>
           <LangSwitcher />
-          <a href="#contact" className="ps-btn-grad px-6 py-3 text-[15px]">
-            Book a design consult
-          </a>
         </div>
+      </div>
       </div>
     </nav>
   )
