@@ -17,7 +17,7 @@ export default function Ecosystem() {
       <div className="mx-auto flex max-w-[1200px] flex-col gap-14 px-6 md:px-10">
         <Reveal className="flex flex-col gap-4">
           <span className="font-mono text-xs uppercase tracking-[0.25em] text-blue">
-            05 — Ecosystem
+            06 — Ecosystem
           </span>
           <h2 className="max-w-[860px] font-display text-3xl font-medium leading-[1.18] text-balance text-text md:text-[2.6rem]">
             One healthcare group, <span className="text-gradient">six ways</span> to move

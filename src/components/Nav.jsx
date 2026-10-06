@@ -9,6 +9,7 @@ const LINKS = [
   { href: '#onconourish', label: 'OncoNourish' },
   { href: '#voice', label: 'Voice Agent' },
   { href: '#arogya', label: 'Arogya' },
+  { href: '#skinscan', label: 'SkinScan' },
   { href: '#ecosystem', label: 'Ecosystem' },
 ]
 

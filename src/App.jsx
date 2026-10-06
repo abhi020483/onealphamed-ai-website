@@ -9,6 +9,7 @@ import Merlin from './components/Merlin'
 import OncoNourish from './components/OncoNourish'
 import VoiceAgent from './components/VoiceAgent'
 import Arogya from './components/Arogya'
+import SkinScan from './components/SkinScan'
 import Ecosystem from './components/Ecosystem'
 import Journey from './components/Journey'
 import CTA from './components/CTA'
@@ -32,6 +33,7 @@ function App() {
         <OncoNourish />
         <VoiceAgent />
         <Arogya />
+        <SkinScan />
         <Ecosystem />
         <Journey />
         <CTA onRequestDemo={openDemo} />
