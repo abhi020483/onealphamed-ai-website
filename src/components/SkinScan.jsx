@@ -62,7 +62,7 @@ export default function SkinScan() {
             >
               <img
                 src={imgDermExam}
-                alt="Dermatologist examining a patient's cheek with a dermatoscope in a bright clinic"
+                alt="Dermatologist visually examining a patient's cheek in a bright clinic"
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
               />
