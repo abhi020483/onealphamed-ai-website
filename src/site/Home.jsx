@@ -1,5 +1,5 @@
 import icon from '../assets/alphamed-icon.png'
-import imgTeam from '../assets/photos/home-clinicians-engineers.jpg'
+import imgEngine from '../assets/visuals/home-engine.jpg'
 import { DEMO_EMAIL, OFFICES, pillars, products, rules } from './content'
 import JourneyCards from './Journey'
 import { Dot, FeatureCard, Grad, Grid, Section, Stack, Tag } from './ui'
@@ -113,8 +113,8 @@ function HowWeBuild() {
           <a href="#products" style={{ alignSelf: 'flex-start', marginTop: 8, fontWeight: 600 }}>See how each product applies them →</a>
           <div style={{ position: 'relative', height: 300, borderRadius: 20, overflow: 'hidden', border: '1px solid var(--line)', marginTop: 16 }}>
             <img
-              src={imgTeam}
-              alt="Clinicians and engineers working together at a table"
+              src={imgEngine}
+              alt="Evidence documents streaming into a protected neural network"
               loading="lazy"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
             />

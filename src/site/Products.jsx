@@ -1,9 +1,9 @@
-import imgMerlin from '../assets/photos/merlin-medical-affairs.jpg'
-import imgOnco from '../assets/photos/onconourish-dietitian.jpg'
-import imgVoice from '../assets/photos/voice-doctor-call.jpg'
-import imgArogya from '../assets/photos/arogya-caregiver.jpg'
-import imgSkin from '../assets/skinscan/skinscan-derm-exam.jpg'
-import imgRwe from '../assets/photos/rwe-prescription-capture.jpg'
+import imgMerlin from '../assets/visuals/merlin.jpg'
+import imgOnco from '../assets/visuals/onconourish.jpg'
+import imgVoice from '../assets/visuals/voice.jpg'
+import imgArogya from '../assets/visuals/arogya.jpg'
+import imgSkin from '../assets/visuals/skinscan.jpg'
+import imgRwe from '../assets/visuals/rwe.jpg'
 import {
   PRODUCT_LINKS, arogyaFeatures, chat, compare, flow, guardrails, merlinPoints, pipeline, powerOf4, profile,
   rweChecks, rweCompliance, rweStats, rweSteps, rweWorkspaces, skinFeatures, tiers, voiceCards, voiceCompliance,
@@ -83,7 +83,7 @@ function Merlin() {
           </Lead>
           <span className="oa-label" style={{ color: 'var(--ink-4)' }}>The Power of 4</span>
         </Stack>
-        <PhotoBanner src={imgMerlin} alt="Medical affairs team reviewing evidence on a wall screen" badge="In use · medical information teams" badgeColor="#1ec27a" />
+        <PhotoBanner src={imgMerlin} alt="Knowledge graph of approved evidence with a highlighted citation path" badge="In use · medical information teams" badgeColor="#1ec27a" />
         <Grid min={230}>
           {powerOf4.map((p) => <FeatureCard key={p.n} {...p} titleSize="1.2rem" />)}
         </Grid>
@@ -258,7 +258,7 @@ function OncoNourish() {
           </div>
           <a href={ONCO_URL} target="_blank" rel="noopener noreferrer" style={{ alignSelf: 'flex-start', fontWeight: 600 }}>onconourish.onealphamed.com ↗</a>
         </Header>
-        <PhotoBanner src={imgOnco} alt="Oncology dietitian discussing a meal plan with a patient" badge="In use · oncology clinics" badgeColor="#0aa88f" />
+        <PhotoBanner src={imgOnco} alt="Glass leaf, grain and droplet forms linked to a rules-engine lattice" badge="In use · oncology clinics" badgeColor="#0aa88f" focus="50% 40%" />
         <Grid min={230}>
           {flow.map((f) => (
             <div key={f.n} className="oa-card" style={{ padding: 24, display: 'flex', flexDirection: 'column', gap: 10 }}>
@@ -332,7 +332,7 @@ function VoiceAgent() {
             medical messaging between MR visits. An additional layer of support for the sales team, never a replacement.
           </Lead>
         </Header>
-        <PhotoBanner src={imgVoice} alt="Doctor taking a phone call at his clinic desk" badge="In deployment · field force teams" badgeColor="#86d13f" />
+        <PhotoBanner src={imgVoice} alt="Sound-wave ribbon flowing through a glass molecule" badge="In deployment · field force teams" badgeColor="#86d13f" />
         <Grid min={230}>
           {voiceCards.map((c) => <FeatureCard key={c.n} {...c} />)}
         </Grid>
@@ -407,7 +407,7 @@ function Arogya() {
             doctor-ready adherence reports — all operable in low-connectivity conditions.
           </Lead>
         </Header>
-        <PhotoBanner src={imgArogya} alt="Elderly patient and her daughter checking a medication app on a phone at home" badge="In deployment · patients & caregivers" badgeColor="#86d13f" />
+        <PhotoBanner src={imgArogya} alt="Glowing capsule forms on schedule rings with a reminder pulse" badge="In deployment · patients & caregivers" badgeColor="#86d13f" />
         <Grid min={260}>
           {arogyaFeatures.map((f) => <FeatureCard key={f.n} {...f} />)}
         </Grid>
@@ -446,7 +446,7 @@ function SkinScan() {
           <div style={{ position: 'relative', minHeight: 360, overflow: 'hidden', borderRadius: 24, border: '1px solid var(--line-soft)' }}>
             <img
               src={imgSkin}
-              alt="Dermatologist visually examining a patient's cheek in a bright clinic"
+              alt="Wireframe face mesh with a scanning plane of light"
               loading="lazy"
               style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
             />
@@ -499,7 +499,7 @@ function RWE() {
             with a baseline visit and a follow-up at 90 ± 10 days.
           </Lead>
         </Header>
-        <PhotoBanner src={imgRwe} alt="Doctor photographing a handwritten prescription with a phone" badge="Phase 1 · TOLERATE-HF investigators" badgeColor="#2d7fd4" focus="center bottom" />
+        <PhotoBanner src={imgRwe} alt="A paper sheet transforming into structured data cells" badge="Phase 1 · TOLERATE-HF investigators" badgeColor="#2d7fd4" />
         <Grid min={230}>
           {rweSteps.map((s) => <FeatureCard key={s.n} {...s} />)}
         </Grid>
