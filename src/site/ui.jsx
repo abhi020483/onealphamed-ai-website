@@ -53,10 +53,10 @@ export function FeatureCard({ n, color, title, desc, titleSize = '1.15rem', padd
   )
 }
 
-export function PhotoBanner({ src, alt, badge, badgeColor }) {
+export function PhotoBanner({ src, alt, badge, badgeColor, focus }) {
   return (
     <div className="oa-photo">
-      <img src={src} alt={alt} loading="lazy" decoding="async" />
+      <img src={src} alt={alt} loading="lazy" decoding="async" style={focus ? { objectPosition: focus } : undefined} />
       <div className="oa-photo-badge" style={{ color: badgeColor }}>{badge}</div>
     </div>
   )

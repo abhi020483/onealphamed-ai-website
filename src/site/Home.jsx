@@ -1,4 +1,5 @@
 import icon from '../assets/alphamed-icon.png'
+import imgTeam from '../assets/photos/home-clinicians-engineers.jpg'
 import { DEMO_EMAIL, OFFICES, pillars, products, rules } from './content'
 import JourneyCards from './Journey'
 import { Dot, FeatureCard, Grad, Grid, Section, Stack, Tag } from './ui'
@@ -110,6 +111,14 @@ function HowWeBuild() {
             are enforced in code before a single answer reaches a doctor or a patient.
           </p>
           <a href="#products" style={{ alignSelf: 'flex-start', marginTop: 8, fontWeight: 600 }}>See how each product applies them →</a>
+          <div style={{ position: 'relative', height: 300, borderRadius: 20, overflow: 'hidden', border: '1px solid var(--line)', marginTop: 16 }}>
+            <img
+              src={imgTeam}
+              alt="Clinicians and engineers working together at a table"
+              loading="lazy"
+              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
         </Stack>
         <div style={{ display: 'grid', gap: 14 }}>
           {rules.map((r) => (

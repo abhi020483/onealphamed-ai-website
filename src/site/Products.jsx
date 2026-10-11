@@ -3,6 +3,7 @@ import imgOnco from '../assets/photos/onconourish-dietitian.jpg'
 import imgVoice from '../assets/photos/voice-doctor-call.jpg'
 import imgArogya from '../assets/photos/arogya-caregiver.jpg'
 import imgSkin from '../assets/skinscan/skinscan-derm-exam.jpg'
+import imgRwe from '../assets/photos/rwe-prescription-capture.jpg'
 import {
   PRODUCT_LINKS, arogyaFeatures, chat, compare, flow, guardrails, merlinPoints, pipeline, powerOf4, profile,
   rweChecks, rweCompliance, rweStats, rweSteps, rweWorkspaces, skinFeatures, tiers, voiceCards, voiceCompliance,
@@ -498,6 +499,7 @@ function RWE() {
             with a baseline visit and a follow-up at 90 ± 10 days.
           </Lead>
         </Header>
+        <PhotoBanner src={imgRwe} alt="Doctor photographing a handwritten prescription with a phone" badge="Phase 1 · TOLERATE-HF investigators" badgeColor="#2d7fd4" focus="center bottom" />
         <Grid min={230}>
           {rweSteps.map((s) => <FeatureCard key={s.n} {...s} />)}
         </Grid>
