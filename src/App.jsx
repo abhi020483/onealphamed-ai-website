@@ -1,47 +1,75 @@
-import { useState } from 'react'
-import { ThemeProvider } from './ThemeContext'
-import AuroraBackground from './components/AuroraBackground'
-import CursorGlow from './components/CursorGlow'
-import ScrollProgress from './components/ScrollProgress'
-import Nav from './components/Nav'
-import Hero from './components/Hero'
-import Merlin from './components/Merlin'
-import OncoNourish from './components/OncoNourish'
-import VoiceAgent from './components/VoiceAgent'
-import Arogya from './components/Arogya'
-import SkinScan from './components/SkinScan'
-import Ecosystem from './components/Ecosystem'
-import Journey from './components/Journey'
-import CTA from './components/CTA'
-import Footer from './components/Footer'
-import DemoModal from './components/DemoModal'
+import { useEffect, useLayoutEffect, useState } from 'react'
+import './site/site.css'
+import { Footer, Nav } from './site/Shell'
+import Home from './site/Home'
+import Products from './site/Products'
+import About from './site/About'
+import Contact from './site/Contact'
 
-function App() {
-  const [demoOpen, setDemoOpen] = useState(false)
-  const openDemo = () => setDemoOpen(true)
+const PAGES = { home: Home, products: Products, about: About, contact: Contact }
 
-  return (
-    <ThemeProvider>
-      <AuroraBackground />
-      <CursorGlow />
-      <ScrollProgress />
-      <div className="grain" aria-hidden="true" />
-      <Nav onRequestDemo={openDemo} />
-      <main className="relative z-10">
-        <Hero />
-        <Merlin />
-        <OncoNourish />
-        <VoiceAgent />
-        <Arogya />
-        <SkinScan />
-        <Ecosystem />
-        <Journey />
-        <CTA onRequestDemo={openDemo} />
-      </main>
-      <Footer />
-      <DemoModal open={demoOpen} onClose={() => setDemoOpen(false)} />
-    </ThemeProvider>
-  )
+const TITLES = {
+  home: 'OneAlphaMed AI — Gen AI Partner for Pharma & Healthcare',
+  products: 'Products — OneAlphaMed AI',
+  about: 'About — OneAlphaMed AI',
+  contact: 'Book a demo — OneAlphaMed AI',
 }
 
-export default App
+// Section anchors from the previous single-page site, kept so shared links still resolve.
+const LEGACY = {
+  merlin: ['products', 'merlin'],
+  onconourish: ['products', 'onconourish'],
+  voice: ['products', 'voice'],
+  arogya: ['products', 'arogya'],
+  skinscan: ['products', 'skinscan'],
+  rwe: ['products', 'rwe'],
+  ecosystem: ['about', 'ecosystem'],
+}
+
+function parseHash() {
+  const [head = '', sub = ''] = window.location.hash.replace(/^#/, '').split('/')
+  if (PAGES[head]) return { route: head, sub }
+  if (LEGACY[head]) return { route: LEGACY[head][0], sub: LEGACY[head][1] }
+  return { route: 'home', sub: '' }
+}
+
+function scrollToSection(id, behavior) {
+  const el = document.getElementById(id)
+  if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - 90, behavior })
+}
+
+export default function App() {
+  const [loc, setLoc] = useState(parseHash)
+  const Page = PAGES[loc.route]
+
+  useEffect(() => {
+    const onHash = () => setLoc((prev) => {
+      const next = parseHash()
+      next.changed = next.route !== prev.route
+      return next
+    })
+    window.addEventListener('hashchange', onHash)
+    return () => window.removeEventListener('hashchange', onHash)
+  }, [])
+
+  useLayoutEffect(() => {
+    document.title = TITLES[loc.route]
+    if (loc.sub) {
+      // a fresh page needs a frame to lay out (and lazy images to reserve space) before measuring
+      const t = setTimeout(() => scrollToSection(loc.sub, loc.changed === false ? 'smooth' : 'instant'), loc.changed === false ? 0 : 60)
+      return () => clearTimeout(t)
+    }
+    if (loc.changed !== undefined) window.scrollTo({ top: 0, behavior: 'instant' })
+  }, [loc])
+
+  return (
+    <div className="oa">
+      <div className="oa-glow" aria-hidden="true" />
+      <Nav route={loc.route} />
+      <main style={{ position: 'relative', zIndex: 1 }}>
+        <Page key={loc.route} />
+      </main>
+      <Footer />
+    </div>
+  )
+}
