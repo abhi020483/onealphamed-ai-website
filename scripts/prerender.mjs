@@ -108,6 +108,14 @@ for (const route of routes) {
   write(route, page({ ...meta, route, extraHead: head({ ...meta, url, image, ld: jsonLd(parsed) }), body: render(route) }))
 }
 
+// "Book a demo of X" pages: real 200 pages, but canonical to /contact and kept out of the sitemap.
+for (const id of PRODUCT_IDS) {
+  const route = `/contact/${id}`
+  const parsed = parsePath(route)
+  const meta = metaFor(parsed)
+  write(route, page({ ...meta, route, extraHead: head({ ...meta, url: `${SITE_URL}/contact`, image: `${SITE_URL}/og/default.png` }), body: render(route) }))
+}
+
 // Unknown paths: GitHub Pages serves 404.html; the client renders "not found" (or Practice Studio).
 const nf = metaFor({ page: 'notfound', sub: '' })
 writeFileSync(join(dist, '404.html'), page({ ...nf, extraHead: '<meta name="robots" content="noindex" />', body: '' }))
