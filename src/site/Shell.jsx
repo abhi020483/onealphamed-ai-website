@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import lockup from '../assets/alphamed-lockup-dark.png'
+import lockup from '../assets/alphamed-lockup-dark.webp'
 import {
   ADDRESS, CONTACT_EMAIL, GROUP_URL, LEGAL_NAME, LINKEDIN_URL, OFFICES, PHONE, PHONE_DISPLAY, PRODUCT_LINKS,
 } from './content'

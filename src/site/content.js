@@ -237,6 +237,8 @@ export const partners = [
   'novo-nordisk', 'mankind', 'zydus', 'aurobindo', 'hetero', 'jb-pharma',
 ]
 
+export const partnerSizes = {'aurobindo':  [228, 96], 'bayer':  [96, 96], 'cipla':  [288, 96], 'dr-reddys':  [300, 65], 'hetero':  [116, 96], 'jb-pharma':  [96, 96], 'lupin':  [80, 96], 'mankind':  [159, 96], 'novo-nordisk':  [135, 96], 'pfizer':  [234, 96], 'sun-pharma':  [71, 96], 'zydus':  [173, 96]}
+
 export const partnerNames = {
   'sun-pharma': 'Sun Pharma', cipla: 'Cipla', lupin: 'Lupin', 'dr-reddys': "Dr. Reddy's", pfizer: 'Pfizer', bayer: 'Bayer',
   'novo-nordisk': 'Novo Nordisk', mankind: 'Mankind Pharma', zydus: 'Zydus', aurobindo: 'Aurobindo Pharma',

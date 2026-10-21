@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import icon from '../assets/alphamed-icon.png'
+import icon from '../assets/alphamed-icon.webp'
 import {
-  CONTACT_EMAIL, OFFICES, STATUS_LEGEND, audiences, engagement, faqs, partnerNames, partners, productById, products, rules,
+  CONTACT_EMAIL, OFFICES, STATUS_LEGEND, audiences, engagement, faqs, partnerNames, partnerSizes, partners, productById, products, rules,
 } from './content'
 import { Link } from './router'
 import { Dot, Grad, Grid, Section, Stack, StatusPill, Tag, Visual } from './ui'
@@ -126,7 +126,7 @@ function TrustStrip() {
         <ul className="oa-logos">
           {partners.map((key) => (
             <li key={key}>
-              <img src={logoFor(key)} alt={partnerNames[key]} loading="lazy" decoding="async" />
+              <img src={logoFor(key)} alt={partnerNames[key]} width={partnerSizes[key][0] / 2} height={partnerSizes[key][1] / 2} loading="lazy" decoding="async" />
             </li>
           ))}
         </ul>
@@ -287,6 +287,9 @@ function CTA() {
       <img
         src={icon}
         alt=""
+        width="520"
+        height="520"
+        loading="lazy"
         style={{ position: 'absolute', left: '50%', top: '50%', width: 520, maxWidth: 'none', transform: 'translate(-50%,-50%)', opacity: 0.07, pointerEvents: 'none' }}
       />
       <Stack gap={24} style={{ position: 'relative', maxWidth: 800, margin: '0 auto', alignItems: 'center' }}>
