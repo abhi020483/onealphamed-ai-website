@@ -4,8 +4,10 @@ import imgVoice from '../assets/visuals/voice.jpg'
 import imgArogya from '../assets/visuals/arogya.jpg'
 import imgSkin from '../assets/visuals/skinscan.jpg'
 import imgRwe from '../assets/visuals/rwe.jpg'
+import imgPathview from '../assets/visuals/pathview.jpg'
 import {
   PRODUCT_LINKS, arogyaFeatures, chat, compare, flow, guardrails, merlinPoints, pipeline, powerOf4, profile,
+  pathviewConditions, pathviewFeatures, pathviewMilestones, pathviewReadouts,
   rweChecks, rweCompliance, rweStats, rweSteps, rweWorkspaces, skinFeatures, tiers, voiceCards, voiceCompliance,
   waveBars,
 } from './content'
@@ -14,6 +16,7 @@ import { Check, Dot, FeatureCard, Grad, Grid, PhotoBanner, Section, Stack, Tag }
 const MERLIN_URL = 'https://merlin-indol.vercel.app/login'
 const SKINSCAN_URL = 'https://skinscan-jade.vercel.app'
 const ONCO_URL = 'https://onconourish.onealphamed.com'
+const PATHVIEW_DEMO_URL = 'https://pathview-3d.vercel.app/#/consult?demo=1&condition=nsclc&compare=side&t=0.55&preset=bone'
 
 const Header = ({ tag, tone, title, children, maxWidth = 880 }) => (
   <Stack gap={14}>
@@ -58,7 +61,7 @@ function Intro() {
     <section style={{ padding: '80px 24px 40px' }}>
       <Stack gap={24} className="oa-wrap">
         <span className="oa-label" style={{ color: 'var(--c-green)' }}>Products</span>
-        <h1 className="oa-h1" style={{ maxWidth: 900 }}>Six AI products, each grounded in <Grad>approved evidence.</Grad></h1>
+        <h1 className="oa-h1" style={{ maxWidth: 900 }}>Seven products, each grounded in <Grad>approved evidence.</Grad></h1>
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
           {PRODUCT_LINKS.map((p, i) => (
             <a key={p.id} href={`#products/${p.id}`} className="oa-jump">{`0${i + 1}`} {p.label}</a>
@@ -558,6 +561,97 @@ function RWE() {
   )
 }
 
+function PathView() {
+  const month = 7
+  return (
+    <Section id="pathview">
+      <Stack gap={44} className="oa-wrap">
+        <Header tag="07 — PathView 3D · Consultation anatomy" tone="blue" title={<>PathView 3D: see the condition, <Grad>choose the path.</Grad></>}>
+          <Lead>
+            An interactive 3D anatomy tool doctors use during the consultation. Peel back skin, muscle, bone,
+            vessels and airways; tap any structure to name and explain it; then play two treatment routes on a
+            timeline so the patient sees how the lung and the tumour change, month by month. Runs in the browser
+            on a tablet or clinic desktop — nothing to install.
+          </Lead>
+        </Header>
+        <PhotoBanner src={imgPathview} alt="Translucent glass lung model with layer planes and a treatment timeline" badge="Pilot · oncology & pulmonology" badgeColor="#2d7fd4" />
+        <Grid min={230}>
+          {pathviewFeatures.map((f) => <FeatureCard key={f.n} {...f} />)}
+        </Grid>
+        <Grid min={300} gap={24} style={{ alignItems: 'stretch' }}>
+          <div className="oa-card" style={{ overflow: 'hidden' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10, flexWrap: 'wrap', borderBottom: '1px solid var(--line-soft)', padding: '14px 20px', background: 'var(--panel)' }}>
+              <span style={{ fontFamily: 'var(--mono)', fontWeight: 700, fontSize: 12, letterSpacing: '0.1em', color: 'var(--c-blue)' }}>NSCLC · 3.0 cm · right upper lobe</span>
+              <span className="oa-pill" style={{ fontWeight: 700, fontSize: 10.5, padding: '3px 9px', letterSpacing: '0.1em' }}>A | B compare</span>
+            </div>
+            <Stack gap={14} style={{ padding: 20 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr 1fr', gap: 12 }}>
+                <span />
+                <span className="oa-mono" style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--c-blue)' }}>A · Chemotherapy</span>
+                <span className="oa-mono" style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#c2622d' }}>B · Lobectomy</span>
+              </div>
+              {pathviewReadouts.map((r) => (
+                <div key={r.label} style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr 1fr', gap: 12, fontSize: 14, lineHeight: 1.5, borderTop: '1px solid rgba(20,70,90,0.08)', paddingTop: 10 }}>
+                  <span style={{ color: 'var(--ink-3)' }}>{r.label}</span>
+                  <span style={{ fontWeight: 600 }}>{r.a}</span>
+                  <span style={{ fontWeight: 600 }}>{r.b}</span>
+                </div>
+              ))}
+              <Stack gap={10} style={{ marginTop: 6, borderTop: '1px solid var(--line-soft)', paddingTop: 16 }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+                  <span className="oa-mono" style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ink-4)' }}>Timeline</span>
+                  <span style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: '1.2rem' }}>{month}<span style={{ fontSize: 12, fontWeight: 600, color: 'var(--ink-4)' }}> / 12 mo</span></span>
+                </div>
+                <div style={{ position: 'relative', height: 6, borderRadius: 3, background: 'rgba(20,70,90,0.12)' }}>
+                  <div style={{ position: 'absolute', inset: 0, width: `${(month / 12) * 100}%`, borderRadius: 3, background: 'var(--grad)' }} />
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: 6, flexWrap: 'wrap' }}>
+                  {pathviewMilestones.map((m) => (
+                    <span key={m} className="oa-mono" style={{ fontSize: 10, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--ink-4)' }}>{m}</span>
+                  ))}
+                </div>
+              </Stack>
+            </Stack>
+          </div>
+          <Stack gap={20}>
+            <div className="oa-panel" style={{ display: 'flex', flexDirection: 'column', gap: 10, padding: '20px 24px' }}>
+              <CardLabel color="var(--c-teal)">Explain to patient</CardLabel>
+              <p className="oa-body" style={{ fontSize: '0.98rem' }}>
+                <strong style={{ color: 'var(--c-blue)' }}>A:</strong> The tumour shrinks and its core becomes inactive. Lymph nodes reduce in size.
+              </p>
+              <p className="oa-body" style={{ fontSize: '0.98rem' }}>
+                <strong style={{ color: '#c2622d' }}>B:</strong> The remaining lobes gradually expand to fill the space, recovering much of your breathing capacity.
+              </p>
+            </div>
+            <div className="oa-card" style={{ display: 'flex', flexDirection: 'column', gap: 14, padding: '22px 24px' }}>
+              <CardLabel>Pilot conditions</CardLabel>
+              {pathviewConditions.map((c) => (
+                <div key={c.name} style={{ display: 'flex', flexDirection: 'column', gap: 4, borderLeft: '2px solid #0aa88f', paddingLeft: 14 }}>
+                  <span className="oa-mono" style={{ fontSize: 10.5, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--c-teal)' }}>{c.area}</span>
+                  <span style={{ fontWeight: 700 }}>{c.name}</span>
+                  <span style={{ fontSize: '0.92rem', lineHeight: 1.5, color: 'var(--ink-3)' }}>{c.routes}</span>
+                </div>
+              ))}
+            </div>
+          </Stack>
+        </Grid>
+        <Stack gap={14}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 20 }}>
+            <a href={PATHVIEW_DEMO_URL} target="_blank" rel="noopener noreferrer" className="oa-btn oa-btn--sm">Try the PathView demo →</a>
+            <span className="oa-mono" style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.14em', color: 'var(--ink-3)' }}>
+              <Dot color="#1f66b0" />Demo mode · no sign-in · nothing recorded
+            </span>
+          </div>
+          <p style={{ margin: 0, maxWidth: 740, fontSize: '0.85rem', lineHeight: 1.6, color: 'var(--ink-4)' }}>
+            Illustrative educational model. Not a patient-specific prediction or a substitute for clinical judgement.
+            Doctors in the pilot sign in with an access code issued by their Head Office; no patient data is stored.
+          </p>
+        </Stack>
+      </Stack>
+    </Section>
+  )
+}
+
 export default function Products() {
   return (
     <div style={{ display: 'flex', flexDirection: 'column' }}>
@@ -568,6 +662,7 @@ export default function Products() {
       <Arogya />
       <SkinScan />
       <RWE />
+      <PathView />
       <section style={{ padding: '80px 24px', textAlign: 'center' }}>
         <Stack gap={24} style={{ maxWidth: 720, margin: '0 auto', alignItems: 'center' }}>
           <h2 className="oa-h3" style={{ fontSize: 'clamp(1.6rem,3vw,2.2rem)', lineHeight: 1.2, textWrap: 'balance' }}>

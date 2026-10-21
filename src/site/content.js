@@ -13,12 +13,13 @@ export const PRODUCT_LINKS = [
   { id: 'arogya', label: 'Arogya' },
   { id: 'skinscan', label: 'SkinScan' },
   { id: 'rwe', label: 'RWE Platform' },
+  { id: 'pathview', label: 'PathView 3D' },
 ]
 
 export const pillars = [
   { n: 'CAP / 01', color: L, title: 'Medical intelligence', desc: 'RAG engines that answer HCP and patient queries from approved evidence only, with a citation on every claim — deployed inside your perimeter.', tags: ['Merlin AI', 'MedLink AI', 'MedScan AI'] },
   { n: 'CAP / 02', color: G, title: 'Real-world evidence', desc: 'Prescription photos become QC-reviewed case report forms with automatic edit checks, maker-checker payments and a sponsor portal that reads from one metrics layer.', tags: ['RWE Platform'] },
-  { n: 'CAP / 03', color: T, title: 'Clinician-governed patient programs', desc: 'Rules-engine and adherence platforms where AI drafts and clinicians approve — supportive-care framing and hard safety blocks enforced in code.', tags: ['OncoNourish', 'Arogya', 'SkinScan'] },
+  { n: 'CAP / 03', color: T, title: 'Clinician-governed patient programs', desc: 'Rules-engine and adherence platforms where AI drafts and clinicians approve — supportive-care framing and hard safety blocks enforced in code.', tags: ['OncoNourish', 'Arogya', 'SkinScan', 'PathView 3D'] },
   { n: 'CAP / 04', color: B, title: 'Compliant commercial AI', desc: 'Multilingual voice agents that extend the field force with MLR-reviewed messaging, consent handling and full call audit trails.', tags: ['AI Sales Voice Agent'] },
 ]
 
@@ -36,12 +37,13 @@ export const products = [
   { id: 'arogya', kind: 'Patient · Adherence', status: 'In deployment', color: L, name: 'Arogya', tagline: 'Medication adherence for elderly patients and family caregivers, with four-tier missed-dose escalation.' },
   { id: 'skinscan', kind: 'Consumer · Awareness', status: 'Live', color: B, name: 'SkinScan', tagline: 'A guided face photo returns a Skin Score and a MASI-style Melasma-pattern Score, explained in plain words.' },
   { id: 'rwe', kind: 'Medical affairs · RWE', status: 'Phase 1', color: T, name: 'RWE Platform', tagline: 'Prescription capture, AI extraction into the CRF, QC review, investigator payments and sponsor analytics for real-world evidence studies.' },
+  { id: 'pathview', kind: 'Consultation · 3D anatomy', status: 'Pilot', color: B, name: 'PathView 3D', tagline: 'Interactive 3D anatomy for the consultation room — layered chest model, treatment routes on a timeline, and side-by-side comparison.' },
 ]
 
 export const phases = [
   { label: 'Phase One', dot: '#86d13f', color: L, text: 'Building & optimising medical information query systems.', chip: 'MERLIN' },
   { label: 'Phase Two', dot: '#0aa88f', color: T, text: 'Building HCP-focussed intelligent prescription digitisation with LLMs.', chip: 'MEDSCAN' },
-  { label: 'Phase Three', dot: '#2d7fd4', color: B, text: 'Improving sales–doctor interactions & building efficient Gen AI patient programs.', chip: 'VOICE AGENT · ONCONOURISH · AROGYA · RWE' },
+  { label: 'Phase Three', dot: '#2d7fd4', color: B, text: 'Improving sales–doctor interactions & building efficient Gen AI patient programs.', chip: 'VOICE AGENT · ONCONOURISH · AROGYA · RWE · PATHVIEW 3D' },
 ]
 
 export const powerOf4 = [
@@ -171,5 +173,26 @@ export const services = [
 
 export const interests = [
   'Merlin AI', 'MedLink AI', 'MedScan AI', 'OncoNourish', 'AI Sales Voice Agent',
-  'Arogya', 'SkinScan', 'RWE Platform', 'Multiple / not sure',
+  'Arogya', 'SkinScan', 'RWE Platform', 'PathView 3D', 'Multiple / not sure',
+]
+
+export const pathviewFeatures = [
+  { n: 'PV / 01', color: L, title: 'Seven anatomical layers', desc: 'Skin, muscle, skeleton, vessels, airways, lung tissue and a cellular view — each with its own opacity, plus tap-to-identify, isolate and a slicing plane on three axes.' },
+  { n: 'PV / 02', color: G, title: 'Treatment routes on a timeline', desc: 'Route A, Route B and the natural course, played month by month with milestones and plain-language narration the doctor can read to the patient.' },
+  { n: 'PV / 03', color: T, title: 'Side by side, before and after', desc: 'A | B comparison with synced cameras, or a before / after wipe — so the trade-off between, say, chemotherapy and lobectomy becomes concrete.' },
+  { n: 'PV / 04', color: B, title: 'Handout & Head Office analytics', desc: 'A one-page PDF of the current view for the patient to take home, and a Head Office dashboard of adoption, session time, anatomical hotspots and route split.' },
+]
+
+export const pathviewReadouts = [
+  { label: 'Tumour size', a: '1.0 cm', b: 'Removed' },
+  { label: 'Lymph nodes', a: 'Shrinking', b: 'Cleared' },
+  { label: 'Lung capacity', a: '100%', b: '87%' },
+  { label: 'Spread', a: 'None seen', b: 'None seen' },
+]
+
+export const pathviewMilestones = ['Diagnosis', 'Cycle 3', 'Cycle 6', 'Response scan', '12 mo']
+
+export const pathviewConditions = [
+  { area: 'Oncology', name: 'Lung cancer (NSCLC)', routes: 'Chemotherapy · lobectomy · natural course' },
+  { area: 'Pulmonology', name: 'COPD / emphysema', routes: 'Inhaled therapy + rehab · valve lung-volume reduction · natural course' },
 ]

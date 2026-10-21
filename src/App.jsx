@@ -23,6 +23,7 @@ const LEGACY = {
   arogya: ['products', 'arogya'],
   skinscan: ['products', 'skinscan'],
   rwe: ['products', 'rwe'],
+  pathview: ['products', 'pathview'],
   ecosystem: ['about', 'ecosystem'],
 }
 

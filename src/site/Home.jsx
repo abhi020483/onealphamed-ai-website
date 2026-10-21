@@ -7,7 +7,7 @@ import { Dot, FeatureCard, Grad, Grid, Section, Stack, Tag } from './ui'
 const STATS = [
   { value: '15,000+', label: 'HCPs engaged across programs' },
   { value: '17+', label: 'Countries' },
-  { value: '6', label: 'AI products in market' },
+  { value: '7', label: 'Products live or in pilot' },
 ]
 
 function Hero() {
@@ -81,7 +81,7 @@ function Capabilities() {
             Production AI across the whole pharma value chain — from <Grad>medical information to the patient's kitchen.</Grad>
           </h2>
           <p className="oa-lead" style={{ maxWidth: 720 }}>
-            Not pilots and slideware. Six products are live or in deployment with pharmaceutical and clinical teams today,
+            Not slideware. Seven products are live, in deployment or in pilot with pharmaceutical and clinical teams today,
             each built on the same evidence-locked, compliance-first foundation.
           </p>
         </Stack>
@@ -143,7 +143,7 @@ function ProductLine() {
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'end', gap: 16 }}>
           <Stack gap={14}>
             <Tag tone="blue">03 — The product line</Tag>
-            <h2 className="oa-h2">Six products. One evidence engine.</h2>
+            <h2 className="oa-h2">Seven products. One evidence engine.</h2>
           </Stack>
           <a href="#products" style={{ fontWeight: 600 }}>Full product detail →</a>
         </div>
