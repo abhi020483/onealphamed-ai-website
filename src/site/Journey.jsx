@@ -10,9 +10,9 @@ export default function JourneyCards() {
           className="oa-card"
           style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: 26, borderTop: `3px solid ${ph.dot}` }}
         >
-          <span className="oa-label" style={{ color: ph.color }}>{ph.label}</span>
+          <span className="oa-kicker" style={{ color: ph.color }}>{ph.label}</span>
           <p style={{ margin: 0, fontSize: '1rem', lineHeight: 1.65 }}>{ph.text}</p>
-          <span className="oa-mono" style={{ fontSize: 11.5, textTransform: 'uppercase', letterSpacing: '0.12em', color: ph.color }}>
+          <span className="oa-mono" style={{ fontSize: 12.5, textTransform: 'uppercase', letterSpacing: '0.06em', color: ph.color }}>
             {ph.chip}
           </span>
         </div>

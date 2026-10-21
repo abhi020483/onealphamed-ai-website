@@ -1,10 +1,20 @@
-export const L = '#568f1e'
-export const G = '#0e8f58'
-export const T = '#087f6c'
+export const L = '#45761a'
+export const G = '#0b7a4b'
+export const T = '#077363'
 export const B = '#1f66b0'
 
-export const DEMO_EMAIL = 'blessy.babychan@onealphamed.com'
+// Public contact details, as published on the group site (onealphamed.com).
+export const CONTACT_EMAIL = 'info@onealphamed.com'
+export const PHONE = '+919811660635'
+export const PHONE_DISPLAY = '+91 98116 60635'
+export const ADDRESS = '2414, Ground Floor, Aravali Vihar, Sector 49, Faridabad, Haryana 121001, India'
+export const LINKEDIN_URL = 'https://www.linkedin.com/company/onealphamed/'
+export const GROUP_URL = 'https://onealphamed.com'
+export const LEGAL_NAME = 'OneAlphaMed Pvt Ltd'
 export const OFFICES = 'Mumbai · Gurgaon · Jakarta · Dubai · Amsterdam'
+
+// Demo requests are relayed to this inbox (FormSubmit activation is tied to it).
+export const DEMO_FORM_TO = 'blessy.babychan@onealphamed.com'
 
 export const PRODUCT_LINKS = [
   { id: 'merlin', label: 'Merlin AI' },
@@ -16,34 +26,74 @@ export const PRODUCT_LINKS = [
   { id: 'pathview', label: 'PathView 3D' },
 ]
 
-export const pillars = [
-  { n: 'CAP / 01', color: L, title: 'Medical intelligence', desc: 'RAG engines that answer HCP and patient queries from approved evidence only, with a citation on every claim — deployed inside your perimeter.', tags: ['Merlin AI', 'MedLink AI', 'MedScan AI'] },
-  { n: 'CAP / 02', color: G, title: 'Real-world evidence', desc: 'Prescription photos become QC-reviewed case report forms with automatic edit checks, maker-checker payments and a sponsor portal that reads from one metrics layer.', tags: ['RWE Platform'] },
-  { n: 'CAP / 03', color: T, title: 'Clinician-governed patient programs', desc: 'Rules-engine and adherence platforms where AI drafts and clinicians approve — supportive-care framing and hard safety blocks enforced in code.', tags: ['OncoNourish', 'Arogya', 'SkinScan', 'PathView 3D'] },
-  { n: 'CAP / 04', color: B, title: 'Compliant commercial AI', desc: 'Multilingual voice agents that extend the field force with MLR-reviewed messaging, consent handling and full call audit trails.', tags: ['AI Sales Voice Agent'] },
+export const audiences = [
+  {
+    key: 'medical',
+    color: L,
+    title: 'Medical affairs',
+    desc: "Answer doctors' questions instantly from your approved literature — every answer cited — and run real-world evidence studies from prescription photos.",
+    products: ['merlin', 'rwe'],
+  },
+  {
+    key: 'commercial',
+    color: G,
+    title: 'Marketing & sales',
+    desc: 'Keep doctors engaged between rep visits with messaging your medical-legal team has approved, and give them a 3D tool to explain treatment in the consultation room.',
+    products: ['voice', 'pathview'],
+  },
+  {
+    key: 'patients',
+    color: B,
+    title: 'Patient programs',
+    desc: 'Support patients between visits — nutrition during cancer treatment, medication reminders for elderly patients, and skin awareness that leads to a dermatologist.',
+    products: ['onconourish', 'arogya', 'skinscan'],
+  },
 ]
 
 export const rules = [
-  { n: '01', color: L, title: 'Approved evidence only', desc: 'Every model retrieves from a corpus your medical team has signed off — PubMed, peer-reviewed journals, label information, internal databases. If it is not in the corpus, the answer is "I don\'t know."' },
-  { n: '02', color: G, title: 'Air-gapped by default', desc: 'Deployments run inside your perimeter. No query, document or patient record touches a public model. HIPAA and EU GDPR aligned.' },
-  { n: '03', color: T, title: 'Clinician in the loop', desc: 'Nothing patient-facing is released without sign-off. Allergen exclusions and dose rules are hard blocks, not suggestions.' },
-  { n: '04', color: B, title: 'Auditable end to end', desc: 'Every response cites its source and page; every call is recorded; every message passes medical-legal-regulatory review before it ships.' },
+  { n: '01', color: L, title: 'Only your approved evidence', desc: "Answers come only from literature your medical team has signed off — journals, label information and your own databases. If the answer isn't there, the product says so instead of guessing." },
+  { n: '02', color: G, title: 'Your data never leaves your systems', desc: 'We deploy inside your own infrastructure, so no question, document or patient record is sent to a public AI model. HIPAA and EU GDPR aligned.' },
+  { n: '03', color: T, title: 'A clinician signs off first', desc: "Nothing reaches a patient until a clinician approves it, and safety rules such as allergen exclusions can't be overridden." },
+  { n: '04', color: B, title: 'Every answer can be traced', desc: 'Each answer shows its source and page, every call is recorded, and every message is approved by your medical-legal team before it goes out.' },
 ]
 
+// status: 'Live' = available to clients now · 'Pilot' = running with early partners
 export const products = [
-  { id: 'merlin', kind: 'Flagship · Medical information', status: 'Live', color: G, name: 'Merlin AI', tagline: 'One-stop, customisable medical intelligence. RAG, label-bounded, air-gapped — with MedLink (WhatsApp) and MedScan (prescription OCR).' },
-  { id: 'onconourish', kind: 'Oncology · Supportive care', status: 'Live', color: T, name: 'OncoNourish', tagline: 'Clinician-prescribed, AI-guided nutrition plans that keep patients nourished enough to finish treatment.' },
-  { id: 'voice', kind: 'Commercial · Field force', status: 'In deployment', color: G, name: 'AI Sales Voice Agent', tagline: 'An always-on, compliant, multilingual voice layer that reinforces approved messaging between MR visits.' },
-  { id: 'arogya', kind: 'Patient · Adherence', status: 'In deployment', color: L, name: 'Arogya', tagline: 'Medication adherence for elderly patients and family caregivers, with four-tier missed-dose escalation.' },
-  { id: 'skinscan', kind: 'Consumer · Awareness', status: 'Live', color: B, name: 'SkinScan', tagline: 'A guided face photo returns a Skin Score and a MASI-style Melasma-pattern Score, explained in plain words.' },
-  { id: 'rwe', kind: 'Medical affairs · RWE', status: 'Phase 1', color: T, name: 'RWE Platform', tagline: 'Prescription capture, AI extraction into the CRF, QC review, investigator payments and sponsor analytics for real-world evidence studies.' },
-  { id: 'pathview', kind: 'Consultation · 3D anatomy', status: 'Pilot', color: B, name: 'PathView 3D', tagline: 'Interactive 3D anatomy for the consultation room — layered chest model, treatment routes on a timeline, and side-by-side comparison.' },
+  { id: 'merlin', kind: 'Medical information', status: 'Live', color: G, name: 'Merlin AI', audience: ['pharma', 'doctors'], tagline: "Answer doctors' questions instantly, using only your approved literature — every answer cited. Includes the MedLink (WhatsApp) and MedScan (prescription scanning) modules." },
+  { id: 'onconourish', kind: 'Oncology · Supportive care', status: 'Live', color: T, name: 'OncoNourish', audience: ['doctors', 'patients'], tagline: 'Clinician-prescribed, AI-guided nutrition plans that keep patients nourished enough to finish treatment.', demoUrl: 'https://onconourish.onealphamed.com', demoLabel: 'Visit OncoNourish' },
+  { id: 'voice', kind: 'Commercial · Field force', status: 'Pilot', color: G, name: 'AI Sales Voice Agent', audience: ['pharma'], tagline: "Calls doctors between rep visits, in their language, using only messaging your medical-legal team has approved." },
+  { id: 'arogya', kind: 'Patients · Adherence', status: 'Pilot', color: L, name: 'Arogya', audience: ['patients'], tagline: 'Medication reminders for elderly patients, with alerts to family caregivers and doctor-ready adherence reports.' },
+  { id: 'skinscan', kind: 'Consumer · Skin awareness', status: 'Live', color: B, name: 'SkinScan', audience: ['patients'], tagline: 'A simple skin score your customers can understand, from one guided face photo — with clear questions to take to a dermatologist.', demoUrl: 'https://skinscan-jade.vercel.app', demoLabel: 'Try SkinScan' },
+  { id: 'rwe', kind: 'Medical affairs · RWE', status: 'Pilot', color: T, name: 'RWE Platform', audience: ['pharma', 'doctors'], tagline: 'Turn prescription photos into clean study data, and pay investigators on time.' },
+  { id: 'pathview', kind: 'Consultation · 3D anatomy', status: 'Pilot', color: B, name: 'PathView 3D', audience: ['doctors', 'pharma'], tagline: 'Interactive 3D anatomy for the consultation room — a layered chest model and treatment routes compared side by side.', demoUrl: 'https://pathview-3d.vercel.app/#/consult?demo=1&condition=nsclc&compare=side&t=0.55&preset=bone', demoLabel: 'Try the demo' },
 ]
+
+export const productById = Object.fromEntries(products.map((p) => [p.id, p]))
+
+export const STATUS_LEGEND = 'Live — available to clients now · Pilot — running with early partners'
+
+export const AUDIENCE_FILTERS = [
+  { key: 'all', label: 'All products' },
+  { key: 'pharma', label: 'For pharma teams' },
+  { key: 'doctors', label: 'For doctors' },
+  { key: 'patients', label: 'For patients' },
+]
+
+// One-line "who it's for" shown under each product heading.
+export const productFor = {
+  merlin: 'Medical information and medical affairs teams, and the doctors they support',
+  onconourish: 'Oncology teams and their patients',
+  voice: 'Sales and marketing teams with field forces',
+  arogya: 'Elderly patients, their family caregivers and their doctors',
+  skinscan: 'Consumers concerned about dark patches, and dermatology brands',
+  rwe: 'Medical affairs teams running real-world evidence studies, and their investigators',
+  pathview: 'Doctors explaining a diagnosis and treatment options to patients',
+}
 
 export const phases = [
-  { label: 'Phase One', dot: '#86d13f', color: L, text: 'Building & optimising medical information query systems.', chip: 'MERLIN' },
-  { label: 'Phase Two', dot: '#0aa88f', color: T, text: 'Building HCP-focussed intelligent prescription digitisation with LLMs.', chip: 'MEDSCAN' },
-  { label: 'Phase Three', dot: '#2d7fd4', color: B, text: 'Improving sales–doctor interactions & building efficient Gen AI patient programs.', chip: 'VOICE AGENT · ONCONOURISH · AROGYA · RWE · PATHVIEW 3D' },
+  { label: 'Phase One', dot: '#86d13f', color: L, text: 'Building & optimising medical information query systems.', chip: 'Merlin AI' },
+  { label: 'Phase Two', dot: '#0aa88f', color: T, text: 'Building HCP-focussed intelligent prescription digitisation with LLMs.', chip: 'MedScan (Merlin module)' },
+  { label: 'Phase Three', dot: '#2d7fd4', color: B, text: 'Improving sales–doctor interactions & building efficient Gen AI patient programs.', chip: 'Voice Agent · OncoNourish · Arogya · RWE Platform · PathView 3D' },
 ]
 
 export const powerOf4 = [
@@ -159,7 +209,7 @@ export const rweCompliance = ['Full audit log', 'Maker-checker payments', 'Pseud
 export const edges = [
   { dot: '#86d13f', title: 'Pharma domain, not generic AI', desc: 'The group has run brand strategy, medical affairs and patient-support programs for pharmaceutical companies across India, Southeast Asia and global markets. Our products are shaped by those workflows and their regulators.' },
   { dot: '#0aa88f', title: 'Compliance as architecture', desc: 'Air-gapped deployment, approved-corpus retrieval, clinician approval gates and MLR review are built into every product — not added at procurement.' },
-  { dot: '#2d7fd4', title: 'Shipping, not piloting', desc: 'Merlin, OncoNourish and SkinScan are live; the Voice Agent, Arogya and the RWE Platform are in deployment. Each new product reuses the same evidence engine, so the next one ships faster.' },
+  { dot: '#2d7fd4', title: 'Products in use, not slideware', desc: 'Merlin, OncoNourish and SkinScan are live; the Voice Agent, Arogya, the RWE Platform and PathView 3D are in pilot. Each new product reuses the same evidence engine, so the next one ships faster.' },
 ]
 
 export const services = [
@@ -172,9 +222,42 @@ export const services = [
 ]
 
 export const interests = [
-  'Merlin AI', 'MedLink AI', 'MedScan AI', 'OncoNourish', 'AI Sales Voice Agent',
-  'Arogya', 'SkinScan', 'RWE Platform', 'PathView 3D', 'Multiple / not sure',
+  'Merlin AI (incl. MedLink & MedScan)', 'OncoNourish', 'AI Sales Voice Agent',
+  'Arogya', 'SkinScan', 'RWE Platform', 'PathView 3D', 'Security review', 'Multiple / not sure',
 ]
+
+// product id → its option in the "Interested in" field, for "Book a demo of …" links
+export const interestFor = {
+  merlin: interests[0], onconourish: 'OncoNourish', voice: 'AI Sales Voice Agent', arogya: 'Arogya',
+  skinscan: 'SkinScan', rwe: 'RWE Platform', pathview: 'PathView 3D',
+}
+
+export const partners = [
+  'sun-pharma', 'cipla', 'lupin', 'dr-reddys', 'pfizer', 'bayer',
+  'novo-nordisk', 'mankind', 'zydus', 'aurobindo', 'hetero', 'jb-pharma',
+]
+
+export const partnerNames = {
+  'sun-pharma': 'Sun Pharma', cipla: 'Cipla', lupin: 'Lupin', 'dr-reddys': "Dr. Reddy's", pfizer: 'Pfizer', bayer: 'Bayer',
+  'novo-nordisk': 'Novo Nordisk', mankind: 'Mankind Pharma', zydus: 'Zydus', aurobindo: 'Aurobindo Pharma',
+  hetero: 'Hetero', 'jb-pharma': 'JB Pharma',
+}
+
+export const engagement = [
+  { step: 'Pilot', color: L, desc: 'We configure the product on your evidence, your therapy area and your compliance rules, and run it with a small group of users so you can measure it before committing.' },
+  { step: 'Deploy', color: T, desc: 'We roll out to your wider team inside your own infrastructure, with your medical-legal review built into the workflow and training for every user.' },
+  { step: 'Scale', color: B, desc: 'Add therapy areas, languages, markets or products on the same foundation — your approved evidence and audit trail carry over.' },
+]
+
+export const faqs = [
+  { q: 'How is pricing structured?', a: 'Pricing depends on the product, the number of users or patients, and how it is deployed. After a short scoping call we send a written proposal, usually starting with a pilot.' },
+  { q: 'Where does our data live?', a: 'Our enterprise products deploy inside your own infrastructure, so questions, documents and patient records are not sent to a public AI model. Our public demos (SkinScan, PathView 3D) do not ask for or store patient records.' },
+  { q: 'Who owns the content and the data?', a: 'The evidence library is the literature your medical team approves, and the data generated in your programme belongs to your organisation. The exact terms are set out in your agreement with us.' },
+  { q: 'Which languages do you support?', a: 'Products work in English. The AI Sales Voice Agent and the Arogya reminder calls also speak Indian languages, including Hindi. Tell us which languages you need and we will confirm coverage for your programme.' },
+  { q: 'Do you integrate with our CRM and WhatsApp?', a: 'Yes. The Voice Agent logs every call to your CRM / SFE system, MedLink runs on a clinic’s WhatsApp number, and Arogya sends caregiver alerts over WhatsApp. We confirm specific integrations during scoping.' },
+  { q: 'How do medical-legal-regulatory (MLR) reviews fit in?', a: 'Every patient- or doctor-facing message is drawn from content your medical-legal team has approved, and changes go back through your review before they ship.' },
+]
+
 
 export const pathviewFeatures = [
   { n: 'PV / 01', color: L, title: 'Seven anatomical layers', desc: 'Skin, muscle, skeleton, vessels, airways, lung tissue and a cellular view — each with its own opacity, plus tap-to-identify, isolate and a slicing plane on three axes.' },

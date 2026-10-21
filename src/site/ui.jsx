@@ -1,3 +1,6 @@
+import { interestFor, productById } from './content'
+import { Link } from './router'
+
 export const Grad = ({ children }) => <span className="oa-grad">{children}</span>
 
 export const Tag = ({ tone = 'green', children }) => (
@@ -34,18 +37,34 @@ export function Section({ id, tint, style, children }) {
 export const Dot = ({ size = 6, color, glow }) => (
   <span
     className="oa-dot"
+    aria-hidden="true"
     style={{ width: size, height: size, background: color, boxShadow: glow ? `0 0 10px ${color}` : undefined }}
   />
 )
 
-/* numbered card with HUD corners — CAP / P4 / VA / AR / RWE cards */
-export function FeatureCard({ n, color, title, desc, titleSize = '1.15rem', padding = 24, hover, children }) {
+/** Responsive visual: `visual` comes from visuals.js ({ src, srcSet }). */
+export function Visual({ visual, alt, sizes = '(max-width: 760px) 100vw, 720px', style, eager }) {
+  return (
+    <img
+      src={visual.src}
+      srcSet={visual.srcSet}
+      sizes={sizes}
+      alt={alt}
+      loading={eager ? 'eager' : 'lazy'}
+      decoding="async"
+      style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', ...style }}
+    />
+  )
+}
+
+/** Card with HUD corners and a short colour accent. */
+export function FeatureCard({ color, title, desc, titleSize = '1.15rem', padding = 24, hover, children }) {
   return (
     <div
       className={`oa-card oa-corners${hover ? ` oa-hover-${hover}` : ''}`}
       style={{ padding, display: 'flex', flexDirection: 'column', gap: 12, transition: 'border-color .2s' }}
     >
-      <span className="oa-mono" style={{ fontSize: 12, letterSpacing: '0.12em', color }}>{n}</span>
+      <span aria-hidden="true" style={{ width: 28, height: 3, borderRadius: 2, background: color }} />
       <h3 className="oa-h3" style={{ fontSize: titleSize }}>{title}</h3>
       <p className="oa-body">{desc}</p>
       {children}
@@ -53,10 +72,10 @@ export function FeatureCard({ n, color, title, desc, titleSize = '1.15rem', padd
   )
 }
 
-export function PhotoBanner({ src, alt, badge, badgeColor, focus }) {
+export function PhotoBanner({ visual, alt, badge, badgeColor, focus }) {
   return (
     <div className="oa-photo">
-      <img src={src} alt={alt} loading="lazy" decoding="async" style={focus ? { objectPosition: focus } : undefined} />
+      <Visual visual={visual} alt={alt} style={focus ? { objectPosition: focus } : undefined} />
       <div className="oa-photo-badge" style={{ color: badgeColor }}>{badge}</div>
     </div>
   )
@@ -64,7 +83,30 @@ export function PhotoBanner({ src, alt, badge, badgeColor, focus }) {
 
 export const Check = ({ children, style }) => (
   <div style={{ display: 'flex', gap: 10, alignItems: 'baseline', fontSize: '1rem', lineHeight: 1.55, ...style }}>
-    <span className="oa-mono" style={{ color: '#0e8f58' }}>✓</span>
+    <span className="oa-mono" aria-hidden="true" style={{ color: 'var(--c-green)' }}>✓</span>
     {children}
   </div>
 )
+
+export const StatusPill = ({ status }) => (
+  <span className={`oa-pill oa-status oa-status--${status.toLowerCase()}`}>{status}</span>
+)
+
+/** "Book a demo of X" (+ optional public demo link) at the foot of each product section. */
+export function ProductCTA({ id, children }) {
+  const p = productById[id]
+  return (
+    <div className="oa-product-cta">
+      <Link to={`/contact/${id}`} className="oa-btn oa-btn--sm" data-interest={interestFor[id]}>
+        Book a demo of {p.name} →
+      </Link>
+      {p.demoUrl && (
+        <a href={p.demoUrl} target="_blank" rel="noopener noreferrer" className="oa-btn-ghost oa-btn-ghost--sm">
+          {p.demoLabel} <span aria-hidden="true">↗</span>
+          <span className="oa-sr">(opens in a new tab)</span>
+        </a>
+      )}
+      {children}
+    </div>
+  )
+}

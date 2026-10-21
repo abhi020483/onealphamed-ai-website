@@ -1,45 +1,59 @@
 import { useRef, useState } from 'react'
-import { DEMO_EMAIL, OFFICES, interests } from './content'
+import {
+  ADDRESS, CONTACT_EMAIL, DEMO_FORM_TO, GROUP_URL, LINKEDIN_URL, OFFICES, PHONE, PHONE_DISPLAY, interestFor, interests, productById,
+} from './content'
+import { Link, useRouter } from './router'
+import { demoOf } from './routes'
 import { Grid, Stack } from './ui'
 
-const ENDPOINT = `https://formsubmit.co/ajax/${DEMO_EMAIL}`
+const ENDPOINT = `https://formsubmit.co/ajax/${DEMO_FORM_TO}`
 
-const FieldLabel = ({ children }) => (
-  <span className="oa-mono" style={{ fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ink-3)' }}>{children}</span>
+const FieldLabel = ({ children, required }) => (
+  <span className="oa-field-label">
+    {children}
+    {required && <span aria-hidden="true"> *</span>}
+  </span>
 )
 
-function Field({ label, ...input }) {
+function Field({ label, required, ...input }) {
   return (
     <label className="oa-field">
-      <FieldLabel>{label}</FieldLabel>
-      <input className="oa-input" {...input} />
+      <FieldLabel required={required}>{label}</FieldLabel>
+      <input className="oa-input" required={required} {...input} />
     </label>
   )
 }
 
-const subjectFor = (f) => `Demo request — ${f.company || f.name}`
+const subjectFor = (f) => `Demo request — ${f.company || f.name}${f.interest ? ` (${f.interest})` : ''}`
 
 export default function Contact() {
+  const { sub } = useRouter()
   const [status, setStatus] = useState('idle')
   const [firstName, setFirstName] = useState('')
   const lastForm = useRef({})
+  const preset = sub && interestFor[sub]
 
   async function submit(e) {
     e.preventDefault()
     if (status === 'sending') return
     const f = Object.fromEntries(new FormData(e.currentTarget).entries())
     lastForm.current = f
-    setFirstName((f.name || '').trim().split(/\s+/)[0] || 'there')
+    setFirstName((f.name || '').trim().replace(/^(dr\.?|mr\.?|ms\.?|mrs\.?|prof\.?)\s+/i, '').split(/\s+/)[0] || 'there')
     setStatus('sending')
     try {
       const res = await fetch(ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
         body: JSON.stringify({
-          ...f,
+          name: f.name,
+          email: f.email,
+          company: f.company,
           phone: f.phone || '—',
+          interest: f.interest,
           message: f.message || '—',
+          consent: 'Yes — agreed to the privacy policy',
           _subject: subjectFor(f),
+          _replyto: f.email,
           _template: 'table',
           _captcha: 'false',
         }),
@@ -57,73 +71,98 @@ export default function Contact() {
       `Name: ${f.name}`, `Work email: ${f.email}`, `Company: ${f.company}`, f.phone && `Phone: ${f.phone}`,
       `Interested in: ${f.interest}`, f.message && `\n${f.message}`,
     ].filter(Boolean).join('\n')
-    window.location.href = `mailto:${DEMO_EMAIL}?subject=${encodeURIComponent(subjectFor(f))}&body=${encodeURIComponent(body)}`
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subjectFor(f))}&body=${encodeURIComponent(body)}`
   }
 
-  const infoLabel = { fontFamily: 'var(--mono)', fontWeight: 600, fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.12em', color: 'var(--ink-4)' }
-
   return (
-    <section style={{ padding: '80px 24px 100px' }}>
+    <section style={{ padding: '72px 24px 100px' }}>
       <Grid min={320} gap={56} className="oa-wrap" style={{ alignItems: 'start' }}>
         <Stack gap={22}>
-          <span className="oa-label" style={{ color: 'var(--c-teal)' }}>Gen AI for Pharma &amp; Healthcare</span>
-          <h1 className="oa-h1">Book a demo.</h1>
+          <span className="oa-kicker" style={{ color: 'var(--c-teal)' }}>Gen AI for pharma &amp; healthcare</span>
+          <h1 className="oa-h1">{preset ? `Book ${demoOf(sub)}.` : 'Book a demo.'}</h1>
           <p style={{ margin: 0, maxWidth: 520, fontSize: '1.1rem', lineHeight: 1.7, color: 'var(--ink-2)' }}>
-            Tell us a little about you — we'll show Merlin AI, OncoNourish or any of our products running on real cases
-            from your therapy area.
+            Tell us a little about you, and we'll show {preset ? productById[sub].name : 'Merlin AI, OncoNourish or any of our products'} running
+            on real cases from your therapy area.
           </p>
-          <div className="oa-card" style={{ display: 'flex', flexDirection: 'column', gap: 14, padding: '24px 26px' }}>
-            <Stack gap={4}><span style={infoLabel}>Email</span><a href={`mailto:${DEMO_EMAIL}`} style={{ fontWeight: 600, overflowWrap: 'anywhere' }}>{DEMO_EMAIL}</a></Stack>
-            <Stack gap={4}><span style={infoLabel}>Offices</span><span>{OFFICES}</span></Stack>
-            <Stack gap={4}><span style={infoLabel}>Group</span><a href="https://onealphamed.com" target="_blank" rel="noopener noreferrer" style={{ fontWeight: 600 }}>onealphamed.com ↗</a></Stack>
+          <div className="oa-note" style={{ padding: '18px 22px' }}>
+            <h2 className="oa-kicker" style={{ color: 'var(--c-teal)', margin: '0 0 8px' }}>What happens next</h2>
+            <ol className="oa-next">
+              <li>We reply within 1 business day to agree a time.</li>
+              <li>A demo takes about 30 minutes, on your cases and your therapy area.</li>
+              <li>If it's a fit, we send a written proposal — usually starting with a pilot.</li>
+            </ol>
           </div>
+          <dl className="oa-card oa-contact-list">
+            <div><dt>Email</dt><dd><a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a></dd></div>
+            <div><dt>Phone</dt><dd><a href={`tel:${PHONE}`}>{PHONE_DISPLAY}</a></dd></div>
+            <div><dt>Registered office</dt><dd>{ADDRESS}</dd></div>
+            <div><dt>Offices</dt><dd>{OFFICES}</dd></div>
+            <div>
+              <dt>Elsewhere</dt>
+              <dd>
+                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">LinkedIn ↗<span className="oa-sr"> (opens in a new tab)</span></a>
+                {' · '}
+                <a href={GROUP_URL} target="_blank" rel="noopener noreferrer">onealphamed.com ↗<span className="oa-sr"> (opens in a new tab)</span></a>
+              </dd>
+            </div>
+          </dl>
         </Stack>
 
         {status === 'sent' ? (
           <div
             role="status"
-            style={{ position: 'relative', borderRadius: 16, border: '1px solid var(--line-soft)', background: '#fff', padding: '56px 36px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, textAlign: 'center' }}
+            className="oa-card"
+            style={{ padding: '56px 36px', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 18, textAlign: 'center' }}
           >
-            <div style={{ width: 56, height: 56, borderRadius: '50%', background: 'linear-gradient(135deg,#86d13f,#0aa88f)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, color: 'var(--on-grad)' }}>✓</div>
-            <span className="oa-label" style={{ color: 'var(--c-green)' }}>Transmission received</span>
-            <h3 className="oa-h3" style={{ fontSize: '1.4rem' }}>Thanks, {firstName} — request logged.</h3>
-            <p className="oa-lead" style={{ maxWidth: 360, lineHeight: 1.6 }}>Our team will reach out to schedule your demo shortly.</p>
+            <div aria-hidden="true" style={{ width: 56, height: 56, borderRadius: '50%', background: 'linear-gradient(135deg,#86d13f,#0aa88f)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, color: 'var(--on-grad)' }}>✓</div>
+            <h2 className="oa-h3" style={{ fontSize: '1.4rem' }}>Thanks, {firstName} — we'll reply within 1 business day.</h2>
+            <p className="oa-lead" style={{ maxWidth: 380, lineHeight: 1.6 }}>
+              We've received your request. If it's urgent, email <a href={`mailto:${CONTACT_EMAIL}`}>{CONTACT_EMAIL}</a> or
+              call <a href={`tel:${PHONE}`}>{PHONE_DISPLAY}</a>.
+            </p>
           </div>
         ) : (
           <form
             onSubmit={submit}
-            className="oa-corners"
-            style={{ position: 'relative', borderRadius: 16, border: '1px solid var(--line-soft)', background: '#fff', padding: 'clamp(24px,4vw,36px)', display: 'flex', flexDirection: 'column', gap: 16, boxShadow: '0 20px 60px rgba(15,36,48,0.08)' }}
+            className="oa-corners oa-card"
+            aria-label="Demo request"
+            style={{ padding: 'clamp(24px,4vw,36px)', display: 'flex', flexDirection: 'column', gap: 16, boxShadow: '0 20px 60px rgba(15,36,48,0.08)' }}
           >
+            <p style={{ margin: 0, fontSize: 14, color: 'var(--ink-3)' }}>Fields marked * are required.</p>
             <Grid min={200} gap={16}>
-              <Field label="Full name *" name="name" required type="text" placeholder="Dr Priya Sharma" autoComplete="name" />
-              <Field label="Work email *" name="email" required type="email" placeholder="priya@company.com" autoComplete="email" />
-              <Field label="Company *" name="company" required type="text" placeholder="Acme Pharma" autoComplete="organization" />
-              <Field label="Phone" name="phone" type="tel" placeholder="+91 …" autoComplete="tel" />
+              <Field label="Full name" required name="name" type="text" autoComplete="name" />
+              <Field label="Work email" required name="email" type="email" autoComplete="email" />
+              <Field label="Company" required name="company" type="text" autoComplete="organization" />
+              <Field label="Phone (optional)" name="phone" type="tel" autoComplete="tel" />
             </Grid>
             <label className="oa-field">
               <FieldLabel>Interested in</FieldLabel>
-              <select name="interest" defaultValue="Merlin AI" className="oa-input">
+              <select key={preset || 'none'} name="interest" defaultValue={preset || interests[0]} className="oa-input">
                 {interests.map((i) => <option key={i} value={i}>{i}</option>)}
               </select>
             </label>
             <label className="oa-field">
-              <FieldLabel>Anything specific you want to see?</FieldLabel>
-              <textarea name="message" rows={3} placeholder="Optional" className="oa-input" style={{ resize: 'none' }} />
+              <FieldLabel>Anything specific you want to see? (optional)</FieldLabel>
+              <textarea name="message" rows={3} className="oa-input" style={{ resize: 'vertical' }} />
+            </label>
+            <label className="oa-consent">
+              <input type="checkbox" name="consent" required />
+              <span>
+                I agree that OneAlphaMed may use these details to respond to my request, as described in the{' '}
+                <Link to="/privacy">privacy policy</Link>. <span aria-hidden="true">*</span>
+              </span>
             </label>
             {status === 'error' && (
-              <p role="alert" style={{ margin: 0, borderRadius: 8, border: '1px solid rgba(31,102,176,0.3)', background: 'rgba(31,102,176,0.08)', padding: '12px 16px', fontSize: 14, lineHeight: 1.6, color: 'var(--ink-2)' }}>
-                Couldn't reach the form service.{' '}
-                <button type="button" onClick={mailto} style={{ background: 'none', border: 0, padding: 0, font: 'inherit', fontWeight: 600, color: 'var(--c-teal)', textDecoration: 'underline', cursor: 'pointer' }}>
-                  Send via your email app instead →
-                </button>
+              <p role="alert" className="oa-alert">
+                We couldn't send your request.{' '}
+                <button type="button" onClick={mailto} className="oa-textbtn">Send it from your email app instead →</button>
               </p>
             )}
             <button type="submit" disabled={status === 'sending'} className="oa-btn" style={{ marginTop: 4, padding: '14px 32px' }}>
-              {status === 'sending' ? 'Transmitting…' : 'Request my demo →'}
+              {status === 'sending' ? 'Sending…' : 'Request my demo →'}
             </button>
-            <p className="oa-mono" style={{ margin: 0, textAlign: 'center', fontSize: 11, letterSpacing: '0.15em', color: 'var(--ink-4)', overflowWrap: 'anywhere' }}>
-              Goes straight to {DEMO_EMAIL}
+            <p style={{ margin: 0, textAlign: 'center', fontSize: 14, color: 'var(--ink-3)' }}>
+              We reply within 1 business day. Demos take about 30 minutes.
             </p>
           </form>
         )}

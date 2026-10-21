@@ -1,8 +1,14 @@
+import { useEffect, useState } from 'react'
 import icon from '../assets/alphamed-icon.png'
-import imgEngine from '../assets/visuals/home-engine.jpg'
-import { DEMO_EMAIL, OFFICES, pillars, products, rules } from './content'
-import JourneyCards from './Journey'
-import { Dot, FeatureCard, Grad, Grid, Section, Stack, Tag } from './ui'
+import {
+  CONTACT_EMAIL, OFFICES, STATUS_LEGEND, audiences, engagement, faqs, partnerNames, partners, productById, products, rules,
+} from './content'
+import { Link } from './router'
+import { Dot, Grad, Grid, Section, Stack, StatusPill, Tag, Visual } from './ui'
+import { visuals } from './visuals'
+
+const partnerLogos = import.meta.glob('../assets/partners/*.webp', { eager: true, import: 'default' })
+const logoFor = (key) => partnerLogos[`../assets/partners/${key}.webp`]
 
 const STATS = [
   { value: '15,000+', label: 'HCPs engaged across programs' },
@@ -10,88 +16,186 @@ const STATS = [
   { value: '7', label: 'Products live or in pilot' },
 ]
 
+// step 0: question · 1: typing · 2: answer · 3: answer + citations
+const STEP_MS = [1000, 1300, 1000, 4500]
+
+function MerlinDemo() {
+  const [step, setStep] = useState(3)
+
+  useEffect(() => {
+    if (window.matchMedia?.('(prefers-reduced-motion: reduce)').matches) return
+    let current = 3
+    let timer = setTimeout(function tick() {
+      current = (current + 1) % 4
+      setStep(current)
+      timer = setTimeout(tick, STEP_MS[current])
+    }, 2500)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <figure className="oa-demo" aria-label="Sample: Merlin AI answering a medical-information question with a citation">
+      <div className="oa-demo-head">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+          <span className="oa-demo-avatar" aria-hidden="true">M</span>
+          <Stack gap={2}>
+            <span style={{ fontSize: 14, fontWeight: 700 }}>Merlin AI</span>
+            <span className="oa-demo-sub">Medical information assistant</span>
+          </Stack>
+        </div>
+        <span className="oa-demo-sub" style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'var(--c-green)' }}>
+          <Dot color="#0b7a4b" />Online
+        </span>
+      </div>
+      <div className="oa-demo-body" aria-live="off">
+        <div className="oa-bubble oa-bubble--q">
+          What is the recommended dose adjustment in moderate renal impairment?
+        </div>
+        {step === 1 && (
+          <div className="oa-bubble oa-bubble--a oa-typing" aria-hidden="true"><span /><span /><span /></div>
+        )}
+        {step >= 2 && (
+          <div className="oa-bubble oa-bubble--a">
+            Per the approved prescribing information, reduce the starting dose by 50% when CrCl is 30–59 mL/min and
+            reassess at week 2.
+            <div className={`oa-demo-cites${step === 3 ? ' is-in' : ''}`}>
+              <span className="oa-cite">✓ Source: SmPC §4.2, page 6</span>
+              <span className="oa-cite oa-cite--teal">Approved library only</span>
+            </div>
+          </div>
+        )}
+      </div>
+      <figcaption className="oa-demo-caption">Sample question with an illustrative answer.</figcaption>
+    </figure>
+  )
+}
+
 function Hero() {
   return (
-    <section style={{ position: 'relative', overflow: 'hidden', padding: '96px 24px 72px' }}>
+    <section style={{ position: 'relative', overflow: 'hidden', padding: '80px 24px 64px' }}>
       <div className="oa-sweep" />
       <Grid min={320} gap={56} className="oa-wrap" style={{ alignItems: 'center' }}>
-        <Stack gap={28}>
-          <p
-            style={{
-              margin: 0, display: 'inline-flex', alignSelf: 'flex-start', alignItems: 'center', gap: 10,
-              borderRadius: 999, border: '1px solid rgba(14,143,88,0.4)', background: 'rgba(255,255,255,0.6)', padding: '8px 16px',
-            }}
-          >
+        <Stack gap={26}>
+          <p className="oa-chip">
             <Dot size={7} color="#1ec27a" glow />
-            <span className="oa-label" style={{ color: 'var(--c-teal)' }}>Gen AI systems online — Pharma &amp; Healthcare</span>
+            <span>Built exclusively for pharma &amp; healthcare</span>
           </p>
           <h1
             style={{
-              margin: 0, fontFamily: 'var(--display)', fontWeight: 800, fontSize: 'clamp(2.6rem,5.5vw,4.4rem)',
+              margin: 0, fontFamily: 'var(--display)', fontWeight: 800, fontSize: 'clamp(2.5rem,5.2vw,4.2rem)',
               lineHeight: 1.05, letterSpacing: '-0.02em', textWrap: 'balance',
             }}
           >
             Building <Grad>AI Solutions</Grad> for the Global Pharma Industry
           </h1>
           <p style={{ margin: 0, maxWidth: 560, fontSize: '1.1rem', lineHeight: 1.7, color: 'var(--ink-2)', textWrap: 'pretty' }}>
-            OneAlphaMed AI is India's first generative AI partner built exclusively for pharmaceutical and healthcare
-            companies — turning trusted medical evidence into products doctors, marketers, and patients actually rely on.
+            Answer doctors' questions from your approved literature, keep doctors engaged between rep visits, and
+            support patients between appointments — with AI that stays inside your compliance rules.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 14, alignItems: 'center' }}>
-            <a href="#contact" className="oa-btn">Book a demo →</a>
-            <a href="#products" className="oa-btn-ghost">Explore the products</a>
+            <Link to="/contact" className="oa-btn">Book a demo →</Link>
+            <Link to="/products" className="oa-btn-ghost">Explore the products</Link>
           </div>
         </Stack>
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative', minHeight: 320 }}>
-          <div style={{ position: 'absolute', width: 360, height: 360, borderRadius: '50%', background: 'radial-gradient(circle,rgba(30,194,122,0.25),transparent 65%)' }} />
-          <div style={{ position: 'absolute', width: 420, height: 420, maxWidth: '100%', aspectRatio: '1', borderRadius: '50%', border: '1px dashed rgba(10,168,143,0.4)' }} />
-          <div style={{ position: 'absolute', width: 300, height: 300, borderRadius: '50%', border: '1px dashed rgba(45,127,212,0.4)' }} />
-          <img src={icon} alt="" style={{ position: 'relative', width: 240, height: 'auto', filter: 'drop-shadow(0 20px 40px rgba(30,194,122,0.35))' }} />
-        </div>
+        <MerlinDemo />
       </Grid>
 
-      <Grid
-        min={220}
-        gap={0}
-        className="oa-wrap"
-        style={{ marginTop: 64, borderRadius: 20, background: '#0f2430', color: '#eaf1f4', overflow: 'hidden', boxShadow: '0 30px 80px rgba(15,36,48,0.25)' }}
-      >
+      <Grid min={220} gap={0} className="oa-wrap oa-stats">
         {STATS.map((s) => (
-          <div key={s.label} style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', gap: 8, borderRight: '1px solid rgba(180,214,224,0.14)' }}>
-            <span className="oa-grad" style={{ fontFamily: 'var(--display)', fontWeight: 800, fontSize: '3rem', lineHeight: 1 }}>{s.value}</span>
-            <span style={{ fontWeight: 700, fontSize: 15, color: '#eaf1f4' }}>{s.label}</span>
+          <div key={s.label} className="oa-stat">
+            <span className="oa-grad oa-stat-value">{s.value}</span>
+            <span className="oa-stat-label">{s.label}</span>
           </div>
         ))}
-        <div style={{ padding: '32px 36px', display: 'flex', flexDirection: 'column', gap: 8, justifyContent: 'center' }}>
-          <span className="oa-mono" style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.12em', color: '#1ec27a' }}>Where we operate</span>
-          <span style={{ fontWeight: 700, fontSize: 15, lineHeight: 1.5 }}>{OFFICES}</span>
+        <div className="oa-stat" style={{ justifyContent: 'center' }}>
+          <span className="oa-stat-kicker">Where we operate</span>
+          <span className="oa-stat-label" style={{ lineHeight: 1.5 }}>{OFFICES}</span>
         </div>
       </Grid>
     </section>
   )
 }
 
-function Capabilities() {
+function TrustStrip() {
+  return (
+    <section style={{ padding: '40px 24px 24px' }} aria-labelledby="trust-h">
+      <Stack gap={22} className="oa-wrap" style={{ alignItems: 'center' }}>
+        <h2 id="trust-h" className="oa-kicker" style={{ textAlign: 'center' }}>
+          The OneAlphaMed group works with pharma leaders including
+        </h2>
+        <ul className="oa-logos">
+          {partners.map((key) => (
+            <li key={key}>
+              <img src={logoFor(key)} alt={partnerNames[key]} loading="lazy" decoding="async" />
+            </li>
+          ))}
+        </ul>
+      </Stack>
+    </section>
+  )
+}
+
+function WhoWeHelp() {
   return (
     <Section>
-      <Stack gap={40} className="oa-wrap">
+      <Stack gap={36} className="oa-wrap">
         <Stack gap={14}>
-          <Tag tone="green">01 — What we build</Tag>
-          <h2 className="oa-h2" style={{ maxWidth: 860 }}>
-            Production AI across the whole pharma value chain — from <Grad>medical information to the patient's kitchen.</Grad>
+          <Tag tone="green">Who we help</Tag>
+          <h2 className="oa-h2" style={{ maxWidth: 820 }}>
+            AI for the teams that carry <Grad>medical evidence</Grad> to doctors and patients.
           </h2>
-          <p className="oa-lead" style={{ maxWidth: 720 }}>
-            Not slideware. Seven products are live, in deployment or in pilot with pharmaceutical and clinical teams today,
-            each built on the same evidence-locked, compliance-first foundation.
-          </p>
         </Stack>
         <Grid min={280}>
-          {pillars.map((p) => (
-            <FeatureCard key={p.n} {...p} titleSize="1.25rem" padding={28} hover="green">
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 'auto' }}>
-                {p.tags.map((t) => <span key={t} className="oa-pill">{t}</span>)}
+          {audiences.map((a) => (
+            <div key={a.key} className="oa-card oa-corners" style={{ padding: 28, display: 'flex', flexDirection: 'column', gap: 14 }}>
+              <span aria-hidden="true" style={{ width: 28, height: 3, borderRadius: 2, background: a.color }} />
+              <h3 className="oa-h3" style={{ fontSize: '1.3rem' }}>{a.title}</h3>
+              <p className="oa-body">{a.desc}</p>
+              <ul className="oa-chiplinks">
+                {a.products.map((id) => (
+                  <li key={id}><Link to={`/products/${id}`} className="oa-chiplink">{productById[id].name} →</Link></li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </Grid>
+      </Stack>
+    </Section>
+  )
+}
+
+function ProductGrid() {
+  return (
+    <Section tint>
+      <Stack gap={32} className="oa-wrap">
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'end', gap: 16 }}>
+          <Stack gap={14}>
+            <Tag tone="blue">The products</Tag>
+            <h2 className="oa-h2">Seven products. One evidence engine.</h2>
+            <p className="oa-legend">{STATUS_LEGEND}</p>
+          </Stack>
+          <Link to="/products" style={{ fontWeight: 700 }}>Full product detail →</Link>
+        </div>
+        <Grid min={260}>
+          {products.map((pr) => (
+            <article key={pr.id} className="oa-card oa-product-card">
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
+                <span className="oa-kind" style={{ color: pr.color }}>{pr.kind}</span>
+                <StatusPill status={pr.status} />
               </div>
-            </FeatureCard>
+              <h3 className="oa-h3" style={{ fontSize: '1.3rem' }}>
+                <Link to={`/products/${pr.id}`} className="oa-card-link">{pr.name}</Link>
+              </h3>
+              <p className="oa-body">{pr.tagline}</p>
+              <div className="oa-card-actions">
+                <span className="oa-learn" aria-hidden="true">Learn more →</span>
+                {pr.demoUrl && (
+                  <a href={pr.demoUrl} target="_blank" rel="noopener noreferrer" className="oa-try">
+                    {pr.demoLabel} ↗<span className="oa-sr"> (opens in a new tab)</span>
+                  </a>
+                )}
+              </div>
+            </article>
           ))}
         </Grid>
       </Stack>
@@ -101,104 +205,97 @@ function Capabilities() {
 
 function HowWeBuild() {
   return (
-    <section className="oa-sec" style={{ background: 'linear-gradient(180deg,transparent,rgba(224,240,244,0.5) 20%,rgba(224,240,244,0.5) 80%,transparent)' }}>
+    <Section>
       <Grid min={300} gap={48} className="oa-wrap" style={{ alignItems: 'start' }}>
         <Stack gap={14}>
-          <Tag tone="teal">02 — How we build</Tag>
+          <Tag tone="teal">How we build</Tag>
           <h2 className="oa-h2">Four rules every OneAlphaMed product is built under.</h2>
           <p className="oa-lead">
-            Generative AI in pharma fails on trust, not capability. These constraints are architecture, not policy — they
-            are enforced in code before a single answer reaches a doctor or a patient.
+            Generative AI in pharma fails on trust, not capability. These rules are built into the software, so they
+            hold before a single answer reaches a doctor or a patient.
           </p>
-          <a href="#products" style={{ alignSelf: 'flex-start', marginTop: 8, fontWeight: 600 }}>See how each product applies them →</a>
+          <Link to="/security" style={{ alignSelf: 'flex-start', marginTop: 8, fontWeight: 700 }}>Security &amp; compliance in detail →</Link>
           <div style={{ position: 'relative', height: 300, borderRadius: 20, overflow: 'hidden', border: '1px solid var(--line)', marginTop: 16 }}>
-            <img
-              src={imgEngine}
-              alt="Evidence documents streaming into a protected neural network"
-              loading="lazy"
-              style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
-            />
+            <Visual visual={visuals.engine} alt="" sizes="(max-width: 760px) 100vw, 560px" />
           </div>
         </Stack>
-        <div style={{ display: 'grid', gap: 14 }}>
+        <ol className="oa-rules">
           {rules.map((r) => (
-            <div key={r.n} className="oa-card" style={{ display: 'grid', gridTemplateColumns: '56px 1fr', gap: 16, borderRadius: 14, padding: '20px 22px' }}>
-              <span className="oa-mono" style={{ fontSize: 20, color: r.color }}>{r.n}</span>
+            <li key={r.n} className="oa-card" style={{ display: 'grid', gridTemplateColumns: '48px 1fr', gap: 14, borderRadius: 14, padding: '20px 22px' }}>
+              <span className="oa-mono" aria-hidden="true" style={{ fontSize: 20, color: r.color }}>{r.n}</span>
               <Stack gap={6}>
-                <strong style={{ fontSize: '1.05rem' }}>{r.title}</strong>
-                <span style={{ fontSize: '0.98rem', lineHeight: 1.6, color: 'var(--ink-2)' }}>{r.desc}</span>
+                <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 800 }}>{r.title}</h3>
+                <p style={{ margin: 0, fontSize: '0.98rem', lineHeight: 1.6, color: 'var(--ink-2)' }}>{r.desc}</p>
               </Stack>
-            </div>
+            </li>
           ))}
-        </div>
+        </ol>
       </Grid>
-    </section>
+    </Section>
   )
 }
 
-function ProductLine() {
+export function Engagement() {
   return (
-    <Section>
-      <Stack gap={36} className="oa-wrap">
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'space-between', alignItems: 'end', gap: 16 }}>
-          <Stack gap={14}>
-            <Tag tone="blue">03 — The product line</Tag>
-            <h2 className="oa-h2">Seven products. One evidence engine.</h2>
-          </Stack>
-          <a href="#products" style={{ fontWeight: 600 }}>Full product detail →</a>
-        </div>
-        <Grid min={260}>
-          {products.map((pr) => (
-            <a
-              key={pr.id}
-              href={`#products/${pr.id}`}
-              className="oa-card oa-lift"
-              style={{ display: 'flex', flexDirection: 'column', gap: 12, padding: 26, color: 'var(--ink)' }}
-            >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8 }}>
-                <span className="oa-mono" style={{ fontSize: 11.5, letterSpacing: '0.12em', textTransform: 'uppercase', color: pr.color }}>{pr.kind}</span>
-                <span className="oa-pill" style={{ fontSize: 10.5, padding: '3px 9px', whiteSpace: 'nowrap' }}>{pr.status}</span>
-              </div>
-              <h3 className="oa-h3" style={{ fontSize: '1.3rem' }}>{pr.name}</h3>
-              <p className="oa-body">{pr.tagline}</p>
-              <span style={{ marginTop: 'auto', fontSize: 14, fontWeight: 600, color: 'var(--c-teal)' }}>Learn more ↗</span>
-            </a>
+    <Section tint>
+      <Stack gap={32} className="oa-wrap">
+        <Stack gap={14}>
+          <Tag tone="lime">How we work with you</Tag>
+          <h2 className="oa-h2" style={{ maxWidth: 820 }}>Start small, prove it, then scale.</h2>
+        </Stack>
+        <ol className="oa-steps">
+          {engagement.map((e, i) => (
+            <li key={e.step} className="oa-card" style={{ padding: 26, display: 'flex', flexDirection: 'column', gap: 10, borderTop: `3px solid ${e.color}` }}>
+              <span className="oa-kind" style={{ color: e.color }}>Step {i + 1}</span>
+              <h3 className="oa-h3" style={{ fontSize: '1.25rem' }}>{e.step}</h3>
+              <p className="oa-body">{e.desc}</p>
+            </li>
           ))}
-        </Grid>
+        </ol>
       </Stack>
     </Section>
   )
 }
 
-function Journey() {
+export function FAQ() {
   return (
-    <section className="oa-sec" style={{ background: 'linear-gradient(180deg,transparent,rgba(224,240,244,0.5) 25%,rgba(224,240,244,0.5) 75%,transparent)' }}>
-      <Stack gap={40} className="oa-wrap">
+    <Section>
+      <Grid min={300} gap={48} className="oa-wrap" style={{ alignItems: 'start' }}>
         <Stack gap={14}>
-          <Tag tone="lime">04 — The journey</Tag>
-          <h2 className="oa-h2" style={{ maxWidth: 920 }}>
-            Our product roadmap progressively <Grad>deepens AI integration</Grad> — from information query systems to patient interactions.
-          </h2>
+          <Tag tone="blue">FAQ</Tag>
+          <h2 className="oa-h2">Questions pharma teams ask us first.</h2>
+          <p className="oa-lead">
+            Something else? <Link to="/contact">Ask us directly</Link> — we reply within 1 business day.
+          </p>
         </Stack>
-        <JourneyCards />
-      </Stack>
-    </section>
+        <div className="oa-faq">
+          {faqs.map((f) => (
+            <details key={f.q} className="oa-card">
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </Grid>
+    </Section>
   )
 }
 
 function CTA() {
   return (
-    <section style={{ position: 'relative', overflow: 'hidden', padding: '120px 24px', textAlign: 'center' }}>
+    <section style={{ position: 'relative', overflow: 'hidden', padding: '110px 24px', textAlign: 'center' }}>
       <img
         src={icon}
         alt=""
         style={{ position: 'absolute', left: '50%', top: '50%', width: 520, maxWidth: 'none', transform: 'translate(-50%,-50%)', opacity: 0.07, pointerEvents: 'none' }}
       />
-      <Stack gap={28} style={{ position: 'relative', maxWidth: 800, margin: '0 auto', alignItems: 'center' }}>
-        <span className="oa-label" style={{ color: 'var(--c-green)' }}>Ready when you are</span>
+      <Stack gap={24} style={{ position: 'relative', maxWidth: 800, margin: '0 auto', alignItems: 'center' }}>
+        <span className="oa-kicker" style={{ color: 'var(--c-green)' }}>Ready when you are</span>
         <h2 className="oa-h2" style={{ lineHeight: 1.2 }}>Let's put <Grad>evidence-grade AI</Grad> to work for your brand.</h2>
-        <a href="#contact" className="oa-btn oa-btn--lg">Book a demo →</a>
-        <span className="oa-mono" style={{ fontSize: 12.5, letterSpacing: '0.15em', color: 'var(--ink-3)' }}>{DEMO_EMAIL}</span>
+        <Link to="/contact" className="oa-btn oa-btn--lg">Book a demo →</Link>
+        <p style={{ margin: 0, color: 'var(--ink-3)' }}>
+          Or email <a href={`mailto:${CONTACT_EMAIL}`} style={{ fontWeight: 700 }}>{CONTACT_EMAIL}</a>
+        </p>
       </Stack>
     </section>
   )
@@ -208,10 +305,12 @@ export default function Home() {
   return (
     <div>
       <Hero />
-      <Capabilities />
+      <TrustStrip />
+      <WhoWeHelp />
+      <ProductGrid />
       <HowWeBuild />
-      <ProductLine />
-      <Journey />
+      <Engagement />
+      <FAQ />
       <CTA />
     </div>
   )

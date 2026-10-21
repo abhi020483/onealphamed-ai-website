@@ -1,4 +1,4 @@
-import { OFFICES, edges, services } from './content'
+import { GROUP_URL, OFFICES, edges, services } from './content'
 import JourneyCards from './Journey'
 import { Grad, Grid, Stack } from './ui'
 
@@ -22,7 +22,7 @@ export default function About() {
       <section style={{ padding: '80px 24px 56px' }}>
         <Grid min={300} gap={48} className="oa-wrap" style={{ alignItems: 'start' }}>
           <Stack gap={20}>
-            <span className="oa-label" style={{ color: 'var(--c-green)' }}>About OneAlphaMed AI</span>
+            <span className="oa-kicker" style={{ color: 'var(--c-green)' }}>About OneAlphaMed AI</span>
             <h1 className="oa-h1">Built inside pharma. <Grad>Engineered for evidence.</Grad></h1>
             <p style={{ margin: 0, fontSize: '1.1rem', lineHeight: 1.7, color: 'var(--ink-2)' }}>
               OneAlphaMed AI is the generative AI arm of the OneAlphaMed group — a pharma-focused marketing and medical
@@ -34,7 +34,7 @@ export default function About() {
           <div style={{ display: 'grid', gap: 16 }}>
             {PILLARS.map((p) => (
               <div key={p.label} className="oa-card" style={{ padding: '24px 26px', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <span className="oa-label" style={{ color: p.color }}>{p.label}</span>
+                <span className="oa-kicker" style={{ color: p.color }}>{p.label}</span>
                 <p style={{ margin: 0, fontSize: '1.05rem', lineHeight: 1.65 }}>{p.text}</p>
               </div>
             ))}
@@ -45,7 +45,7 @@ export default function About() {
       <section style={{ padding: '56px 24px', ...tint(15, 85) }}>
         <Stack gap={36} className="oa-wrap">
           <Stack gap={14}>
-            <span className="oa-label" style={{ color: 'var(--c-teal)' }}>Why we lead</span>
+            <span className="oa-kicker" style={{ color: 'var(--c-teal)' }}>Why we lead</span>
             <h2 className="oa-h2" style={{ maxWidth: 860 }}>Three capabilities most vendors keep separate, under one brief.</h2>
           </Stack>
           <Grid min={280}>
@@ -62,21 +62,22 @@ export default function About() {
       <section id="ecosystem" className="oa-sec" style={{ scrollMarginTop: 90 }}>
         <Stack gap={40} className="oa-wrap">
           <Stack gap={14}>
-            <span className="oa-label" style={{ color: 'var(--c-blue)' }}>Ecosystem</span>
+            <span className="oa-kicker" style={{ color: 'var(--c-blue)' }}>Ecosystem</span>
             <h2 className="oa-h2" style={{ maxWidth: 860 }}>One healthcare group, <Grad>six ways</Grad> to move pharma forward.</h2>
+            <p className="oa-lead" style={{ maxWidth: 720 }}>
+              OneAlphaMed AI sits alongside the group's other businesses. Learn more about them at{' '}
+              <a href={GROUP_URL} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700 }}>onealphamed.com ↗<span className="oa-sr"> (opens in a new tab)</span></a>.
+            </p>
           </Stack>
           <Grid min={260}>
             {services.map((s) => (
               <div
                 key={s.n}
-                className="oa-card oa-corners oa-hover-lime"
-                style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '30px 28px', transition: 'border-color .2s' }}
+                className="oa-card oa-corners"
+                style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '26px 28px' }}
               >
-                <Stack gap={6}>
-                  <span className="oa-mono" style={{ fontSize: 11.5, letterSpacing: '0.12em', color: s.color }}>{s.n}</span>
-                  <span style={{ fontFamily: 'var(--display)', fontWeight: 700, fontSize: '1.2rem' }}>{s.name}</span>
-                </Stack>
-                <span style={{ fontSize: 18, color: 'rgba(15,36,48,0.4)' }} aria-hidden="true">↗</span>
+                <span aria-hidden="true" style={{ width: 4, height: 28, borderRadius: 2, background: s.color, flex: 'none' }} />
+                <span style={{ fontFamily: 'var(--display)', fontWeight: 700, fontSize: '1.15rem' }}>{s.name}</span>
               </div>
             ))}
           </Grid>
@@ -84,7 +85,7 @@ export default function About() {
             {STATS.map((s) => (
               <Stack key={s.label} gap={8} style={{ alignItems: 'center', textAlign: 'center' }}>
                 <span className="oa-grad" style={{ fontFamily: 'var(--display)', fontWeight: 700, fontSize: '2.4rem' }}>{s.value}</span>
-                <span className="oa-label" style={{ color: 'var(--c-teal)' }}>{s.label}</span>
+                <span className="oa-kicker" style={{ color: 'var(--c-teal)' }}>{s.label}</span>
               </Stack>
             ))}
           </Grid>
@@ -94,7 +95,7 @@ export default function About() {
       <section className="oa-sec" style={tint(25, 75)}>
         <Stack gap={36} className="oa-wrap">
           <Stack gap={14}>
-            <span className="oa-label" style={{ color: 'var(--c-lime)' }}>The journey</span>
+            <span className="oa-kicker" style={{ color: 'var(--c-lime)' }}>The journey</span>
             <h2 className="oa-h2" style={{ maxWidth: 920 }}>From information query systems to patient interactions.</h2>
           </Stack>
           <JourneyCards />
