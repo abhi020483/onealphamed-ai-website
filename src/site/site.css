@@ -310,7 +310,7 @@
 
 /* hero stats */
 .oa-stats { margin-top: 56px; border-radius: 20px; background: #0f2430; color: #eaf1f4; overflow: hidden; box-shadow: 0 30px 80px rgba(15, 36, 48, 0.25); }
-.oa-stat { padding: 28px 32px; display: flex; flex-direction: column; gap: 8px; border-right: 1px solid rgba(180, 214, 224, 0.14); }
+.oa-stat { padding: 26px clamp(18px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 8px; border-right: 1px solid rgba(180, 214, 224, 0.14); }
 .oa-stat-value { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 3.6vw, 2.8rem); line-height: 1; white-space: nowrap; }
 .oa-stat-label { font-weight: 700; font-size: 15px; color: #eaf1f4; }
 .oa-stat-kicker { font-family: var(--mono); font-weight: 600; font-size: 12.5px; text-transform: uppercase; letter-spacing: 0.08em; color: #5fe0a5; }
@@ -336,9 +336,10 @@
 @keyframes oa-rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
 
 /* partner logos */
-.oa-logos { list-style: none; margin: 0; padding: 0; width: 100%; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(130px, 40%), 1fr)); gap: 12px; }
-.oa-logos li { height: 76px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid var(--line-soft); background: rgba(255, 255, 255, 0.8); padding: 14px 18px; }
-.oa-logos img { max-height: 44px; max-width: 100%; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.75; transition: filter .25s, opacity .25s; }
+.oa-logos { list-style: none; margin: 0; padding: 0; width: 100%; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+.oa-logos li { flex: 0 0 132px; height: 72px; display: flex; align-items: center; justify-content: center; border-radius: 12px; border: 1px solid var(--line-soft); background: rgba(255, 255, 255, 0.8); padding: 12px 16px; }
+@media (max-width: 480px) { .oa-logos { gap: 10px; } .oa-logos li { flex-basis: calc(33.333% - 7px); height: 64px; padding: 10px; } }
+.oa-logos img { height: auto; max-height: 42px; max-width: 100%; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.75; transition: filter .25s, opacity .25s; }
 .oa-logos li:hover img { filter: none; opacity: 1; }
 
 /* who we help */

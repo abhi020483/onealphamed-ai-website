@@ -100,7 +100,7 @@ function Hero() {
         <MerlinDemo />
       </Grid>
 
-      <Grid min={220} gap={0} className="oa-wrap oa-stats">
+      <Grid min={165} gap={0} className="oa-wrap oa-stats">
         {STATS.map((s) => (
           <div key={s.label} className="oa-stat">
             <span className="oa-grad oa-stat-value">{s.value}</span>
@@ -121,7 +121,7 @@ function TrustStrip() {
     <section style={{ padding: '40px 24px 24px' }} aria-labelledby="trust-h">
       <Stack gap={22} className="oa-wrap" style={{ alignItems: 'center' }}>
         <h2 id="trust-h" className="oa-kicker" style={{ textAlign: 'center' }}>
-          The OneAlphaMed group works with pharma leaders including
+          Trusted by pharma and healthcare leaders across the OneAlphaMed group
         </h2>
         <ul className="oa-logos">
           {partners.map((key) => (
