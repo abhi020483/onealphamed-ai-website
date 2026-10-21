@@ -594,7 +594,7 @@ function PathView({ tint }) {
               <div style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr 1fr', gap: 12 }}>
                 <span />
                 <span className="oa-mono" style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--c-blue)' }}>A · Chemotherapy</span>
-                <span className="oa-mono" style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#c2622d' }}>B · Lobectomy</span>
+                <span className="oa-mono" style={{ fontSize: 12, textTransform: 'uppercase', letterSpacing: '0.1em', color: '#a34d1c' }}>B · Lobectomy</span>
               </div>
               {pathviewReadouts.map((r) => (
                 <div key={r.label} style={{ display: 'grid', gridTemplateColumns: '1.1fr 1fr 1fr', gap: 12, fontSize: 14, lineHeight: 1.5, borderTop: '1px solid rgba(20,70,90,0.08)', paddingTop: 10 }}>
@@ -626,7 +626,7 @@ function PathView({ tint }) {
                 <strong style={{ color: 'var(--c-blue)' }}>A:</strong> The tumour shrinks and its core becomes inactive. Lymph nodes reduce in size.
               </p>
               <p className="oa-body" style={{ fontSize: '0.98rem' }}>
-                <strong style={{ color: '#c2622d' }}>B:</strong> The remaining lobes gradually expand to fill the space, recovering much of your breathing capacity.
+                <strong style={{ color: '#a34d1c' }}>B:</strong> The remaining lobes gradually expand to fill the space, recovering much of your breathing capacity.
               </p>
             </div>
             <div className="oa-card" style={{ display: 'flex', flexDirection: 'column', gap: 14, padding: '22px 24px' }}>

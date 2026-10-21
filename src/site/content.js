@@ -191,11 +191,11 @@ export const rweWorkspaces = [
 ]
 
 export const rweChecks = [
-  { level: 'warn', bg: '#b7791f', text: 'BP systolic 262 is outside 60–260 mmHg.' },
+  { level: 'warn', bg: '#8a5a12', text: 'BP systolic 262 is outside 60–260 mmHg.' },
   { level: 'info', bg: '#1f66b0', text: 'Low AI confidence on eGFR, NT-proBNP. Check against the image.' },
   { level: 'info', bg: '#1f66b0', text: 'No MRA prescribed. Intolerance reason recorded: Hyperkalaemia.' },
-  { level: 'pass', bg: '#0e8f58', text: 'Visit date 14 Jan is inside the window (4 Jan–24 Jan).' },
-  { level: 'pass', bg: '#0e8f58', text: 'Diastolic is below systolic.' },
+  { level: 'pass', bg: '#0b7a4b', text: 'Visit date 14 Jan is inside the window (4 Jan–24 Jan).' },
+  { level: 'pass', bg: '#0b7a4b', text: 'Diastolic is below systolic.' },
 ]
 
 export const rweStats = [
