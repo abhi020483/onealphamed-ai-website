@@ -26,7 +26,8 @@ dist-ssr
 
 # local-only: internal pitch decks & session config — never publish
 AlphaMed AI/
-.claude/
+.claude/*
+!.claude/skills/
 
 # local working files
 *.zip
