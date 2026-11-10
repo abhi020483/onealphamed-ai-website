@@ -71,7 +71,7 @@ export function Footer() {
     <footer className="oa-footer">
       <div className="oa-wrap oa-footer-grid">
         <div className="oa-footer-brand">
-          <img src={lockup} alt="OneAlphaMed AI" style={{ height: 40, width: 'auto' }} width="145" height="40" />
+          <img src={lockup} alt="OneAlphaMed AI" style={{ height: 40, width: 'auto', alignSelf: 'flex-start' }} width="145" height="40" />
           <p>Generative AI built exclusively for pharmaceutical and healthcare companies.</p>
           <p className="oa-footer-small">
             The AI products division of the <a href={GROUP_URL} target="_blank" rel="noopener noreferrer">OneAlphaMed group<span className="oa-sr"> (opens in a new tab)</span></a>.
